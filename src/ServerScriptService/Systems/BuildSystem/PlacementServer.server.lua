@@ -21,7 +21,6 @@ local PlayerDataService = require(game.ServerScriptService:WaitForChild("Systems
 local PlotService = require(game.ServerScriptService:WaitForChild("Systems"):WaitForChild("PlotSystem"):WaitForChild("Modules"):WaitForChild("PlotService"))
 local EnemyCore = require(game.ServerScriptService:WaitForChild("Systems"):WaitForChild("RaidSystem"):WaitForChild("Modules"):WaitForChild("EnemyCore"))
 local DEBUG_PLACEMENT = false
-local PATH_HALF_WIDTH = 4
 
 local placedFolder = Workspace:FindFirstChild("PlacedUnits") or Instance.new("Folder")
 placedFolder.Name = "PlacedUnits"
@@ -153,61 +152,14 @@ local function topSurfaceIsPlotPart(player, plotPart, worldPos)
     return result and result.Instance == plotPart and result.Normal:Dot(up) >= 0.97, result
 end
 
-local function isPathPart(part)
-    return part and (part.Name == "Path" or (part.Parent and part.Parent.Name == "Path"))
-end
-
-local function isPointMarker(part)
-    return part and part:IsDescendantOf(Workspace:FindFirstChild("Plots") or Workspace) and part.Parent and part.Parent.Name == "Points"
-end
-
-local function pointSegmentDistance2D(point, a, b)
-    local ab = b - a
-    local denom = ab.X * ab.X + ab.Z * ab.Z
-    if denom <= 0.0001 then
-        local dx, dz = point.X - a.X, point.Z - a.Z
-        return math.sqrt(dx * dx + dz * dz)
-    end
-    local t = math.clamp(((point.X - a.X) * ab.X + (point.Z - a.Z) * ab.Z) / denom, 0, 1)
-    local closest = a + ab * t
-    local dx, dz = point.X - closest.X, point.Z - closest.Z
-    return math.sqrt(dx * dx + dz * dz)
-end
-
-local function routeBlocksPlacement(plotPart, boxSize, boxCf)
-    local plot = plotPart and plotPart.Parent
-    local pointsFolder = plot and plot:FindFirstChild("Points")
-    if not pointsFolder then return false end
-    local points = {}
-    for _, pt in ipairs(pointsFolder:GetChildren()) do
-        local n = tonumber(pt.Name)
-        if n and pt:IsA("BasePart") then table.insert(points, { n = n, p = pt }) end
-    end
-    table.sort(points, function(a, b) return a.n < b.n end)
-    if #points < 2 then return false end
-    local center = plotPart.CFrame:PointToObjectSpace(boxCf.Position)
-    local radius = math.min(boxSize.X, boxSize.Z) * 0.5
-    for i = 1, #points - 1 do
-        local a = plotPart.CFrame:PointToObjectSpace(points[i].p.Position)
-        local b = plotPart.CFrame:PointToObjectSpace(points[i + 1].p.Position)
-        if pointSegmentDistance2D(center, a, b) < (PATH_HALF_WIDTH + radius) then
-            return true
-        end
-    end
-    return false
-end
-
 local function hasBlockingOverlap(player, plotPart, boxSize, boxCf)
-    if routeBlocksPlacement(plotPart, boxSize, boxCf) then
-        return true, "Path route"
-    end
     local extents = boxSize - Vector3.new(0.15, 0.15, 0.15)
     local params = OverlapParams.new()
     params.FilterType = Enum.RaycastFilterType.Exclude
     params.FilterDescendantsInstances = player.Character and { player.Character } or {}
 
     for _, part in ipairs(Workspace:GetPartBoundsInBox(boxCf, extents, params)) do
-        if part ~= plotPart and not isPathPart(part) and not isPointMarker(part) then
+        if part ~= plotPart then
             return true, part:GetFullName()
         end
     end
@@ -342,7 +294,7 @@ local function flashShot(player,from,to)
 end
 
 -- ===== data-driven targeting: enemies live in EnemyCore, not workspace =====
--- pick the enemy furthest along the path (closest to base) within range
+-- pick the enemy furthest along the route (closest to base) within range
 local function acquireTarget(player, origin, range)
     local best, bestTravelled = nil, -1
     for _, info in ipairs(EnemyCore.QueryInRange(player, origin, range)) do

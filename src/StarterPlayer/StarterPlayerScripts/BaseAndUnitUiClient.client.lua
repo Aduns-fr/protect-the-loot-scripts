@@ -80,9 +80,7 @@ local setSelectedBuildButton
 local CLICK_IN = TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 local CLICK_OUT = TweenInfo.new(0.14, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
 local DEBUG_PLACEMENT = false
-local PATH_HALF_WIDTH = 4
 local lastPlacementDebug = 0
-local cachedPlotPart, cachedRoutePoints = nil, nil
 local lastPlacementCheck, cachedPlacementClear = 0, false
 
 local function formatCash(value)
@@ -463,65 +461,9 @@ local function placementCFrame(world)
     return cf, targetBoxCf, boxSize
 end
 
-local function isPathPart(part)
-    return part and (part.Name == "Path" or (part.Parent and part.Parent.Name == "Path"))
-end
-
-local function isPointMarker(part)
-    return part and part:IsDescendantOf(Workspace:FindFirstChild("Plots") or Workspace) and part.Parent and part.Parent.Name == "Points"
-end
-
-local function pointSegmentDistance2D(point, a, b)
-    local ab = b - a
-    local denom = ab.X * ab.X + ab.Z * ab.Z
-    if denom <= 0.0001 then
-        local dx, dz = point.X - a.X, point.Z - a.Z
-        return math.sqrt(dx * dx + dz * dz)
-    end
-    local t = math.clamp(((point.X - a.X) * ab.X + (point.Z - a.Z) * ab.Z) / denom, 0, 1)
-    local closest = a + ab * t
-    local dx, dz = point.X - closest.X, point.Z - closest.Z
-    return math.sqrt(dx * dx + dz * dz)
-end
-
-local function getRoutePoints(plotPart)
-    if cachedPlotPart == plotPart and cachedRoutePoints then return cachedRoutePoints end
-    cachedPlotPart = plotPart
-    cachedRoutePoints = {}
-    local plot = plotPart and plotPart.Parent
-    local pointsFolder = plot and plot:FindFirstChild("Points")
-    if not pointsFolder then return cachedRoutePoints end
-    local points = {}
-    for _, pt in ipairs(pointsFolder:GetChildren()) do
-        local n = tonumber(pt.Name)
-        if n and pt:IsA("BasePart") then table.insert(points, { n = n, p = pt }) end
-    end
-    table.sort(points, function(a, b) return a.n < b.n end)
-    for _, entry in ipairs(points) do
-        table.insert(cachedRoutePoints, plotPart.CFrame:PointToObjectSpace(entry.p.Position))
-    end
-    return cachedRoutePoints
-end
-
-local function routeBlocksPlacement(plotPart, boxCf, boxSize)
-    local points = getRoutePoints(plotPart)
-    if #points < 2 then return false end
-    local center = plotPart.CFrame:PointToObjectSpace(boxCf.Position)
-    local radius = math.min(boxSize.X, boxSize.Z) * 0.5
-    for i = 1, #points - 1 do
-        local a = points[i]
-        local b = points[i + 1]
-        if pointSegmentDistance2D(center, a, b) < (PATH_HALF_WIDTH + radius) then
-            return true
-        end
-    end
-    return false
-end
-
 local function localPlacementClear(boxCf, boxSize)
     local plotPart = currentPlotPart()
     if not plotPart then return false end
-    if routeBlocksPlacement(plotPart, boxCf, boxSize) then return false, "Path route" end
     local params = OverlapParams.new()
     params.FilterType = Enum.RaycastFilterType.Exclude
     local excluded = {}
@@ -532,7 +474,7 @@ local function localPlacementClear(boxCf, boxSize)
     params.FilterDescendantsInstances = excluded
     local extents = boxSize - Vector3.new(0.2, 0.2, 0.2)
     for _, part in ipairs(Workspace:GetPartBoundsInBox(boxCf, extents, params)) do
-        if part ~= plotPart and not isPathPart(part) and not isPointMarker(part) then
+        if part ~= plotPart then
             return false, part:GetFullName()
         end
     end

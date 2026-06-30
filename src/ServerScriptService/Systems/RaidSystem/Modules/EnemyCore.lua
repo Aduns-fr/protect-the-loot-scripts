@@ -1,7 +1,7 @@
 --!nonstrict
 -- EnemyCore: data-driven enemy/wave system. Server holds enemies as pure data
 -- (no models/Humanoids); clients render rigs via EnemyController. Movement is math
--- along the plot's PathMover. Towers & sword target enemies via the API at the bottom.
+-- along a generated route from the plot edge to its Base part.
 -- Current raid runtime; preserves RaidConfig tuning.
 
 local Players = game:GetService("Players")
@@ -13,7 +13,7 @@ local PlotService = require(ServerScriptService.Systems.PlotSystem.Modules.PlotS
 local RaidConfig = require(ReplicatedStorage.Configs.RaidConfig)
 local PlayerDataService = require(ServerScriptService.Systems.DataSystem.Modules.PlayerDataService)
 local BaseUpgradesConfig = require(ReplicatedStorage.Configs.BaseUpgradesConfig)
-local PathMover = require(ReplicatedStorage.RaidShared.PathMover)
+local PlotRoute = require(ReplicatedStorage.RaidShared.PlotRoute)
 
 local function getLeaderboardManager()
 	local ok, lm = pcall(require, ServerScriptService.Systems.LeaderboardSystem.LeaderboardManager)
@@ -105,18 +105,7 @@ local function getSession(p)
 	return s
 end
 local function buildMover(plot)
-	local pf = plot and plot:FindFirstChild("Points")
-	if not pf then return nil end
-	local ordered = {}
-	for _, pt in ipairs(pf:GetChildren()) do
-		local n = tonumber(pt.Name)
-		if n and pt:IsA("BasePart") then table.insert(ordered, { n = n, p = pt }) end
-	end
-	table.sort(ordered, function(a, b) return a.n < b.n end)
-	if #ordered < 2 then return nil end
-	local pts = {}
-	for _, e in ipairs(ordered) do table.insert(pts, e.p.Position) end
-	return PathMover.new(pts)
+	return PlotRoute.Build(plot)
 end
 
 local function send(p, a, d) if p and p.Parent then RaidStatusRemote:FireClient(p, a, d or {}) end end
@@ -321,7 +310,7 @@ function EnemyCore.StartRaid(p)
 	lastStarted[p] = os.clock()
 	local plot = PlotService.GetPlayerPlot(p) or PlotService.AssignPlayer(p)
 	local mover = plot and buildMover(plot)
-	if not plot or not mover then warn("[EnemyCore] missing path", p.Name); return false end
+	if not plot or not mover then warn("[EnemyCore] missing plot route", p.Name); return false end
 	local sess = getSession(p)
 	sess.mover = mover
 	local checkpoint = PlayerDataService.GetRaidCheckpoint(p)

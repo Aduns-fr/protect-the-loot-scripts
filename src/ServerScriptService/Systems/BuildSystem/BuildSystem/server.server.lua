@@ -32,23 +32,12 @@ local function surfaceCFrame(part, worldPos, rotation, footprint)
     local y = part.Size.Y * 0.5 + 0.5
     return part.CFrame * CFrame.new(x, y, z) * CFrame.Angles(0, math.rad(rotation or 0), 0)
 end
-local function pathParts(plot)
-    local path = plot and plot:FindFirstChild("Path")
-    local parts = {}
-    if not path then return parts end
-    if path:IsA("BasePart") then table.insert(parts, path) end
-    for _, desc in ipairs(path:GetDescendants()) do if desc:IsA("BasePart") then table.insert(parts, desc) end end
-    return parts
-end
 local function intersects(cframe, size, include)
     if #include == 0 then return false end
     local params = OverlapParams.new()
     params.FilterType = Enum.RaycastFilterType.Include
     params.FilterDescendantsInstances = include
     return #Workspace:GetPartBoundsInBox(cframe, size, params) > 0
-end
-local function overlapsPath(plot, cframe, size)
-    return intersects(cframe, size, pathParts(plot))
 end
 local function overlapsPlaced(plot, cframe, size)
     local folder = activeFolder:FindFirstChild(plot.Name)
@@ -169,7 +158,6 @@ local function place(player, unitId, worldPos, rotation, hitPart, hitNormal)
     if not insidePlot(plotPart, worldPos, footprint) then return false, "Outside plot" end
     local cframe = surfaceCFrame(plotPart, worldPos, math.floor((tonumber(rotation) or 0) / 90 + 0.5) * 90, footprint)
     local size = Vector3.new(footprint.X - 0.05, 5, footprint.Y - 0.05)
-    if overlapsPath(plot, cframe, size) then return false, "Path blocked" end
     if overlapsPlaced(plot, cframe, size) then return false, "Occupied" end
     if not PlayerDataService.RemoveUnit(player, unitId, 1) then return false, "Inventory failed" end
     local model = createModel(unitId, cframe, player, plot)

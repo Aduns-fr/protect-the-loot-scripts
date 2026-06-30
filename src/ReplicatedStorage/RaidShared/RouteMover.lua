@@ -1,12 +1,11 @@
 --!strict
--- PathMover: maps a scalar travel distance along an ordered polyline of waypoints
--- to a world position + facing. Pure & deterministic, so the server (authoritative
--- enemy state) and every client (rendering) compute identical positions.
-local PathMover = {}
-PathMover.__index = PathMover
+-- RouteMover maps scalar travel distance along generated route points to a
+-- world position and facing. Server and client use the same math.
+local RouteMover = {}
+RouteMover.__index = RouteMover
 
-function PathMover.new(points)
-	local self = setmetatable({}, PathMover)
+function RouteMover.new(points)
+	local self = setmetatable({}, RouteMover)
 	self.points = points
 	local cum = table.create(#points)
 	cum[1] = 0
@@ -20,8 +19,7 @@ function PathMover.new(points)
 	return self
 end
 
--- distance: studs travelled. returns position (Vector3), facing (CFrame), atEnd (bool)
-function PathMover:At(distance)
+function RouteMover:At(distance)
 	local pts = self.points
 	local n = #pts
 	if n == 0 then return Vector3.zero, CFrame.identity, true end
@@ -34,11 +32,10 @@ function PathMover:At(distance)
 		dir = dir.Magnitude > 0 and dir.Unit or Vector3.new(0, 0, -1)
 		return pts[n], CFrame.lookAt(pts[n], pts[n] + dir), true
 	end
-	local cum = self.cum
 	for i = 2, n do
-		if distance <= cum[i] then
-			local segLen = cum[i] - cum[i - 1]
-			local t = segLen > 0 and (distance - cum[i - 1]) / segLen or 0
+		if distance <= self.cum[i] then
+			local segLen = self.cum[i] - self.cum[i - 1]
+			local t = segLen > 0 and (distance - self.cum[i - 1]) / segLen or 0
 			local a, b = pts[i - 1], pts[i]
 			local pos = a:Lerp(b, t)
 			local dir = b - a
@@ -49,4 +46,4 @@ function PathMover:At(distance)
 	return pts[n], CFrame.new(pts[n]), true
 end
 
-return PathMover
+return RouteMover

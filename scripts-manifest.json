@@ -27,13 +27,13 @@
         "path":  "ReplicatedStorage.Configs.MapConfig",
         "className":  "ModuleScript",
         "file":  "src/ReplicatedStorage/Configs/MapConfig.lua",
-        "bytes":  659
+        "bytes":  331
     },
     {
         "path":  "ReplicatedStorage.Configs.RaidConfig",
         "className":  "ModuleScript",
         "file":  "src/ReplicatedStorage/Configs/RaidConfig.lua",
-        "bytes":  13095
+        "bytes":  13103
     },
     {
         "path":  "ReplicatedStorage.Configs.SwordsConfig",
@@ -1806,10 +1806,16 @@
         "bytes":  310
     },
     {
-        "path":  "ReplicatedStorage.RaidShared.PathMover",
+        "path":  "ReplicatedStorage.RaidShared.PlotRoute",
         "className":  "ModuleScript",
-        "file":  "src/ReplicatedStorage/RaidShared/PathMover.lua",
-        "bytes":  1619
+        "file":  "src/ReplicatedStorage/RaidShared/PlotRoute.lua",
+        "bytes":  1554
+    },
+    {
+        "path":  "ReplicatedStorage.RaidShared.RouteMover",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/RaidShared/RouteMover.lua",
+        "bytes":  1438
     },
     {
         "path":  "ReplicatedStorage.Shared.ButtonAnimator",
@@ -1857,13 +1863,13 @@
         "path":  "ServerScriptService.Systems.BuildSystem.BuildSystem.server",
         "className":  "Script",
         "file":  "src/ServerScriptService/Systems/BuildSystem/BuildSystem/server.server.lua",
-        "bytes":  9627
+        "bytes":  9101
     },
     {
         "path":  "ServerScriptService.Systems.BuildSystem.PlacementServer",
         "className":  "Script",
         "file":  "src/ServerScriptService/Systems/BuildSystem/PlacementServer.server.lua",
-        "bytes":  21050
+        "bytes":  19110
     },
     {
         "path":  "ServerScriptService.Systems.CodeSystem.CodeSystem.server",
@@ -1887,7 +1893,7 @@
         "path":  "ServerScriptService.Systems.DataSystem.Modules.PlayerDataService",
         "className":  "ModuleScript",
         "file":  "src/ServerScriptService/Systems/DataSystem/Modules/PlayerDataService.lua",
-        "bytes":  19133
+        "bytes":  19111
     },
     {
         "path":  "ServerScriptService.Systems.LeaderboardSystem.LeaderboardManager",
@@ -1905,7 +1911,7 @@
         "path":  "ServerScriptService.Systems.MapSystem.MapSwitchServer",
         "className":  "Script",
         "file":  "src/ServerScriptService/Systems/MapSystem/MapSwitchServer.server.lua",
-        "bytes":  6239
+        "bytes":  2770
     },
     {
         "path":  "ServerScriptService.Systems.MusicServer",
@@ -1929,13 +1935,13 @@
         "path":  "ServerScriptService.Systems.RaidSystem.Modules.EnemyCore",
         "className":  "ModuleScript",
         "file":  "src/ServerScriptService/Systems/RaidSystem/Modules/EnemyCore.lua",
-        "bytes":  18396
+        "bytes":  17869
     },
     {
         "path":  "ServerScriptService.Systems.RaidSystem.RaidSystem.server",
         "className":  "Script",
         "file":  "src/ServerScriptService/Systems/RaidSystem/RaidSystem/server.server.lua",
-        "bytes":  235
+        "bytes":  116
     },
     {
         "path":  "ServerScriptService.Systems.ShopSystem.CrateSystem.server",
@@ -2052,9 +2058,9 @@
         "bytes":  13109
     },
     {
-        "path":  "StarterGui.Gui.InterfaceManager",
+        "path":  "StarterGui.GUI.InterfaceManager",
         "className":  "LocalScript",
-        "file":  "src/StarterGui/Gui/InterfaceManager.client.lua",
+        "file":  "src/StarterGui/GUI/InterfaceManager.client.lua",
         "bytes":  5335
     },
     {
@@ -2079,7 +2085,7 @@
         "path":  "StarterPlayer.StarterPlayerScripts.BaseAndUnitUiClient",
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/BaseAndUnitUiClient.client.lua",
-        "bytes":  34251
+        "bytes":  31947
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.ButtonAnimationBootstrap",
@@ -2133,7 +2139,7 @@
         "path":  "StarterPlayer.StarterPlayerScripts.EnemyController",
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/EnemyController.client.lua",
-        "bytes":  6206
+        "bytes":  5778
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.Flight",

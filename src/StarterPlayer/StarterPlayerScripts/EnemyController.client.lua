@@ -1,6 +1,6 @@
 --!nonstrict
 -- EnemyController: renders this player's enemies (data streamed from EnemyCore).
--- Clones the workspace Rig per enemy, interpolates along the shared PathMover path
+-- Clones the workspace Rig per enemy, interpolates along the generated plot route
 -- (dead-reckon + gentle correction to the server's authoritative distance), shows
 -- an HP bar, plays a walk anim, and runs a death pop. Pure client visual.
 local Players = game:GetService("Players")
@@ -9,7 +9,7 @@ local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 
 local player = Players.LocalPlayer
-local PathMover = require(ReplicatedStorage:WaitForChild("RaidShared"):WaitForChild("PathMover"))
+local PlotRoute = require(ReplicatedStorage:WaitForChild("RaidShared"):WaitForChild("PlotRoute"))
 local Remotes = ReplicatedStorage:WaitForChild("Remotes")
 local EnemyStream = Remotes:WaitForChild("EnemyStream")
 local HpGui = ReplicatedStorage:FindFirstChild("HP")
@@ -33,18 +33,7 @@ end
 local function rebuildMover()
 	mover = nil
 	local plot = locatePlot()
-	local pf = plot and plot:FindFirstChild("Points")
-	if not pf then return end
-	local ordered = {}
-	for _, pt in ipairs(pf:GetChildren()) do
-		local n = tonumber(pt.Name)
-		if n and pt:IsA("BasePart") then table.insert(ordered, { n = n, p = pt }) end
-	end
-	table.sort(ordered, function(a, b) return a.n < b.n end)
-	if #ordered < 2 then return end
-	local pts = {}
-	for _, e in ipairs(ordered) do table.insert(pts, e.p.Position) end
-	mover = PathMover.new(pts)
+	mover = PlotRoute.Build(plot)
 end
 
 local function rigGroundOffset(model, hrp)
