@@ -138,11 +138,12 @@ local function showWave(wave, segmentRatio)
     setFill(progressFill, segmentRatio or (((wave - 1) % 10 + 1) / 10), false)
 end
 
-local function showBaseHealth(current, maxHealth)
+local function showLoot(current, maxLoot, carriers)
     current = math.max(0, math.floor(tonumber(current) or 0))
-    maxHealth = math.max(1, math.floor(tonumber(maxHealth) or 1))
-    baseText.Text = tostring(current)
-    setFill(baseFill, current / maxHealth, false)
+    maxLoot = math.max(1, math.floor(tonumber(maxLoot) or 1))
+    carriers = math.max(0, math.floor(tonumber(carriers) or 0))
+    baseText.Text = carriers > 0 and (tostring(current) .. "  +" .. tostring(carriers) .. " carried") or tostring(current)
+    setFill(baseFill, current / maxLoot, false)
 end
 
 local function resetControlText()
@@ -172,8 +173,8 @@ remote.OnClientEvent:Connect(function(action, data)
         setBossVisible(false)
         setFill(progressFill, 0, false)
         setFill(bossFill, 1, true)
-        showBaseHealth(data.baseHealth, data.baseMaxHealth)
-        task.defer(function() showBaseHealth(data.baseHealth, data.baseMaxHealth) end)
+        showLoot(data.loot or data.baseHealth, data.maxLoot or data.baseMaxHealth, data.carriers)
+        task.defer(function() showLoot(data.loot or data.baseHealth, data.maxLoot or data.baseMaxHealth, data.carriers) end)
     elseif action == "Wave" then
         showWave(tonumber(data.wave) or 1, data.progress or 0)
     elseif action == "WaveProgress" then
@@ -185,8 +186,8 @@ remote.OnClientEvent:Connect(function(action, data)
         local maxHealth = math.max(1, math.floor(tonumber(data.maxHealth) or 1))
         bossText.Text = tostring(current)
         setFill(bossFill, current / maxHealth, true)
-    elseif action == "Base" then
-        showBaseHealth(data.health, data.maxHealth)
+    elseif action == "Loot" or action == "Base" then
+        showLoot(data.loot or data.health, data.maxLoot or data.maxHealth, data.carriers)
     elseif action == "Speed" then
         local speed = topButton("Speed")
         if speed then

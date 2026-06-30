@@ -85,9 +85,55 @@ function PlotRoute.BuildRoutes(plot: Instance?)
 	return routes
 end
 
+function PlotRoute.BuildRoute(plot: Instance?, seed: number?)
+	local plotPart = getPlotPart(plot)
+	if not plotPart then return nil end
+
+	local half = plotPart.Size * 0.5
+	local base = getBasePart(plot)
+	local baseLocal = base and plotPart.CFrame:PointToObjectSpace(base.Position) or Vector3.zero
+	local finish = Vector3.new(
+		math.clamp(baseLocal.X, -half.X + BASE_PADDING, half.X - BASE_PADDING),
+		0,
+		math.clamp(baseLocal.Z, -half.Z + BASE_PADDING, half.Z - BASE_PADDING)
+	)
+	local y = half.Y + SURFACE_OFFSET
+	local rng = Random.new(math.floor(tonumber(seed) or os.clock() * 100000))
+	local side = rng:NextInteger(1, 4)
+	local t = rng:NextNumber(-0.92, 0.92)
+	local start
+	if side == 1 then
+		start = Vector3.new(t * (half.X - EDGE_PADDING), 0, -half.Z + EDGE_PADDING)
+	elseif side == 2 then
+		start = Vector3.new(half.X - EDGE_PADDING, 0, t * (half.Z - EDGE_PADDING))
+	elseif side == 3 then
+		start = Vector3.new(t * (half.X - EDGE_PADDING), 0, half.Z - EDGE_PADDING)
+	else
+		start = Vector3.new(-half.X + EDGE_PADDING, 0, t * (half.Z - EDGE_PADDING))
+	end
+
+	local mid = start:Lerp(finish, rng:NextNumber(0.42, 0.62))
+	local sideBias = Vector3.new(-start.Z, 0, start.X)
+	if sideBias.Magnitude > 0.01 then
+		sideBias = sideBias.Unit * rng:NextNumber(-10, 10)
+	end
+	mid += sideBias
+
+	local approach = toWorldPoints(plotPart, half, y, { start, mid, finish })
+	return RouteMover.new(approach)
+end
+
+function PlotRoute.ReverseMover(mover)
+	if not mover or type(mover.points) ~= "table" then return nil end
+	local points = table.create(#mover.points)
+	for i = #mover.points, 1, -1 do
+		table.insert(points, mover.points[i])
+	end
+	return RouteMover.new(points)
+end
+
 function PlotRoute.Build(plot: Instance?)
-	local routes = PlotRoute.BuildRoutes(plot)
-	return routes[1]
+	return PlotRoute.BuildRoute(plot, 1)
 end
 
 function PlotRoute.GetBasePart(plot: Instance?): BasePart?

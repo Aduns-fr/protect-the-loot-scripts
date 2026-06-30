@@ -1,7 +1,7 @@
 --!nonstrict
 -- EnemyCore: data-driven enemy/wave system. Server holds enemies as pure data
 -- (no models/Humanoids); clients render rigs via EnemyController. Movement is math
--- along generated routes from multiple plot edges/corners to its Base part.
+-- from island edges to the stash, then back out if they steal loot.
 -- Current raid runtime; preserves RaidConfig tuning.
 
 local Players = game:GetService("Players")
@@ -33,7 +33,7 @@ local EnemyStreamRemote = Remotes:WaitForChild("EnemyStream")
 local STREAM_INTERVAL = 0.1
 
 local activeRaids, playerState, lastStarted, beyondHundred = {}, {}, {}, {}
-local sessions = {} -- player -> { enemies = {id->e}, routes, nextId, alive }
+local sessions = {} -- player -> { enemies = {id->e}, nextId, alive, carriedLoot, drops }
 
 local finish, runWave -- forward declarations
 
@@ -92,8 +92,8 @@ end
 local function state(p)
 	local s = playerState[p]
 	if not s then
-		s = { speed = 1, auto = false, stopping = false, wave = 0, baseHealth = 500, baseMaxHealth = 500,
-			stats = { enemiesDefeated = 0, wavesCleared = 0, cashEarned = 0, score = 0 },
+		s = { speed = 1, auto = false, stopping = false, wave = 0, loot = 500, maxLoot = 500,
+			stats = { enemiesDefeated = 0, wavesCleared = 0, cashEarned = 0, score = 0, lootStolen = 0, lootRecovered = 0 },
 			waveStats = { spawned = 0, finished = 0, killed = 0 } }
 		playerState[p] = s
 	end
@@ -101,11 +101,11 @@ local function state(p)
 end
 local function getSession(p)
 	local s = sessions[p]
-	if not s then s = { enemies = {}, routes = nil, nextId = 1, alive = 0 }; sessions[p] = s end
+	if not s then s = { enemies = {}, nextId = 1, alive = 0, carriedLoot = 0, drops = {} }; sessions[p] = s end
 	return s
 end
-local function buildRoutes(plot)
-	return PlotRoute.BuildRoutes(plot)
+local function buildRoute(plot, seed)
+	return PlotRoute.BuildRoute(plot, seed)
 end
 
 local function send(p, a, d) if p and p.Parent then RaidStatusRemote:FireClient(p, a, d or {}) end end
@@ -125,11 +125,33 @@ local function waveProgress(p)
 	local total = math.max(1, ws.spawned or 0)
 	send(p, "WaveProgress", { wave = st.wave, progress = (ws.killed or 0) / total, killed = ws.killed or 0, total = total })
 end
-local function damageBase(p, amount)
+local function sendLoot(p)
 	local st = state(p)
-	st.baseHealth = math.max(0, st.baseHealth - amount)
-	send(p, "Base", { health = st.baseHealth, maxHealth = st.baseMaxHealth })
-	if st.baseHealth <= 0 then st.stopping = true end
+	local sess = getSession(p)
+	send(p, "Loot", { loot = st.loot, maxLoot = st.maxLoot, carriers = sess.carriedLoot or 0, stolen = st.stats.lootStolen or 0, recovered = st.stats.lootRecovered or 0 })
+end
+local function stealLoot(p, amount)
+	local st = state(p)
+	amount = math.min(math.max(1, math.floor(tonumber(amount) or 1)), st.loot)
+	if amount <= 0 then return 0 end
+	st.loot -= amount
+	sendLoot(p)
+	return amount
+end
+local function loseLoot(p, amount)
+	local st = state(p)
+	amount = math.max(0, math.floor(tonumber(amount) or 0))
+	st.stats.lootStolen += amount
+	sendLoot(p)
+	if st.loot <= 0 and (getSession(p).carriedLoot or 0) <= 0 then st.stopping = true end
+end
+local function recoverLoot(p, amount)
+	local st = state(p)
+	amount = math.max(0, math.floor(tonumber(amount) or 0))
+	st.loot = math.min(st.maxLoot, st.loot + amount)
+	st.stats.lootRecovered += amount
+	st.stats.score += amount * 30
+	sendLoot(p)
 end
 local function updateHighestWave(p, wave)
 	local leaderstats = p:FindFirstChild("leaderstats")
@@ -144,6 +166,47 @@ local function updateHighestWave(p, wave)
 	end
 end
 
+local droppedFolder = workspace:FindFirstChild("DroppedLoot") or Instance.new("Folder")
+droppedFolder.Name = "DroppedLoot"
+droppedFolder.Parent = workspace
+
+local function dropLoot(p, position, amount)
+	amount = math.max(0, math.floor(tonumber(amount) or 0))
+	if amount <= 0 then return end
+	local sess = getSession(p)
+	local part = Instance.new("Part")
+	part.Name = "DroppedLoot"
+	part.Shape = Enum.PartType.Ball
+	part.Size = Vector3.new(2.4, 2.4, 2.4)
+	part.Color = Color3.fromRGB(255, 210, 70)
+	part.Material = Enum.Material.Neon
+	part.Anchored = true
+	part.CanCollide = false
+	part.CanTouch = true
+	part.CanQuery = false
+	part.Position = position + Vector3.new(0, 2.5, 0)
+	part:SetAttribute("OwnerUserId", p.UserId)
+	part:SetAttribute("LootAmount", amount)
+	part.Parent = droppedFolder
+	sess.drops[part] = amount
+	local collected = false
+	part.Touched:Connect(function(hit)
+		if collected then return end
+		local character = p.Character
+		if not character or not hit:IsDescendantOf(character) then return end
+		collected = true
+		sess.drops[part] = nil
+		recoverLoot(p, amount)
+		part:Destroy()
+	end)
+	task.delay(25, function()
+		if part.Parent and not collected then
+			sess.drops[part] = nil
+			part:Destroy()
+		end
+	end)
+end
+
 -- ===== enemy lifecycle =====
 local function removeEnemy(p, e, reason)
 	local sess = sessions[p]
@@ -155,6 +218,14 @@ end
 local function award(p, e)
 	if e.awarded then return end
 	e.awarded = true
+	if (e.carrying or 0) > 0 then
+		local sess = getSession(p)
+		sess.carriedLoot = math.max(0, (sess.carriedLoot or 0) - e.carrying)
+		local pos = e.mover and e.mover:At(e.distance) or Vector3.zero
+		dropLoot(p, pos, e.carrying)
+		e.carrying = 0
+		sendLoot(p)
+	end
 	local st = state(p)
 	local reward = e.cashReward or 0
 	if e.isBoss then reward += math.floor(150 + st.wave * 8) end
@@ -175,21 +246,23 @@ local function spawnEnemy(p, wave, isBoss)
 	if isBoss then id, cfg = chooseBoss(wave) else id, cfg = chooseMob(wave) end
 	if not cfg then return false end
 	local sess = getSession(p)
-	local routes = sess.routes or {}
-	if #routes == 0 then return false end
 	local maxHealth = math.floor((cfg.MaxHealth or 100) * waveHealthMultiplier(wave))
 	local eid = sess.nextId; sess.nextId += 1
-	local routeIndex = ((eid + wave * 3 + (isBoss and 5 or 0)) % #routes) + 1
-	local mover = routes[routeIndex]
+	local routeSeed = p.UserId + wave * 1009 + eid * 9176 + (isBoss and 41 or 0)
+	local mover = buildRoute(PlotService.GetPlayerPlot(p), routeSeed)
+	if not mover then return false end
+	local stealAmount = isBoss and math.max(8, math.floor(maxHealth / 250)) or math.max(1, math.floor((cfg.CoreDamage or 10) / 4))
 	local e = {
 		id = eid, name = id, isBoss = isBoss == true,
-		routeIndex = routeIndex, mover = mover,
+		routeSeed = routeSeed, mover = mover,
 		distance = 0,
 		speed = cfg.Speed or RaidConfig.MobWalkSpeed or 11,
 		slowMult = 1, slowUntil = 0,
 		health = maxHealth, maxHealth = maxHealth,
 		cashReward = math.floor((cfg.CashReward or 8) * rewardMultiplier(wave)),
-		coreDamage = cfg.CoreDamage or 10,
+		stealAmount = stealAmount,
+		carrying = 0,
+		phase = "approach",
 		scale = cfg.Scale or 1,
 		awarded = false, finished = false, dead = false,
 	}
@@ -198,7 +271,7 @@ local function spawnEnemy(p, wave, isBoss)
 	state(p).waveStats.spawned += 1
 	EnemyStreamRemote:FireClient(p, "spawn", {
 		id = eid, name = id, isBoss = e.isBoss, maxHealth = maxHealth, scale = e.scale, speed = e.speed,
-		routeIndex = routeIndex, routePoints = mover.points,
+		routePoints = mover.points,
 	})
 	if e.isBoss then send(p, "Boss", { wave = wave, health = maxHealth, maxHealth = maxHealth }) end
 	return true
@@ -208,6 +281,11 @@ local function clearEnemies(p)
 	if not sess then return end
 	table.clear(sess.enemies)
 	sess.alive = 0
+	sess.carriedLoot = 0
+	for drop in pairs(sess.drops or {}) do
+		if drop and drop.Parent then drop:Destroy() end
+	end
+	table.clear(sess.drops)
 	if p and p.Parent then EnemyStreamRemote:FireClient(p, "clear", {}) end
 end
 
@@ -218,7 +296,7 @@ local function step(dt)
 	local doStream = false
 	if streamAccum >= STREAM_INTERVAL then streamAccum -= STREAM_INTERVAL; doStream = true end
 	for p, sess in pairs(sessions) do
-		if activeRaids[p] and sess.routes and #sess.routes > 0 then
+		if activeRaids[p] then
 			local st = playerState[p]
 			local gspeed = (st and st.speed) or 1
 			local now = os.clock()
@@ -231,12 +309,30 @@ local function step(dt)
 				if not mover then
 					removeEnemy(p, e, "end")
 				elseif e.distance >= mover.length then
-					if not e.finished then
-						e.finished = true
-						if st then st.waveStats.finished += 1 end
-						damageBase(p, e.coreDamage)
+					if e.phase == "approach" then
+						local taken = stealLoot(p, e.stealAmount or 1)
+						if taken > 0 then
+							e.phase = "escape"
+							e.carrying = taken
+							e.mover = PlotRoute.ReverseMover(e.mover)
+							e.distance = 0
+							e.speed *= e.isBoss and 0.82 or 0.74
+							sess.carriedLoot = (sess.carriedLoot or 0) + taken
+							EnemyStreamRemote:FireClient(p, "carry", { id = e.id, carrying = taken, routePoints = e.mover and e.mover.points })
+							sendLoot(p)
+						else
+							if st then st.waveStats.finished += 1 end
+							removeEnemy(p, e, "empty")
+						end
+					else
+						if not e.finished then
+							e.finished = true
+							if st then st.waveStats.finished += 1 end
+							sess.carriedLoot = math.max(0, (sess.carriedLoot or 0) - (e.carrying or 0))
+							loseLoot(p, e.carrying or 0)
+						end
+						removeEnemy(p, e, "escaped")
 					end
-					removeEnemy(p, e, "end")
 				elseif syncList then
 					syncList[#syncList + 1] = { e.id, math.floor(e.distance * 10) / 10, math.floor(e.health), math.floor(v * 10) / 10 }
 				end
@@ -297,14 +393,15 @@ function finish(p, reason)
 	p:SetAttribute("RaidActive", false)
 	clearEnemies(p)
 	updateHighestWave(p, st.stats.wavesCleared or 0)
-	st.stats.score = math.floor(st.stats.score + (st.stats.wavesCleared or 0) * 25 + st.baseHealth)
+	st.stats.score = math.floor(st.stats.score + (st.stats.wavesCleared or 0) * 25 + st.loot)
 	if st.stats.cashEarned > 0 then PlayerDataService.AddCash(p, st.stats.cashEarned) end
 	local skip = st.auto and reason == "Defeated"
 	if not skip then
 		RaidResultsRemote:FireClient(p, {
 			status = statusText(reason), enemiesDefeated = st.stats.enemiesDefeated,
 			wavesCleared = st.stats.wavesCleared, cashEarned = st.stats.cashEarned,
-			score = st.stats.score, reason = reason,
+			score = st.stats.score, reason = reason, lootProtected = st.loot,
+			lootStolen = st.stats.lootStolen, lootRecovered = st.stats.lootRecovered,
 		})
 	end
 	send(p, "End", { reason = reason, skipResults = skip })
@@ -318,10 +415,9 @@ function EnemyCore.StartRaid(p)
 	if lastStarted[p] and os.clock() - lastStarted[p] < 1 then return false end
 	lastStarted[p] = os.clock()
 	local plot = PlotService.GetPlayerPlot(p) or PlotService.AssignPlayer(p)
-	local routes = plot and buildRoutes(plot)
-	if not plot or not routes or #routes == 0 then warn("[EnemyCore] missing plot routes", p.Name); return false end
+	if not plot or not buildRoute(plot, p.UserId + os.clock() * 1000) then warn("[EnemyCore] missing plot route", p.Name); return false end
 	local sess = getSession(p)
-	sess.routes = routes
+	sess.carriedLoot = 0
 	local checkpoint = PlayerDataService.GetRaidCheckpoint(p)
 	local startWave
 	if beyondHundred[p] then startWave = beyondHundred[p]; beyondHundred[p] = nil
@@ -329,22 +425,22 @@ function EnemyCore.StartRaid(p)
 	st.stopping = false
 	st.wave = startWave
 	st.stats = { enemiesDefeated = 0, wavesCleared = math.max(0, startWave - 1), cashEarned = 0, score = 0 }
-	st.baseMaxHealth = PlayerDataService.GetBaseMaxHealth(p)
-	st.baseHealth = st.baseMaxHealth
+	st.maxLoot = PlayerDataService.GetBaseMaxHealth(p)
+	st.loot = st.maxLoot
 	activeRaids[p] = true
 	p:SetAttribute("RaidActive", true)
 	clearEnemies(p)
-	send(p, "Start", { baseHealth = st.baseHealth, baseMaxHealth = st.baseMaxHealth, startWave = startWave, checkpoint = checkpoint })
+	send(p, "Start", { loot = st.loot, maxLoot = st.maxLoot, startWave = startWave, checkpoint = checkpoint })
 	send(p, "Speed", { speed = st.speed })
 	send(p, "Auto", { enabled = st.auto })
 	task.spawn(function()
 		local w = startWave
 		while true do
 			if not activeRaids[p] or not p.Parent then finish(p, "Stopped"); return end
-			if st.stopping then finish(p, st.baseHealth <= 0 and "Defeated" or "Stopped"); return end
+			if st.stopping then finish(p, st.loot <= 0 and "Defeated" or "Stopped"); return end
 			local _rwok, _rwerr = pcall(runWave, p, plot, w)
 			if not _rwok then warn("[EnemyCore] runWave error wave " .. tostring(w) .. ": " .. tostring(_rwerr)) end
-			if st.stopping then finish(p, st.baseHealth <= 0 and "Defeated" or "Stopped"); return end
+			if st.stopping then finish(p, st.loot <= 0 and "Defeated" or "Stopped"); return end
 			if w == 100 then
 				updateHighestWave(p, 100)
 				PlayerDataService.SetRaidCheckpoint(p, 100)
@@ -354,7 +450,8 @@ function EnemyCore.StartRaid(p)
 				clearEnemies(p)
 				RaidResultsRemote:FireClient(p, {
 					status = "Victory", enemiesDefeated = st.stats.enemiesDefeated, wavesCleared = 100,
-					cashEarned = 0, score = math.floor(st.stats.score + 100 * 25 + st.baseHealth + 10000), reason = "Victory",
+					cashEarned = 0, score = math.floor(st.stats.score + 100 * 25 + st.loot + 10000), reason = "Victory",
+					lootProtected = st.loot, lootStolen = st.stats.lootStolen, lootRecovered = st.stats.lootRecovered,
 				})
 				send(p, "End", { reason = "Victory", skipResults = false })
 				local lb = getLeaderboardManager()
@@ -410,7 +507,7 @@ function EnemyCore.QueryInRange(p, pos, radius)
 			local d2 = (epos - pos).Magnitude
 			d2 = d2 * d2
 			if d2 <= r2 then
-				out[#out + 1] = { id = id, pos = epos, distSq = d2, travelled = e.distance, health = e.health, maxHealth = e.maxHealth }
+				out[#out + 1] = { id = id, pos = epos, distSq = d2, travelled = e.distance, health = e.health, maxHealth = e.maxHealth, carrying = e.carrying or 0, phase = e.phase }
 			end
 		end
 	end
@@ -458,7 +555,7 @@ function EnemyCore.Debug(p)
 	local st = playerState[p]
 	local n = 0
 	if sess then for _ in pairs(sess.enemies) do n += 1 end end
-	return { active = activeRaids[p] == true, hasSession = sess ~= nil, routeCount = sess and sess.routes and #sess.routes or 0, enemyCount = n, alive = sess and sess.alive, wave = st and st.wave, spawned = st and st.waveStats and st.waveStats.spawned, baseHealth = st and st.baseHealth }
+	return { active = activeRaids[p] == true, hasSession = sess ~= nil, enemyCount = n, alive = sess and sess.alive, carriedLoot = sess and sess.carriedLoot or 0, wave = st and st.wave, spawned = st and st.waveStats and st.waveStats.spawned, loot = st and st.loot, maxLoot = st and st.maxLoot }
 end
 
 function EnemyCore.Start()

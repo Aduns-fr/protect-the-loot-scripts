@@ -20,7 +20,7 @@ local WALK_ANIM_ID = "rbxassetid://180426354"
 local folder = Workspace:FindFirstChild("ClientEnemies") or Instance.new("Folder")
 folder.Name = "ClientEnemies"; folder.Parent = Workspace
 
-local enemies = {} -- id -> { model, hrp, offset, mover, distance, target, speed, health, maxHealth, fill, txt }
+local enemies = {} -- id -> { model, hrp, offset, mover, lootMarker, distance, target, speed, health, maxHealth, fill, txt }
 local fallbackRoutes = nil
 
 local function locatePlot()
@@ -74,6 +74,27 @@ local function makeRig(scale)
 	return m, hrp, offset
 end
 
+local function addLootMarker(e)
+	if not e or not e.hrp or e.lootMarker then return end
+	local marker = Instance.new("BillboardGui")
+	marker.Name = "LootMarker"
+	marker.Size = UDim2.fromOffset(48, 48)
+	marker.StudsOffset = Vector3.new(0, 4.5, 0)
+	marker.AlwaysOnTop = true
+	marker.Adornee = e.hrp
+	local label = Instance.new("TextLabel")
+	label.BackgroundTransparency = 1
+	label.Size = UDim2.fromScale(1, 1)
+	label.Font = Enum.Font.GothamBlack
+	label.Text = "$"
+	label.TextScaled = true
+	label.TextColor3 = Color3.fromRGB(255, 220, 60)
+	label.TextStrokeTransparency = 0
+	label.Parent = marker
+	marker.Parent = e.hrp
+	e.lootMarker = marker
+end
+
 local function onSpawn(info)
 	if not fallbackRoutes then rebuildRoutes() end
 	local mover = nil
@@ -95,6 +116,21 @@ local function onSpawn(info)
 	enemies[info.id] = { model = model, hrp = hrp, offset = offset or 3, mover = mover, distance = 0, target = 0,
 		speed = info.speed or 11, health = info.maxHealth, maxHealth = math.max(1, info.maxHealth or 1), fill = fill, txt = txt }
 	if mover and hrp then local _, cf = mover:At(0); hrp.CFrame = cf + Vector3.new(0, offset or 3, 0) end
+end
+local function onCarry(info)
+	local e = enemies[info.id]
+	if not e then return end
+	if type(info.routePoints) == "table" and #info.routePoints >= 2 then
+		e.mover = RouteMover.new(info.routePoints)
+	end
+	e.distance = 0
+	e.target = 0
+	e.carrying = tonumber(info.carrying) or 1
+	addLootMarker(e)
+	if e.hrp and e.mover then
+		local _, cf = e.mover:At(0)
+		e.hrp.CFrame = cf + Vector3.new(0, e.offset, 0)
+	end
 end
 local function onSync(list)
 	for _, entry in ipairs(list) do
@@ -143,6 +179,7 @@ end)
 
 EnemyStream.OnClientEvent:Connect(function(action, data)
 	if action == "spawn" then onSpawn(data)
+	elseif action == "carry" then onCarry(data)
 	elseif action == "sync" then onSync(data)
 	elseif action == "despawn" then onDespawn(data)
 	elseif action == "clear" then onClear() end

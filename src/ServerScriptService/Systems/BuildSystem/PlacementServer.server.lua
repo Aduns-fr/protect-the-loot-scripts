@@ -296,9 +296,10 @@ end
 -- ===== data-driven targeting: enemies live in EnemyCore, not workspace =====
 -- pick the enemy furthest along the route (closest to base) within range
 local function acquireTarget(player, origin, range)
-    local best, bestTravelled = nil, -1
+    local best, bestScore = nil, -math.huge
     for _, info in ipairs(EnemyCore.QueryInRange(player, origin, range)) do
-        if info.travelled > bestTravelled then best, bestTravelled = info, info.travelled end
+        local score = (tonumber(info.travelled) or 0) + ((tonumber(info.carrying) or 0) > 0 and 100000 or 0)
+        if score > bestScore then best, bestScore = info, score end
     end
     return best
 end
