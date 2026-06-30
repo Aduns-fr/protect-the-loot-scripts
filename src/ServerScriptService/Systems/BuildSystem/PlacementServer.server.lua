@@ -445,7 +445,7 @@ end
 
 task.delay(1, bindRemote)
 
--- expose serialize/load via bindables so MapSwitchServer can call them on map switch
+-- expose serialize/load via bindables for future systems that need to reload placed units
 local bindables = game.ServerScriptService:WaitForChild("Bindables")
 bindables:WaitForChild("SavePlacedUnits").OnInvoke = function(player)
     serializePlaced(player)

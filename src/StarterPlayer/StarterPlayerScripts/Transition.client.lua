@@ -75,5 +75,5 @@ local function playTransition(midCallback)
     isTransitioning = false
 end
 
--- expose globally so MapsClient can call it
+-- expose globally for future UI flows that want the same transition
 _G.PlayTransition = playTransition

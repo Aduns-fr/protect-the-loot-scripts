@@ -24,12 +24,6 @@
         "bytes":  384
     },
     {
-        "path":  "ReplicatedStorage.Configs.MapConfig",
-        "className":  "ModuleScript",
-        "file":  "src/ReplicatedStorage/Configs/MapConfig.lua",
-        "bytes":  331
-    },
-    {
         "path":  "ReplicatedStorage.Configs.RaidConfig",
         "className":  "ModuleScript",
         "file":  "src/ReplicatedStorage/Configs/RaidConfig.lua",
@@ -1869,7 +1863,7 @@
         "path":  "ServerScriptService.Systems.BuildSystem.PlacementServer",
         "className":  "Script",
         "file":  "src/ServerScriptService/Systems/BuildSystem/PlacementServer.server.lua",
-        "bytes":  19110
+        "bytes":  19115
     },
     {
         "path":  "ServerScriptService.Systems.CodeSystem.CodeSystem.server",
@@ -1906,12 +1900,6 @@
         "className":  "Script",
         "file":  "src/ServerScriptService/Systems/LeaderboardSystem/LeaderboardServer.server.lua",
         "bytes":  371
-    },
-    {
-        "path":  "ServerScriptService.Systems.MapSystem.MapSwitchServer",
-        "className":  "Script",
-        "file":  "src/ServerScriptService/Systems/MapSystem/MapSwitchServer.server.lua",
-        "bytes":  2770
     },
     {
         "path":  "ServerScriptService.Systems.MusicServer",
@@ -2079,7 +2067,7 @@
         "path":  "StarterGui.GUI.UIFrameController",
         "className":  "LocalScript",
         "file":  "src/StarterGui/GUI/UIFrameController.client.lua",
-        "bytes":  13921
+        "bytes":  13880
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.BaseAndUnitUiClient",
@@ -2164,12 +2152,6 @@
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/LeaderboardClient.client.lua",
         "bytes":  8004
-    },
-    {
-        "path":  "StarterPlayer.StarterPlayerScripts.MapsClient",
-        "className":  "LocalScript",
-        "file":  "src/StarterPlayer/StarterPlayerScripts/MapsClient.client.lua",
-        "bytes":  3099
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.MusicPlayer",
@@ -2481,7 +2463,7 @@
         "path":  "StarterPlayer.StarterPlayerScripts.Transition",
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/Transition.client.lua",
-        "bytes":  2379
+        "bytes":  2403
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.UnitShotVisualClient",
