@@ -2,7 +2,7 @@
 -- EnemyCore: data-driven enemy/wave system. Server holds enemies as pure data
 -- (no models/Humanoids); clients render rigs via EnemyController. Movement is math
 -- along the plot's PathMover. Towers & sword target enemies via the API at the bottom.
--- Built to replace the model-based RaidService while preserving all RaidConfig tuning.
+-- Current raid runtime; preserves RaidConfig tuning.
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -37,7 +37,7 @@ local sessions = {} -- player -> { enemies = {id->e}, mover, nextId, alive }
 
 local finish, runWave -- forward declarations
 
--- ===== pure tuning helpers (identical math to the old RaidService) =====
+-- ===== pure tuning helpers =====
 local function waveSpawnInterval(wave)
 	local t = RaidConfig.Timing
 	local lo, hi = t.SpawnInterval or 0.5, t.SpawnIntervalEarly or 1.2

@@ -19,7 +19,7 @@ local function getBaseLevelConfig(level)
     return levels[level] or levels[1]
 end
 
--- lazy-loaded to avoid circular require (RaidService requires PDS, LB requires RaidService)
+-- lazy-loaded to avoid circular require with raid/leaderboard systems
 local function getLeaderboardManager()
     local ok, lm = pcall(require, game:GetService('ServerScriptService').Systems.LeaderboardSystem.LeaderboardManager)
     return ok and lm or nil

@@ -145,10 +145,10 @@ RaidConfig.MobStats = {
     Boss10 = { Template = "Part", MaxHealth = 860000,  CoreDamage = 2300,  CashReward = 32000, Scale = 3.0,  BossWave = 100 },
 }
 
--- SpawnInterval is wave-dependent — calculated in RaidService.
+-- SpawnInterval is wave-dependent and calculated by the raid runtime.
 -- These are the bounds: starts slow (new players need to react), compresses to fast.
 -- BetweenWaves also scales down from 8s early to 2s at wave 50+.
--- RaidService reads SpawnInterval from here as the minimum (late game floor).
+-- The raid runtime reads SpawnInterval from here as the minimum late-game floor.
 RaidConfig.Timing = {
     SpawnInterval      = 0.5,   -- base floor for spawn spacing (late game)
     SpawnIntervalEarly = 1.2,   -- wave 1 spacing — gives new players time to react
