@@ -1803,7 +1803,7 @@
         "path":  "ReplicatedStorage.RaidShared.PlotRoute",
         "className":  "ModuleScript",
         "file":  "src/ReplicatedStorage/RaidShared/PlotRoute.lua",
-        "bytes":  1554
+        "bytes":  3825
     },
     {
         "path":  "ReplicatedStorage.RaidShared.RouteMover",
@@ -1923,7 +1923,7 @@
         "path":  "ServerScriptService.Systems.RaidSystem.Modules.EnemyCore",
         "className":  "ModuleScript",
         "file":  "src/ServerScriptService/Systems/RaidSystem/Modules/EnemyCore.lua",
-        "bytes":  17869
+        "bytes":  18294
     },
     {
         "path":  "ServerScriptService.Systems.RaidSystem.RaidSystem.server",
@@ -2127,7 +2127,7 @@
         "path":  "StarterPlayer.StarterPlayerScripts.EnemyController",
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/EnemyController.client.lua",
-        "bytes":  5778
+        "bytes":  6167
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.Flight",

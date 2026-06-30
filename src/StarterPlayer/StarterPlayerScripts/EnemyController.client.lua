@@ -1,6 +1,6 @@
 --!nonstrict
 -- EnemyController: renders this player's enemies (data streamed from EnemyCore).
--- Clones the workspace Rig per enemy, interpolates along the generated plot route
+-- Clones the workspace Rig per enemy, interpolates along its assigned generated route
 -- (dead-reckon + gentle correction to the server's authoritative distance), shows
 -- an HP bar, plays a walk anim, and runs a death pop. Pure client visual.
 local Players = game:GetService("Players")
@@ -10,6 +10,7 @@ local Workspace = game:GetService("Workspace")
 
 local player = Players.LocalPlayer
 local PlotRoute = require(ReplicatedStorage:WaitForChild("RaidShared"):WaitForChild("PlotRoute"))
+local RouteMover = require(ReplicatedStorage:WaitForChild("RaidShared"):WaitForChild("RouteMover"))
 local Remotes = ReplicatedStorage:WaitForChild("Remotes")
 local EnemyStream = Remotes:WaitForChild("EnemyStream")
 local HpGui = ReplicatedStorage:FindFirstChild("HP")
@@ -19,8 +20,8 @@ local WALK_ANIM_ID = "rbxassetid://180426354"
 local folder = Workspace:FindFirstChild("ClientEnemies") or Instance.new("Folder")
 folder.Name = "ClientEnemies"; folder.Parent = Workspace
 
-local enemies = {} -- id -> { model, hrp, offset, distance, target, speed, health, maxHealth, fill, txt }
-local mover = nil
+local enemies = {} -- id -> { model, hrp, offset, mover, distance, target, speed, health, maxHealth, fill, txt }
+local fallbackRoutes = nil
 
 local function locatePlot()
 	local plots = Workspace:FindFirstChild("Plots")
@@ -30,10 +31,10 @@ local function locatePlot()
 	end
 	return nil
 end
-local function rebuildMover()
-	mover = nil
+local function rebuildRoutes()
+	fallbackRoutes = nil
 	local plot = locatePlot()
-	mover = PlotRoute.Build(plot)
+	fallbackRoutes = PlotRoute.BuildRoutes(plot)
 end
 
 local function rigGroundOffset(model, hrp)
@@ -74,7 +75,13 @@ local function makeRig(scale)
 end
 
 local function onSpawn(info)
-	if not mover then rebuildMover() end
+	if not fallbackRoutes then rebuildRoutes() end
+	local mover = nil
+	if type(info.routePoints) == "table" and #info.routePoints >= 2 then
+		mover = RouteMover.new(info.routePoints)
+	elseif fallbackRoutes and info.routeIndex then
+		mover = fallbackRoutes[info.routeIndex]
+	end
 	local model, hrp, offset = makeRig(info.scale)
 	model.Name = tostring(info.id)
 	local fill, txt
@@ -85,7 +92,7 @@ local function onSpawn(info)
 		txt = g:FindFirstChild("Text", true)
 	end
 	model.Parent = folder
-	enemies[info.id] = { model = model, hrp = hrp, offset = offset or 3, distance = 0, target = 0,
+	enemies[info.id] = { model = model, hrp = hrp, offset = offset or 3, mover = mover, distance = 0, target = 0,
 		speed = info.speed or 11, health = info.maxHealth, maxHealth = math.max(1, info.maxHealth or 1), fill = fill, txt = txt }
 	if mover and hrp then local _, cf = mover:At(0); hrp.CFrame = cf + Vector3.new(0, offset or 3, 0) end
 end
@@ -118,16 +125,17 @@ end
 local function onClear()
 	for _, e in pairs(enemies) do if e.model then e.model:Destroy() end end
 	table.clear(enemies)
-	rebuildMover()
+	rebuildRoutes()
 end
 
 RunService.RenderStepped:Connect(function(dt)
-	if not mover then return end
 	for _, e in pairs(enemies) do
 		e.target += (e.speed or 0) * dt
 		e.distance += (e.target - e.distance) * math.clamp(dt * 8, 0, 1)
-		local _, cf = mover:At(e.distance)
-		if e.hrp then e.hrp.CFrame = cf + Vector3.new(0, e.offset, 0) end
+		if e.mover and e.hrp then
+			local _, cf = e.mover:At(e.distance)
+			e.hrp.CFrame = cf + Vector3.new(0, e.offset, 0)
+		end
 		if e.fill then e.fill.Size = UDim2.fromScale(math.clamp((e.health or 0) / e.maxHealth, 0, 1), 1) end
 		if e.txt then e.txt.Text = tostring(math.max(0, math.floor(e.health or 0))) end
 	end
@@ -140,4 +148,4 @@ EnemyStream.OnClientEvent:Connect(function(action, data)
 	elseif action == "clear" then onClear() end
 end)
 
-rebuildMover()
+rebuildRoutes()

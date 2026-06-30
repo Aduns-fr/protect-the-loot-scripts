@@ -1,7 +1,7 @@
 --!nonstrict
 -- EnemyCore: data-driven enemy/wave system. Server holds enemies as pure data
 -- (no models/Humanoids); clients render rigs via EnemyController. Movement is math
--- along a generated route from the plot edge to its Base part.
+-- along generated routes from multiple plot edges/corners to its Base part.
 -- Current raid runtime; preserves RaidConfig tuning.
 
 local Players = game:GetService("Players")
@@ -33,7 +33,7 @@ local EnemyStreamRemote = Remotes:WaitForChild("EnemyStream")
 local STREAM_INTERVAL = 0.1
 
 local activeRaids, playerState, lastStarted, beyondHundred = {}, {}, {}, {}
-local sessions = {} -- player -> { enemies = {id->e}, mover, nextId, alive }
+local sessions = {} -- player -> { enemies = {id->e}, routes, nextId, alive }
 
 local finish, runWave -- forward declarations
 
@@ -101,11 +101,11 @@ local function state(p)
 end
 local function getSession(p)
 	local s = sessions[p]
-	if not s then s = { enemies = {}, nextId = 1, alive = 0, mover = nil }; sessions[p] = s end
+	if not s then s = { enemies = {}, routes = nil, nextId = 1, alive = 0 }; sessions[p] = s end
 	return s
 end
-local function buildMover(plot)
-	return PlotRoute.Build(plot)
+local function buildRoutes(plot)
+	return PlotRoute.BuildRoutes(plot)
 end
 
 local function send(p, a, d) if p and p.Parent then RaidStatusRemote:FireClient(p, a, d or {}) end end
@@ -175,10 +175,15 @@ local function spawnEnemy(p, wave, isBoss)
 	if isBoss then id, cfg = chooseBoss(wave) else id, cfg = chooseMob(wave) end
 	if not cfg then return false end
 	local sess = getSession(p)
+	local routes = sess.routes or {}
+	if #routes == 0 then return false end
 	local maxHealth = math.floor((cfg.MaxHealth or 100) * waveHealthMultiplier(wave))
 	local eid = sess.nextId; sess.nextId += 1
+	local routeIndex = ((eid + wave * 3 + (isBoss and 5 or 0)) % #routes) + 1
+	local mover = routes[routeIndex]
 	local e = {
 		id = eid, name = id, isBoss = isBoss == true,
+		routeIndex = routeIndex, mover = mover,
 		distance = 0,
 		speed = cfg.Speed or RaidConfig.MobWalkSpeed or 11,
 		slowMult = 1, slowUntil = 0,
@@ -193,6 +198,7 @@ local function spawnEnemy(p, wave, isBoss)
 	state(p).waveStats.spawned += 1
 	EnemyStreamRemote:FireClient(p, "spawn", {
 		id = eid, name = id, isBoss = e.isBoss, maxHealth = maxHealth, scale = e.scale, speed = e.speed,
+		routeIndex = routeIndex, routePoints = mover.points,
 	})
 	if e.isBoss then send(p, "Boss", { wave = wave, health = maxHealth, maxHealth = maxHealth }) end
 	return true
@@ -212,7 +218,7 @@ local function step(dt)
 	local doStream = false
 	if streamAccum >= STREAM_INTERVAL then streamAccum -= STREAM_INTERVAL; doStream = true end
 	for p, sess in pairs(sessions) do
-		if activeRaids[p] and sess.mover then
+		if activeRaids[p] and sess.routes and #sess.routes > 0 then
 			local st = playerState[p]
 			local gspeed = (st and st.speed) or 1
 			local now = os.clock()
@@ -221,7 +227,10 @@ local function step(dt)
 				if e.slowUntil > 0 and now >= e.slowUntil then e.slowMult = 1; e.slowUntil = 0 end
 				local v = e.speed * e.slowMult * gspeed
 				e.distance += v * dt
-				if e.distance >= sess.mover.length then
+				local mover = e.mover
+				if not mover then
+					removeEnemy(p, e, "end")
+				elseif e.distance >= mover.length then
 					if not e.finished then
 						e.finished = true
 						if st then st.waveStats.finished += 1 end
@@ -309,10 +318,10 @@ function EnemyCore.StartRaid(p)
 	if lastStarted[p] and os.clock() - lastStarted[p] < 1 then return false end
 	lastStarted[p] = os.clock()
 	local plot = PlotService.GetPlayerPlot(p) or PlotService.AssignPlayer(p)
-	local mover = plot and buildMover(plot)
-	if not plot or not mover then warn("[EnemyCore] missing plot route", p.Name); return false end
+	local routes = plot and buildRoutes(plot)
+	if not plot or not routes or #routes == 0 then warn("[EnemyCore] missing plot routes", p.Name); return false end
 	local sess = getSession(p)
-	sess.mover = mover
+	sess.routes = routes
 	local checkpoint = PlayerDataService.GetRaidCheckpoint(p)
 	local startWave
 	if beyondHundred[p] then startWave = beyondHundred[p]; beyondHundred[p] = nil
@@ -393,11 +402,11 @@ end
 -- ===== targeting API (used by PlacementServer towers + SwordServer melee) =====
 function EnemyCore.QueryInRange(p, pos, radius)
 	local sess = sessions[p]
-	if not sess or not sess.mover then return {} end
+	if not sess then return {} end
 	local out, r2 = {}, radius * radius
 	for id, e in pairs(sess.enemies) do
-		if not e.dead then
-			local epos = sess.mover:At(e.distance)
+		if not e.dead and e.mover then
+			local epos = e.mover:At(e.distance)
 			local d2 = (epos - pos).Magnitude
 			d2 = d2 * d2
 			if d2 <= r2 then
@@ -409,10 +418,10 @@ function EnemyCore.QueryInRange(p, pos, radius)
 end
 function EnemyCore.GetPos(p, enemyId)
 	local sess = sessions[p]
-	if not sess or not sess.mover then return nil end
+	if not sess then return nil end
 	local e = sess.enemies[enemyId]
-	if not e or e.dead then return nil end
-	return sess.mover:At(e.distance)
+	if not e or e.dead or not e.mover then return nil end
+	return e.mover:At(e.distance)
 end
 function EnemyCore.IsAlive(p, enemyId)
 	local sess = sessions[p]
@@ -449,7 +458,7 @@ function EnemyCore.Debug(p)
 	local st = playerState[p]
 	local n = 0
 	if sess then for _ in pairs(sess.enemies) do n += 1 end end
-	return { active = activeRaids[p] == true, hasSession = sess ~= nil, hasMover = sess and sess.mover ~= nil, enemyCount = n, alive = sess and sess.alive, wave = st and st.wave, spawned = st and st.waveStats and st.waveStats.spawned, baseHealth = st and st.baseHealth }
+	return { active = activeRaids[p] == true, hasSession = sess ~= nil, routeCount = sess and sess.routes and #sess.routes or 0, enemyCount = n, alive = sess and sess.alive, wave = st and st.wave, spawned = st and st.waveStats and st.waveStats.spawned, baseHealth = st and st.baseHealth }
 end
 
 function EnemyCore.Start()
