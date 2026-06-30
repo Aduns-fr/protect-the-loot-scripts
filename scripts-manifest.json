@@ -1,0 +1,3734 @@
+﻿[
+    {
+        "path":  "ReplicatedStorage.Configs.BaseUpgradesConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Configs/BaseUpgradesConfig.lua",
+        "bytes":  833
+    },
+    {
+        "path":  "ReplicatedStorage.Configs.CodesConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Configs/CodesConfig.lua",
+        "bytes":  217
+    },
+    {
+        "path":  "ReplicatedStorage.Configs.CratesConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Configs/CratesConfig.lua",
+        "bytes":  2031
+    },
+    {
+        "path":  "ReplicatedStorage.Configs.HeroesConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Configs/HeroesConfig.lua",
+        "bytes":  384
+    },
+    {
+        "path":  "ReplicatedStorage.Configs.MapConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Configs/MapConfig.lua",
+        "bytes":  659
+    },
+    {
+        "path":  "ReplicatedStorage.Configs.RaidConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Configs/RaidConfig.lua",
+        "bytes":  13095
+    },
+    {
+        "path":  "ReplicatedStorage.Configs.SwordsConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Configs/SwordsConfig.lua",
+        "bytes":  1994
+    },
+    {
+        "path":  "ReplicatedStorage.Configs.UnitsConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Configs/UnitsConfig.lua",
+        "bytes":  5820
+    },
+    {
+        "path":  "ReplicatedStorage.Configs.WeaponsConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Configs/WeaponsConfig.lua",
+        "bytes":  59
+    },
+    {
+        "path":  "ReplicatedStorage.Modules.AbilityConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Modules/AbilityConfig.lua",
+        "bytes":  14980
+    },
+    {
+        "path":  "ReplicatedStorage.Modules.Module3D",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Modules/Module3D.lua",
+        "bytes":  6584
+    },
+    {
+        "path":  "ReplicatedStorage.Modules.ViewportEffects",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Modules/ViewportEffects.lua",
+        "bytes":  5211
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide.lua",
+        "bytes":  284
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.action",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/action.lua",
+        "bytes":  466
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.apply",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/apply.lua",
+        "bytes":  5518
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.batch",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/batch.lua",
+        "bytes":  545
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.branch",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/branch.lua",
+        "bytes":  933
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.changed",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/changed.lua",
+        "bytes":  467
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.cleanup",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/cleanup.lua",
+        "bytes":  1511
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.context",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/context.lua",
+        "bytes":  2090
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.create",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/create.lua",
+        "bytes":  3569
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.defaults",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/defaults.lua",
+        "bytes":  2829
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.derive",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/derive.lua",
+        "bytes":  490
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.effect",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/effect.lua",
+        "bytes":  435
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.flags",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/flags.lua",
+        "bytes":  229
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.graph",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/graph.lua",
+        "bytes":  7994
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.implicit_effect",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/implicit_effect.lua",
+        "bytes":  3904
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.indexes",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/indexes.lua",
+        "bytes":  3638
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.lib",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/lib.lua",
+        "bytes":  2989
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.mount",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/mount.lua",
+        "bytes":  375
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.read",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/read.lua",
+        "bytes":  127
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.root",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/root.lua",
+        "bytes":  889
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.show",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/show.lua",
+        "bytes":  859
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.source",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/source.lua",
+        "bytes":  901
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.spring",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/spring.lua",
+        "bytes":  9205
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.switch",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/switch.lua",
+        "bytes":  3162
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.timeout",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/timeout.lua",
+        "bytes":  645
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.untrack",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/untrack.lua",
+        "bytes":  624
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.centau_vide@0.4.0.vide.values",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/centau_vide@0/4/0/vide/values.lua",
+        "bytes":  3956
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.evaera_promise@4.0.0.promise",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/evaera_promise@4/0/0/promise.lua",
+        "bytes":  60896
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.evaera_promise@4.0.0.promise.init.spec",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/evaera_promise@4/0/0/promise/init/spec.lua",
+        "bytes":  48295
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_boolean@1.2.7.boolean",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_boolean@1/2/7/boolean.lua",
+        "bytes":  71
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_boolean@1.2.7.boolean.toJSBoolean",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_boolean@1/2/7/boolean/toJSBoolean.lua",
+        "bytes":  273
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_boolean@1.2.7.number",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_boolean@1/2/7/number.lua",
+        "bytes":  72
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections.lua",
+        "bytes":  755
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array.lua",
+        "bytes":  1213
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.concat",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/concat.lua",
+        "bytes":  1597
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.every",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/every.lua",
+        "bytes":  1210
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.filter",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/filter.lua",
+        "bytes":  1325
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.find",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/find.lua",
+        "bytes":  402
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.findIndex",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/findIndex.lua",
+        "bytes":  373
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.flat",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/flat.lua",
+        "bytes":  885
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.flatMap",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/flatMap.lua",
+        "bytes":  842
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.forEach",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/forEach.lua",
+        "bytes":  1176
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.from",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/from.lua",
+        "bytes":  1716
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.from.fromArray",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/from/fromArray.lua",
+        "bytes":  963
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.from.fromMap",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/from/fromMap.lua",
+        "bytes":  932
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.from.fromSet",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/from/fromSet.lua",
+        "bytes":  885
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.from.fromString",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/from/fromString.lua",
+        "bytes":  1035
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.includes",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/includes.lua",
+        "bytes":  314
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.indexOf",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/indexOf.lua",
+        "bytes":  983
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.isArray",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/isArray.lua",
+        "bytes":  492
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.join",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/join.lua",
+        "bytes":  490
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.map",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/map.lua",
+        "bytes":  1206
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.reduce",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/reduce.lua",
+        "bytes":  1193
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.reverse",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/reverse.lua",
+        "bytes":  330
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.shift",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/shift.lua",
+        "bytes":  454
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.slice",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/slice.lua",
+        "bytes":  1020
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.some",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/some.lua",
+        "bytes":  1175
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.sort",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/sort.lua",
+        "bytes":  1185
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.splice",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/splice.lua",
+        "bytes":  1649
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Array.unshift",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Array/unshift.lua",
+        "bytes":  591
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.inspect",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/inspect.lua",
+        "bytes":  5932
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Map",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Map.lua",
+        "bytes":  382
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Map.coerceToMap",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Map/coerceToMap.lua",
+        "bytes":  628
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Map.coerceToTable",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Map/coerceToTable.lua",
+        "bytes":  714
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Map.Map",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Map/Map.lua",
+        "bytes":  5180
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object.lua",
+        "bytes":  649
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object.assign",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object/assign.lua",
+        "bytes":  1745
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object.entries",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object/entries.lua",
+        "bytes":  956
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object.freeze",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object/freeze.lua",
+        "bytes":  332
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object.is",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object/is.lua",
+        "bytes":  338
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object.isFrozen",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object/isFrozen.lua",
+        "bytes":  375
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object.keys",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object/keys.lua",
+        "bytes":  848
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object.None",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object/None.lua",
+        "bytes":  233
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object.preventExtensions",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object/preventExtensions.lua",
+        "bytes":  677
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object.seal",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object/seal.lua",
+        "bytes":  332
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Object.values",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Object/values.lua",
+        "bytes":  866
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.Set",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/Set.lua",
+        "bytes":  4054
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.collections.WeakMap",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/collections/WeakMap.lua",
+        "bytes":  950
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.es7-types",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/es7-types.lua",
+        "bytes":  832
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_collections@1.2.7.instance-of",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_collections@1/2/7/instance-of.lua",
+        "bytes":  82
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_console@1.2.7.collections",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_console@1/2/7/collections.lua",
+        "bytes":  367
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_console@1.2.7.console",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_console@1/2/7/console.lua",
+        "bytes":  98
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_console@1.2.7.console.makeConsoleImpl",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_console@1/2/7/console/makeConsoleImpl.lua",
+        "bytes":  2106
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_es7-types@1.2.7.es7-types",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_es7-types@1/2/7/es7-types.lua",
+        "bytes":  2211
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_instance-of@1.2.7.instance-of",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_instance-of@1/2/7/instance-of.lua",
+        "bytes":  81
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_instance-of@1.2.7.instance-of.instanceof",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_instance-of@1/2/7/instance-of/instanceof.lua",
+        "bytes":  1118
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.boolean",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/boolean.lua",
+        "bytes":  74
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.collections",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/collections.lua",
+        "bytes":  367
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.console",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/console.lua",
+        "bytes":  74
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.es7-types",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/es7-types.lua",
+        "bytes":  832
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.instance-of",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/instance-of.lua",
+        "bytes":  82
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.luau-polyfill",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/luau-polyfill.lua",
+        "bytes":  2019
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.luau-polyfill.AssertionError",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/luau-polyfill/AssertionError.lua",
+        "bytes":  193
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.luau-polyfill.AssertionError.AssertionError.global",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/luau-polyfill/AssertionError/AssertionError/global.lua",
+        "bytes":  20210
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.luau-polyfill.encodeURIComponent",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/luau-polyfill/encodeURIComponent.lua",
+        "bytes":  1252
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.luau-polyfill.Error",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/luau-polyfill/Error.lua",
+        "bytes":  104
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.luau-polyfill.Error.Error.global",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/luau-polyfill/Error/Error/global.lua",
+        "bytes":  2605
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.luau-polyfill.extends",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/luau-polyfill/extends.lua",
+        "bytes":  1212
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.luau-polyfill.Promise",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/luau-polyfill/Promise.lua",
+        "bytes":  1039
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.math",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/math.lua",
+        "bytes":  68
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.number",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/number.lua",
+        "bytes":  72
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.string",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/string.lua",
+        "bytes":  72
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.symbol-luau",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/symbol-luau.lua",
+        "bytes":  167
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_luau-polyfill@1.2.7.timers",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_luau-polyfill@1/2/7/timers.lua",
+        "bytes":  208
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_math@1.2.7.math",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_math@1/2/7/math.lua",
+        "bytes":  59
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_math@1.2.7.math.clz32",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_math@1/2/7/math/clz32.lua",
+        "bytes":  21
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_number@1.2.7.number",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_number@1/2/7/number.lua",
+        "bytes":  449
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_number@1.2.7.number.isFinite",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_number@1/2/7/number/isFinite.lua",
+        "bytes":  127
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_number@1.2.7.number.isInteger",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_number@1/2/7/number/isInteger.lua",
+        "bytes":  214
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_number@1.2.7.number.isNaN",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_number@1/2/7/number/isNaN.lua",
+        "bytes":  175
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_number@1.2.7.number.isSafeInteger",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_number@1/2/7/number/isSafeInteger.lua",
+        "bytes":  346
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_number@1.2.7.number.MAX_SAFE_INTEGER",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_number@1/2/7/number/MAX_SAFE_INTEGER.lua",
+        "bytes":  132
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_number@1.2.7.number.MIN_SAFE_INTEGER",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_number@1/2/7/number/MIN_SAFE_INTEGER.lua",
+        "bytes":  132
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_number@1.2.7.number.toExponential",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_number@1/2/7/number/toExponential.lua",
+        "bytes":  1074
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_promise@3.5.2.promise",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_promise@3/5/2/promise.lua",
+        "bytes":  62698
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_promise@3.5.2.promise.init.spec",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_promise@3/5/2/promise/init/spec.lua",
+        "bytes":  58590
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.luau-polyfill",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/luau-polyfill.lua",
+        "bytes":  728
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react.lua",
+        "bytes":  3593
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.createSignal.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/createSignal/roblox.lua",
+        "bytes":  2367
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.None.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/None/roblox.lua",
+        "bytes":  1054
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.React",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/React.lua",
+        "bytes":  6746
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactBaseClasses",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactBaseClasses.lua",
+        "bytes":  15598
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactBinding.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactBinding/roblox.lua",
+        "bytes":  6052
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactChildren",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactChildren.lua",
+        "bytes":  11100
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactContext",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactContext.lua",
+        "bytes":  3949
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactCreateRef",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactCreateRef.lua",
+        "bytes":  2117
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactElement",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactElement.lua",
+        "bytes":  23763
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactElementValidator",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactElementValidator.lua",
+        "bytes":  22190
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactForwardRef",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactForwardRef.lua",
+        "bytes":  3546
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactHooks",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactHooks.lua",
+        "bytes":  7857
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactLazy",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactLazy.lua",
+        "bytes":  4983
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactMemo",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactMemo.lua",
+        "bytes":  4369
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactMutableSource",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactMutableSource.lua",
+        "bytes":  1049
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.react.ReactNoopUpdateQueue",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/react/ReactNoopUpdateQueue.lua",
+        "bytes":  4116
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react@17.2.1.shared",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react@17/2/1/shared.lua",
+        "bytes":  3529
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.luau-polyfill",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/luau-polyfill.lua",
+        "bytes":  728
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.promise",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/promise.lua",
+        "bytes":  74
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react.lua",
+        "bytes":  2256
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler.lua",
+        "bytes":  1412
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.DebugTracing",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/DebugTracing.lua",
+        "bytes":  7264
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.forks.ReactFiberHostConfig.test",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/forks/ReactFiberHostConfig/test.lua",
+        "bytes":  421
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.MaxInts",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/MaxInts.lua",
+        "bytes":  561
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactCapturedValue",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactCapturedValue.lua",
+        "bytes":  1047
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactChildFiber.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactChildFiber/new.lua",
+        "bytes":  57777
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactCurrentFiber",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactCurrentFiber.lua",
+        "bytes":  2861
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiber.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiber/new.lua",
+        "bytes":  35351
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberBeginWork.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberBeginWork/new.lua",
+        "bytes":  131209
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberClassComponent.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberClassComponent/new.lua",
+        "bytes":  48360
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberCommitWork.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberCommitWork/new.lua",
+        "bytes":  77341
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberCompleteWork.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberCompleteWork/new.lua",
+        "bytes":  62628
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberComponentStack",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberComponentStack.lua",
+        "bytes":  3599
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberContext.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberContext/new.lua",
+        "bytes":  13004
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberDevToolsHook.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberDevToolsHook/new.lua",
+        "bytes":  5326
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberErrorDialog",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberErrorDialog.lua",
+        "bytes":  734
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberErrorLogger",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberErrorLogger.lua",
+        "bytes":  5311
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberFlags",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberFlags.lua",
+        "bytes":  3500
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberHooks.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberHooks/new.lua",
+        "bytes":  110365
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberHostConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberHostConfig.lua",
+        "bytes":  1785
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberHostContext.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberHostContext/new.lua",
+        "bytes":  4770
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberHotReloading.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberHotReloading/new.lua",
+        "bytes":  14222
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberHydrationContext.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberHydrationContext/new.lua",
+        "bytes":  17002
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberLane",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberLane.lua",
+        "bytes":  34619
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberLazyComponent.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberLazyComponent/new.lua",
+        "bytes":  1198
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberNewContext.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberNewContext/new.lua",
+        "bytes":  14690
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberOffscreenComponent",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberOffscreenComponent.lua",
+        "bytes":  1378
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberReconciler",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberReconciler.lua",
+        "bytes":  489
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberReconciler.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberReconciler/new.lua",
+        "bytes":  29803
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberRoot.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberRoot/new.lua",
+        "bytes":  4321
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberSchedulerPriorities.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberSchedulerPriorities/roblox.lua",
+        "bytes":  1150
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberStack.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberStack/new.lua",
+        "bytes":  2587
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberSuspenseComponent.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberSuspenseComponent/new.lua",
+        "bytes":  5634
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberSuspenseContext.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberSuspenseContext/new.lua",
+        "bytes":  3454
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberThrow.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberThrow/new.lua",
+        "bytes":  19788
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberTransition",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberTransition.lua",
+        "bytes":  676
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberTreeReflection",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberTreeReflection.lua",
+        "bytes":  12387
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberUnwindWork.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberUnwindWork/new.lua",
+        "bytes":  7390
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberWorkInProgress",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberWorkInProgress.lua",
+        "bytes":  1377
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactFiberWorkLoop.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactFiberWorkLoop/new.lua",
+        "bytes":  142466
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactHookEffectTags",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactHookEffectTags.lua",
+        "bytes":  641
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactInternalTypes",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactInternalTypes.lua",
+        "bytes":  13369
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactMutableSource.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactMutableSource/new.lua",
+        "bytes":  4139
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactPortal",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactPortal.lua",
+        "bytes":  1124
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactProfilerTimer.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactProfilerTimer/new.lua",
+        "bytes":  5108
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactRootTags",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactRootTags.lua",
+        "bytes":  459
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactStrictModeWarnings.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactStrictModeWarnings/new.lua",
+        "bytes":  14274
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactTestSelectors",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactTestSelectors.lua",
+        "bytes":  16727
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactTypeOfMode",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactTypeOfMode.lua",
+        "bytes":  644
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactUpdateQueue.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactUpdateQueue/new.lua",
+        "bytes":  24749
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.ReactWorkTags",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/ReactWorkTags.lua",
+        "bytes":  1121
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.RobloxReactProfiling",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/RobloxReactProfiling.lua",
+        "bytes":  5254
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.SchedulerWithReactIntegration.new",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/SchedulerWithReactIntegration/new.lua",
+        "bytes":  12922
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.react-reconciler.SchedulingProfiler",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/react-reconciler/SchedulingProfiler.lua",
+        "bytes":  5516
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.scheduler",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/scheduler.lua",
+        "bytes":  174
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-reconciler@17.2.1.shared",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-reconciler@17/2/1/shared.lua",
+        "bytes":  3529
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.luau-polyfill",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/luau-polyfill.lua",
+        "bytes":  728
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react.lua",
+        "bytes":  2256
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-reconciler",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-reconciler.lua",
+        "bytes":  387
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox.lua",
+        "bytes":  569
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox.client.ReactRoblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox/client/ReactRoblox.lua",
+        "bytes":  13229
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox.client.ReactRobloxComponent",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox/client/ReactRobloxComponent.lua",
+        "bytes":  8965
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox.client.ReactRobloxComponentTree",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox/client/ReactRobloxComponentTree.lua",
+        "bytes":  11417
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox.client.ReactRobloxHostConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox/client/ReactRobloxHostConfig.lua",
+        "bytes":  44843
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox.client.ReactRobloxHostTypes.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox/client/ReactRobloxHostTypes/roblox.lua",
+        "bytes":  2836
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox.client.ReactRobloxRoot",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox/client/ReactRobloxRoot.lua",
+        "bytes":  10076
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox.client.roblox.getDefaultInstanceProperty",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox/client/roblox/getDefaultInstanceProperty.lua",
+        "bytes":  2194
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox.client.roblox.RobloxComponentProps",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox/client/roblox/RobloxComponentProps.lua",
+        "bytes":  10691
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox.client.roblox.SingleEventManager",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox/client/roblox/SingleEventManager.lua",
+        "bytes":  5151
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.react-roblox.ReactReconciler.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/react-roblox/ReactReconciler/roblox.lua",
+        "bytes":  386
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.scheduler",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/scheduler.lua",
+        "bytes":  174
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_react-roblox@17.2.1.shared",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_react-roblox@17/2/1/shared.lua",
+        "bytes":  3529
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.luau-polyfill",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/luau-polyfill.lua",
+        "bytes":  728
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler.lua",
+        "bytes":  3317
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.forks.SchedulerHostConfig.default",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/forks/SchedulerHostConfig/default.lua",
+        "bytes":  5584
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.forks.SchedulerHostConfig.mock",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/forks/SchedulerHostConfig/mock.lua",
+        "bytes":  6538
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.Scheduler",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/Scheduler.lua",
+        "bytes":  16822
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.SchedulerFeatureFlags",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/SchedulerFeatureFlags.lua",
+        "bytes":  459
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.SchedulerHostConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/SchedulerHostConfig.lua",
+        "bytes":  642
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.SchedulerMinHeap",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/SchedulerMinHeap.lua",
+        "bytes":  2507
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.SchedulerPriorities",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/SchedulerPriorities.lua",
+        "bytes":  548
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.SchedulerProfiling",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/SchedulerProfiling.lua",
+        "bytes":  4608
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.Tracing",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/Tracing.lua",
+        "bytes":  8836
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.TracingSubscriptions",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/TracingSubscriptions.lua",
+        "bytes":  4535
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.scheduler.unstable_mock",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/scheduler/unstable_mock.lua",
+        "bytes":  1680
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_scheduler@17.2.1.shared",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_scheduler@17/2/1/shared.lua",
+        "bytes":  3529
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.luau-polyfill",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/luau-polyfill.lua",
+        "bytes":  728
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared.lua",
+        "bytes":  7337
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.checkPropTypes",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/checkPropTypes.lua",
+        "bytes":  6704
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.console",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/console.lua",
+        "bytes":  1333
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ConsolePatchingDev.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ConsolePatchingDev/roblox.lua",
+        "bytes":  2508
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.consoleWithStackDev",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/consoleWithStackDev.lua",
+        "bytes":  2017
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.enqueueTask.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/enqueueTask/roblox.lua",
+        "bytes":  465
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ErrorHandling.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ErrorHandling/roblox.lua",
+        "bytes":  3395
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ExecutionEnvironment",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ExecutionEnvironment.lua",
+        "bytes":  490
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.flowtypes.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/flowtypes/roblox.lua",
+        "bytes":  8220
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.formatProdErrorMessage",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/formatProdErrorMessage.lua",
+        "bytes":  1138
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.getComponentName",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/getComponentName.lua",
+        "bytes":  5240
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.invariant",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/invariant.lua",
+        "bytes":  1188
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.invokeGuardedCallbackImpl",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/invokeGuardedCallbackImpl.lua",
+        "bytes":  9856
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.isValidElementType",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/isValidElementType.lua",
+        "bytes":  2823
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.objectIs",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/objectIs.lua",
+        "bytes":  787
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.PropMarkers.Change",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/PropMarkers/Change.lua",
+        "bytes":  1423
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.PropMarkers.Event",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/PropMarkers/Event.lua",
+        "bytes":  1306
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.PropMarkers.Tag",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/PropMarkers/Tag.lua",
+        "bytes":  796
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactComponentStackFrame",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactComponentStackFrame.lua",
+        "bytes":  16671
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactElementType",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactElementType.lua",
+        "bytes":  1437
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactErrorUtils",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactErrorUtils.lua",
+        "bytes":  3176
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactFeatureFlags",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactFeatureFlags.lua",
+        "bytes":  5604
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactFiberHostConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactFiberHostConfig.lua",
+        "bytes":  1567
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactFiberHostConfig.WithNoHydration",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactFiberHostConfig/WithNoHydration.lua",
+        "bytes":  1819
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactFiberHostConfig.WithNoPersistence",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactFiberHostConfig/WithNoPersistence.lua",
+        "bytes":  1056
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactFiberHostConfig.WithNoTestSelectors",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactFiberHostConfig/WithNoTestSelectors.lua",
+        "bytes":  1001
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactInstanceMap",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactInstanceMap.lua",
+        "bytes":  3426
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactSharedInternals",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactSharedInternals.lua",
+        "bytes":  2443
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactSharedInternals.IsSomeRendererActing",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactSharedInternals/IsSomeRendererActing.lua",
+        "bytes":  510
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactSharedInternals.ReactCurrentBatchConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactSharedInternals/ReactCurrentBatchConfig.lua",
+        "bytes":  570
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactSharedInternals.ReactCurrentDispatcher",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactSharedInternals/ReactCurrentDispatcher.lua",
+        "bytes":  3639
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactSharedInternals.ReactCurrentOwner",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactSharedInternals/ReactCurrentOwner.lua",
+        "bytes":  802
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactSharedInternals.ReactDebugCurrentFrame",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactSharedInternals/ReactDebugCurrentFrame.lua",
+        "bytes":  1391
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactSymbols",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactSymbols.lua",
+        "bytes":  4299
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactTypes",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactTypes.lua",
+        "bytes":  8315
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.ReactVersion",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/ReactVersion.lua",
+        "bytes":  414
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.shallowEqual",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/shallowEqual.lua",
+        "bytes":  1162
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.Symbol.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/Symbol/roblox.lua",
+        "bytes":  1208
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.Type.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/Type/roblox.lua",
+        "bytes":  1283
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_shared@17.2.1.shared.UninitializedState.roblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_shared@17/2/1/shared/UninitializedState/roblox.lua",
+        "bytes":  1379
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.es7-types",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/es7-types.lua",
+        "bytes":  832
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.number",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/number.lua",
+        "bytes":  72
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string.lua",
+        "bytes":  844
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.charCodeAt",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/charCodeAt.lua",
+        "bytes":  995
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.endsWith",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/endsWith.lua",
+        "bytes":  485
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.findOr",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/findOr.lua",
+        "bytes":  1546
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.includes",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/includes.lua",
+        "bytes":  909
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.indexOf",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/indexOf.lua",
+        "bytes":  1001
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.lastIndexOf",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/lastIndexOf.lua",
+        "bytes":  1229
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.slice",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/slice.lua",
+        "bytes":  1242
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.split",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/split.lua",
+        "bytes":  2042
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.startsWith",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/startsWith.lua",
+        "bytes":  512
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.substr",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/substr.lua",
+        "bytes":  262
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.trim",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/trim.lua",
+        "bytes":  210
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.trimEnd",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/trimEnd.lua",
+        "bytes":  80
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_string@1.2.7.string.trimStart",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_string@1/2/7/string/trimStart.lua",
+        "bytes":  80
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_symbol-luau@1.0.1.symbol-luau",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_symbol-luau@1/0/1/symbol-luau.lua",
+        "bytes":  678
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_symbol-luau@1.0.1.symbol-luau.Registry.global",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_symbol-luau@1/0/1/symbol-luau/Registry/global.lua",
+        "bytes":  375
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_symbol-luau@1.0.1.symbol-luau.Symbol",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_symbol-luau@1/0/1/symbol-luau/Symbol.lua",
+        "bytes":  733
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_timers@1.2.7.collections",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_timers@1/2/7/collections.lua",
+        "bytes":  367
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_timers@1.2.7.timers",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_timers@1/2/7/timers.lua",
+        "bytes":  393
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_timers@1.2.7.timers.makeIntervalImpl",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_timers@1/2/7/timers/makeIntervalImpl.lua",
+        "bytes":  991
+    },
+    {
+        "path":  "ReplicatedStorage.Packages._Index.jsdotlua_timers@1.2.7.timers.makeTimerImpl",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/_Index/jsdotlua_timers@1/2/7/timers/makeTimerImpl.lua",
+        "bytes":  939
+    },
+    {
+        "path":  "ReplicatedStorage.Packages.Promise",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/Promise.lua",
+        "bytes":  72
+    },
+    {
+        "path":  "ReplicatedStorage.Packages.React",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/React.lua",
+        "bytes":  2256
+    },
+    {
+        "path":  "ReplicatedStorage.Packages.ReactRoblox",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/ReactRoblox.lua",
+        "bytes":  174
+    },
+    {
+        "path":  "ReplicatedStorage.Packages.Vide",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Packages/Vide.lua",
+        "bytes":  310
+    },
+    {
+        "path":  "ReplicatedStorage.RaidShared.PathMover",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/RaidShared/PathMover.lua",
+        "bytes":  1619
+    },
+    {
+        "path":  "ReplicatedStorage.Shared.ButtonAnimator",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/Shared/ButtonAnimator.lua",
+        "bytes":  7478
+    },
+    {
+        "path":  "ReplicatedStorage.Swords.WoodenSword.SwordTool",
+        "className":  "LocalScript",
+        "file":  "src/ReplicatedStorage/Swords/WoodenSword/SwordTool.client.lua",
+        "bytes":  3666
+    },
+    {
+        "path":  "ReplicatedStorage.UltimateAdminAbusePack.InterfaceModule",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/UltimateAdminAbusePack/InterfaceModule.lua",
+        "bytes":  4475
+    },
+    {
+        "path":  "ReplicatedStorage.UltimateAdminAbusePack.Settings",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/UltimateAdminAbusePack/Settings.lua",
+        "bytes":  338
+    },
+    {
+        "path":  "ReplicatedStorage.UltimateAdminAbusePack.Weathers.Rainbow.Model.npc.dance script",
+        "className":  "Script",
+        "file":  "src/ReplicatedStorage/UltimateAdminAbusePack/Weathers/Rainbow/Model/npc/dance script.server.lua",
+        "bytes":  158
+    },
+    {
+        "path":  "ServerScriptService.Modules.AIManager",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Modules/AIManager.lua",
+        "bytes":  63370
+    },
+    {
+        "path":  "ServerScriptService.Modules.AnimalManager",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Modules/AnimalManager.lua",
+        "bytes":  21460
+    },
+    {
+        "path":  "ServerScriptService.Modules.AnimationEngine",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Modules/AnimationEngine.lua",
+        "bytes":  26566
+    },
+    {
+        "path":  "ServerScriptService.Modules.CombatManager",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Modules/CombatManager.lua",
+        "bytes":  25635
+    },
+    {
+        "path":  "ServerScriptService.Modules.RoundManager",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Modules/RoundManager.lua",
+        "bytes":  30902
+    },
+    {
+        "path":  "ServerScriptService.Modules.VoxBreaker",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Modules/VoxBreaker.lua",
+        "bytes":  29973
+    },
+    {
+        "path":  "ServerScriptService.Modules.VoxBreaker.PartCache",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Modules/VoxBreaker/PartCache.lua",
+        "bytes":  6175
+    },
+    {
+        "path":  "ServerScriptService.Modules.VoxBreaker.PartCache.Table",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Modules/VoxBreaker/PartCache/Table.lua",
+        "bytes":  4032
+    },
+    {
+        "path":  "ServerScriptService.Modules.VoxelManager",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Modules/VoxelManager.lua",
+        "bytes":  8562
+    },
+    {
+        "path":  "ServerScriptService.Systems.AdminSystem.AdminGameBridge",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/AdminSystem/AdminGameBridge.server.lua",
+        "bytes":  4285
+    },
+    {
+        "path":  "ServerScriptService.Systems.AdminSystem.TempCashCommand.server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/AdminSystem/TempCashCommand/server.server.lua",
+        "bytes":  1694
+    },
+    {
+        "path":  "ServerScriptService.Systems.BuildSystem.BuildSystem.server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/BuildSystem/BuildSystem/server.server.lua",
+        "bytes":  9627
+    },
+    {
+        "path":  "ServerScriptService.Systems.BuildSystem.PlacementServer",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/BuildSystem/PlacementServer.server.lua",
+        "bytes":  21050
+    },
+    {
+        "path":  "ServerScriptService.Systems.CodeSystem.CodeSystem.server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/CodeSystem/CodeSystem/server.server.lua",
+        "bytes":  956
+    },
+    {
+        "path":  "ServerScriptService.Systems.DataSystem.BaseUpgradeOverride.server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/DataSystem/BaseUpgradeOverride/server.server.lua",
+        "bytes":  1598
+    },
+    {
+        "path":  "ServerScriptService.Systems.DataSystem.DataSystem.server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/DataSystem/DataSystem/server.server.lua",
+        "bytes":  101
+    },
+    {
+        "path":  "ServerScriptService.Systems.DataSystem.Modules.PlayerDataService",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Systems/DataSystem/Modules/PlayerDataService.lua",
+        "bytes":  19133
+    },
+    {
+        "path":  "ServerScriptService.Systems.LeaderboardSystem.LeaderboardManager",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Systems/LeaderboardSystem/LeaderboardManager.lua",
+        "bytes":  9448
+    },
+    {
+        "path":  "ServerScriptService.Systems.LeaderboardSystem.LeaderboardServer",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/LeaderboardSystem/LeaderboardServer.server.lua",
+        "bytes":  371
+    },
+    {
+        "path":  "ServerScriptService.Systems.LuckyBlockSystem",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/LuckyBlockSystem.server.lua",
+        "bytes":  11017
+    },
+    {
+        "path":  "ServerScriptService.Systems.MapSystem.MapSwitchServer",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/MapSystem/MapSwitchServer.server.lua",
+        "bytes":  6239
+    },
+    {
+        "path":  "ServerScriptService.Systems.MusicServer",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/MusicServer.server.lua",
+        "bytes":  2510
+    },
+    {
+        "path":  "ServerScriptService.Systems.PlotSystem.Modules.PlotService",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Systems/PlotSystem/Modules/PlotService.lua",
+        "bytes":  5190
+    },
+    {
+        "path":  "ServerScriptService.Systems.PlotSystem.PlotSystem.server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/PlotSystem/PlotSystem/server.server.lua",
+        "bytes":  162
+    },
+    {
+        "path":  "ServerScriptService.Systems.RaidSystem.Modules.EnemyCore",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Systems/RaidSystem/Modules/EnemyCore.lua",
+        "bytes":  18396
+    },
+    {
+        "path":  "ServerScriptService.Systems.RaidSystem.Modules.RaidService",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/Systems/RaidSystem/Modules/RaidService.lua",
+        "bytes":  33937
+    },
+    {
+        "path":  "ServerScriptService.Systems.RaidSystem.RaidSystem.server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/RaidSystem/RaidSystem/server.server.lua",
+        "bytes":  235
+    },
+    {
+        "path":  "ServerScriptService.Systems.ShopSystem.CrateSystem.server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/ShopSystem/CrateSystem/server.server.lua",
+        "bytes":  13584
+    },
+    {
+        "path":  "ServerScriptService.Systems.ShopSystem.StockSystem.server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/ShopSystem/StockSystem/server.server.lua",
+        "bytes":  1941
+    },
+    {
+        "path":  "ServerScriptService.Systems.SwordServer",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/SwordServer.server.lua",
+        "bytes":  5243
+    },
+    {
+        "path":  "ServerScriptService.Systems.TeleportSystem.TopTeleport.server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/TeleportSystem/TopTeleport/server.server.lua",
+        "bytes":  1773
+    },
+    {
+        "path":  "ServerScriptService.UltimateAdminAbusePack.AdminList",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/UltimateAdminAbusePack/AdminList.lua",
+        "bytes":  63
+    },
+    {
+        "path":  "ServerScriptService.UltimateAdminAbusePack.Server",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/UltimateAdminAbusePack/Server.server.lua",
+        "bytes":  13238
+    },
+    {
+        "path":  "ServerScriptService.UltimateAdminAbusePack.Server.GetDefaultLighting",
+        "className":  "ModuleScript",
+        "file":  "src/ServerScriptService/UltimateAdminAbusePack/Server/GetDefaultLighting.lua",
+        "bytes":  2011
+    },
+    {
+        "path":  "ServerScriptService.UltimateAdminAbusePack.Store.DataStore",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/UltimateAdminAbusePack/Store/DataStore.server.lua",
+        "bytes":  1528
+    },
+    {
+        "path":  "ServerStorage.CodexAdminAbuseBackup_20260629_184920.UltimateAdminAbusePack.AdminAbusePanel.AdminClient",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexAdminAbuseBackup_20260629_184920/UltimateAdminAbusePack/AdminAbusePanel/AdminClient.client.lua",
+        "bytes":  13202
+    },
+    {
+        "path":  "ServerStorage.CodexAdminAbuseBackup_20260629_184920.UltimateAdminAbusePack.AdminList",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/CodexAdminAbuseBackup_20260629_184920/UltimateAdminAbusePack/AdminList.lua",
+        "bytes":  63
+    },
+    {
+        "path":  "ServerStorage.CodexAdminAbuseBackup_20260629_184920.UltimateAdminAbusePack.InterfaceModule",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/CodexAdminAbuseBackup_20260629_184920/UltimateAdminAbusePack/InterfaceModule.lua",
+        "bytes":  4475
+    },
+    {
+        "path":  "ServerStorage.CodexAdminAbuseBackup_20260629_184920.UltimateAdminAbusePack.Server",
+        "className":  "Script",
+        "file":  "src/ServerStorage/CodexAdminAbuseBackup_20260629_184920/UltimateAdminAbusePack/Server.server.lua",
+        "bytes":  13238
+    },
+    {
+        "path":  "ServerStorage.CodexAdminAbuseBackup_20260629_184920.UltimateAdminAbusePack.Server.GetDefaultLighting",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/CodexAdminAbuseBackup_20260629_184920/UltimateAdminAbusePack/Server/GetDefaultLighting.lua",
+        "bytes":  2011
+    },
+    {
+        "path":  "ServerStorage.CodexAdminAbuseBackup_20260629_184920.UltimateAdminAbusePack.Settings",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/CodexAdminAbuseBackup_20260629_184920/UltimateAdminAbusePack/Settings.lua",
+        "bytes":  338
+    },
+    {
+        "path":  "ServerStorage.CodexAdminAbuseBackup_20260629_184920.UltimateAdminAbusePack.Store.DataStore",
+        "className":  "Script",
+        "file":  "src/ServerStorage/CodexAdminAbuseBackup_20260629_184920/UltimateAdminAbusePack/Store/DataStore.server.lua",
+        "bytes":  1528
+    },
+    {
+        "path":  "ServerStorage.CodexAdminAbuseBackup_20260629_184920.UltimateAdminAbusePack.Weathers.Rainbow.Model.npc.dance script",
+        "className":  "Script",
+        "file":  "src/ServerStorage/CodexAdminAbuseBackup_20260629_184920/UltimateAdminAbusePack/Weathers/Rainbow/Model/npc/dance script.server.lua",
+        "bytes":  158
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.01_Pirate_Captain_Captain.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/01_Pirate_Captain_Captain/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.02_Pirate_Captain_Quartermaster.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/02_Pirate_Captain_Quartermaster/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.03_Pirate_Captain_Buccaneer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/03_Pirate_Captain_Buccaneer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.04_Buccaneer_Corsair.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/04_Buccaneer_Corsair/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.05_Buccaneer_Privateer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/05_Buccaneer_Privateer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.06_Buccaneer_Deckhand.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/06_Buccaneer_Deckhand/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.07_Buccaneer_Gunner.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/07_Buccaneer_Gunner/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.08_Buccaneer_Coat_Navigator.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/08_Buccaneer_Coat_Navigator/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.09_Buccaneer_Raider.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/09_Buccaneer_Raider/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.10_Pirate_Captain_Marauder.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/10_Pirate_Captain_Marauder/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.11_Pirate_Captain_Boarder.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/11_Pirate_Captain_Boarder/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.12_Pirate_Captain_Sailor.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/12_Pirate_Captain_Sailor/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.13_Pirate_Captain_Smuggler.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/13_Pirate_Captain_Smuggler/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.14_Pirate_Captain_Cutlass.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/14_Pirate_Captain_Cutlass/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.15_Pirate_Captain_Lookout.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/15_Pirate_Captain_Lookout/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.16_Pirate_Captain_Brute.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/16_Pirate_Captain_Brute/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.17_Pirate_Captain_Duelist.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/17_Pirate_Captain_Duelist/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.18_Pirate_Captain_Treasure Guard.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/18_Pirate_Captain_Treasure Guard/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.19_Pirate_Captain_Powderhand.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/19_Pirate_Captain_Powderhand/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.20_Pirate_Captain_Boss.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/20_Pirate_Captain_Boss/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.21_Pirate_Shirt_Pants_Captain.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/21_Pirate_Shirt_Pants_Captain/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.22_Pirate_Shirt_Pants_Quartermaster.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/22_Pirate_Shirt_Pants_Quartermaster/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.23_Pirate_Shirt_Pants_Buccaneer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/23_Pirate_Shirt_Pants_Buccaneer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.24_Pirate_Shirt_Pants_Corsair.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/24_Pirate_Shirt_Pants_Corsair/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.25_Pirate_Shirt_Pants_Privateer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/25_Pirate_Shirt_Pants_Privateer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.26_Pirate_Shirt_Pants_Deckhand.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/26_Pirate_Shirt_Pants_Deckhand/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.27_Pirate_Shirt_Pants_Gunner.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/27_Pirate_Shirt_Pants_Gunner/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.28_Pirate_Shirt_Pants_Navigator.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/28_Pirate_Shirt_Pants_Navigator/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.29_Pirate_Shirt_Pants_Raider.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/29_Pirate_Shirt_Pants_Raider/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.30_Black_Pirate_Captain_Marauder.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/30_Black_Pirate_Captain_Marauder/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.31_Captain_Pirate_Suit_Boarder.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/31_Captain_Pirate_Suit_Boarder/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.32_Fantasy_Pirate_Captain_Sailor.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/32_Fantasy_Pirate_Captain_Sailor/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.33_Classic_Pirate_Smuggler.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/33_Classic_Pirate_Smuggler/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.34_Crimson_Pirate_Captain_Cutlass.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/34_Crimson_Pirate_Captain_Cutlass/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.35_Navy_Pirate_Captain_Lookout.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/35_Navy_Pirate_Captain_Lookout/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.36_Red_Captain_Hook_Brute.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/36_Red_Captain_Hook_Brute/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.37_Pirate_Captain_Coat_Duelist.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/37_Pirate_Captain_Coat_Duelist/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.38_Black_Captain_Pirate_Treasure Guard.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/38_Black_Captain_Pirate_Treasure Guard/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.39_Classic_Pirate_Powderhand.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/39_Classic_Pirate_Powderhand/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.40_Typical_Colors_Pirate_Captain_Boss.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/40_Typical_Colors_Pirate_Captain_Boss/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.41_Pirate_Shirt_Pants_Captain.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/41_Pirate_Shirt_Pants_Captain/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.42_Pirate_Shirt_Pants_Quartermaster.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/42_Pirate_Shirt_Pants_Quartermaster/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.43_Pirate_Shirt_Pants_Buccaneer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/43_Pirate_Shirt_Pants_Buccaneer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.44_Aaron_Saber_Pirate_Captain_Corsair.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/44_Aaron_Saber_Pirate_Captain_Corsair/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.45_Pirate_Shirt_Pants_Privateer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/45_Pirate_Shirt_Pants_Privateer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.46_Pirate_Shirt_Pants_Deckhand.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/46_Pirate_Shirt_Pants_Deckhand/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.47_Captain_Pirate_Outfit_Gunner.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/47_Captain_Pirate_Outfit_Gunner/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.48_Blue_Gold_Pirate_Captain_Navigator.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/48_Blue_Gold_Pirate_Captain_Navigator/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.49_Pirate_Shirt_Pants_Raider.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/49_Pirate_Shirt_Pants_Raider/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_Backup_NoPartsRedo_20260630_152402.50_Pirate_Shirt_Pants_Marauder.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_Backup_NoPartsRedo_20260630_152402/50_Pirate_Shirt_Pants_Marauder/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.01_Redwake_Captain.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/01_Redwake_Captain/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.02_Blackpowder_Quartermaster.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/02_Blackpowder_Quartermaster/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.03_Barnacle_Cutlass.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/03_Barnacle_Cutlass/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.04_Storm_Deckhand.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/04_Storm_Deckhand/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.05_Goldtooth_Corsair.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/05_Goldtooth_Corsair/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.06_Bilge_Rat_Gunner.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/06_Bilge_Rat_Gunner/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.07_Sable_Navigator.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/07_Sable_Navigator/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.08_Pearl_Raider.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/08_Pearl_Raider/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.09_Rusthook_Marauder.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/09_Rusthook_Marauder/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.10_Old_Salt_Cannoneer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/10_Old_Salt_Cannoneer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.11_Cinder_Buccaneer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/11_Cinder_Buccaneer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.12_Bluecoat_Privateer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/12_Bluecoat_Privateer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.13_Sharkbait_Brawler.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/13_Sharkbait_Brawler/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.14_Ironhook_Smuggler.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/14_Ironhook_Smuggler/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.15_Crimson_First_Mate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/15_Crimson_First_Mate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.16_Moonlit_Boarder.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/16_Moonlit_Boarder/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.17_Sunken_Sailor.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/17_Sunken_Sailor/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.18_Cask_Runner.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/18_Cask_Runner/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.19_Powder_Keg_Brute.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/19_Powder_Keg_Brute/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.20_Silver_Compass.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/20_Silver_Compass/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.21_Dreadwake_Looter.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/21_Dreadwake_Looter/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.22_Brine_Scar_Duelist.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/22_Brine_Scar_Duelist/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.23_Crow_Nest_Watcher.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/23_Crow_Nest_Watcher/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.24_Treasure_Maw.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/24_Treasure_Maw/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.25_Portside_Rogue.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/25_Portside_Rogue/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.26_Cannon_Smoke_Raider.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/26_Cannon_Smoke_Raider/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.27_Low_Tide_Thief.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/27_Low_Tide_Thief/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.28_Mutiny_Cook.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/28_Mutiny_Cook/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.29_Bone_Flag_Guard.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/29_Bone_Flag_Guard/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.30_Seafoam_Striker.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/30_Seafoam_Striker/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.31_Darkwater_Veteran.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/31_Darkwater_Veteran/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.32_Rum_Barrel_Bruiser.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/32_Rum_Barrel_Bruiser/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.33_Jolly_Knifehand.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/33_Jolly_Knifehand/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.34_Harbor_Rat.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/34_Harbor_Rat/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.35_Anchor_Chain_Raider.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/35_Anchor_Chain_Raider/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.36_Tattered_Sail_Duelist.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/36_Tattered_Sail_Duelist/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.37_Blackreef_Lookout.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/37_Blackreef_Lookout/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.38_Lantern_Jaw.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/38_Lantern_Jaw/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.39_Skullcap_Swashbuckler.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/39_Skullcap_Swashbuckler/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.40_Saltbite_Raider.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/40_Saltbite_Raider/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.41_Coral_Hook_Rogue.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/41_Coral_Hook_Rogue/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.42_Gilded_Deck_Boss.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/42_Gilded_Deck_Boss/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.43_Wreckage_Scavenger.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/43_Wreckage_Scavenger/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.44_Fogbound_Captain.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/44_Fogbound_Captain/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.45_Tidecall_Enforcer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/45_Tidecall_Enforcer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.46_Soot_Beard_Raider.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/46_Soot_Beard_Raider/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.47_Crosswind_Blade.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/47_Crosswind_Blade/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.48_Marooned_Menace.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/48_Marooned_Menace/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.49_Royal_Defector.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/49_Royal_Defector/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.CodexPirateMobsBackups.PirateMobs_50_BadRedoBackup_20260630_151906.50_Deadman_Cove_Boss.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/CodexPirateMobsBackups/PirateMobs_50_BadRedoBackup_20260630_151906/50_Deadman_Cove_Boss/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "ServerStorage.Later.RobloxProceduralModel.ClientController",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/Later/RobloxProceduralModel/ClientController.client.lua",
+        "bytes":  24052
+    },
+    {
+        "path":  "ServerStorage.Later.RobloxProceduralModel.Generator",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/Later/RobloxProceduralModel/Generator.lua",
+        "bytes":  24537
+    },
+    {
+        "path":  "ServerStorage.Later.RobloxProceduralModel.Manipulator",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/Later/RobloxProceduralModel/Manipulator.lua",
+        "bytes":  35612
+    },
+    {
+        "path":  "ServerStorage.Later.RobloxProceduralModel.ShapeDetector",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/Later/RobloxProceduralModel/ShapeDetector.lua",
+        "bytes":  2314
+    },
+    {
+        "path":  "ServerStorage.Later.RobloxProceduralModel.Smoothing",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/Later/RobloxProceduralModel/Smoothing.lua",
+        "bytes":  1062
+    },
+    {
+        "path":  "ServerStorage.Model.Sword anim.Rigged Sword.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/Model/Sword anim/Rigged Sword/Animate.client.lua",
+        "bytes":  15615
+    },
+    {
+        "path":  "ServerStorage.Model.Sword anim.Weilded Sword.Animate",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/Model/Sword anim/Weilded Sword/Animate.client.lua",
+        "bytes":  15615
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.Dummy.Gomu Gomu no bazooka__root|xsixx.Keyframe.HumanoidRootPart.Torso.Head.PoseTexture",
+        "className":  "Script",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/Dummy/Gomu Gomu no bazooka__root_xsixx/Keyframe/HumanoidRootPart/Torso/Head/PoseTexture.server.lua",
+        "bytes":  13052
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.Dummy.Gomu Gomu no bazooka__root|xsixx.Keyframe.HumanoidRootPart.Torso.Head.PoseTexture.TextureConfiguration",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/Dummy/Gomu Gomu no bazooka__root_xsixx/Keyframe/HumanoidRootPart/Torso/Head/PoseTexture/TextureConfiguration.lua",
+        "bytes":  9635
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.R6 [Dummy].Sword Swing.Keyframe.HumanoidRootPart.Torso.Head.LightConfig",
+        "className":  "Script",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/R6 [Dummy]/Sword Swing/Keyframe/HumanoidRootPart/Torso/Head/LightConfig.server.lua",
+        "bytes":  6800
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.R6 [Dummy].Sword Swing.Keyframe.HumanoidRootPart.Torso.Head.LightConfig",
+        "className":  "Script",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/R6 [Dummy]/Sword Swing/Keyframe/HumanoidRootPart/Torso/Head/LightConfig__2.server.lua",
+        "bytes":  6800
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.R6 [Dummy].Sword Swing.Keyframe.HumanoidRootPart.Torso.Head.LightConfig",
+        "className":  "Script",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/R6 [Dummy]/Sword Swing/Keyframe/HumanoidRootPart/Torso/Head/LightConfig__3.server.lua",
+        "bytes":  6800
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.R6 [Dummy].Sword Swing.Keyframe.HumanoidRootPart.Torso.Head.LightConfig.EasyConfiguration",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/R6 [Dummy]/Sword Swing/Keyframe/HumanoidRootPart/Torso/Head/LightConfig/EasyConfiguration.lua",
+        "bytes":  4353
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.R6 [Dummy].Sword Swing.Keyframe.HumanoidRootPart.Torso.Head.LightConfig.EasyConfiguration",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/R6 [Dummy]/Sword Swing/Keyframe/HumanoidRootPart/Torso/Head/LightConfig/EasyConfiguration__2.lua",
+        "bytes":  4353
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.R6 [Dummy].Sword Swing.Keyframe.HumanoidRootPart.Torso.Head.LightConfig.EasyConfiguration",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/R6 [Dummy]/Sword Swing/Keyframe/HumanoidRootPart/Torso/Head/LightConfig/EasyConfiguration__3.lua",
+        "bytes":  4353
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.R6 [Dummy].Sword Swing.Keyframe.HumanoidRootPart.Torso.Head.LightConfig.Type",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/R6 [Dummy]/Sword Swing/Keyframe/HumanoidRootPart/Torso/Head/LightConfig/Type.lua",
+        "bytes":  6575
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.R6 [Dummy].Sword Swing.Keyframe.HumanoidRootPart.Torso.Head.LightConfig.Type",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/R6 [Dummy]/Sword Swing/Keyframe/HumanoidRootPart/Torso/Head/LightConfig/Type__2.lua",
+        "bytes":  6575
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.R6 [Dummy].Sword Swing.Keyframe.HumanoidRootPart.Torso.Head.LightConfig.Type",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/R6 [Dummy]/Sword Swing/Keyframe/HumanoidRootPart/Torso/Head/LightConfig/Type__3.lua",
+        "bytes":  6575
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.Weilded Sword.Swing4.Keyframe.HumanoidRootPart.Torso.Right Arm.Handle.LightConfig",
+        "className":  "Script",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/Weilded Sword/Swing4/Keyframe/HumanoidRootPart/Torso/Right Arm/Handle/LightConfig.server.lua",
+        "bytes":  6800
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.Weilded Sword.Swing4.Keyframe.HumanoidRootPart.Torso.Right Arm.Handle.LightConfig.EasyConfiguration",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/Weilded Sword/Swing4/Keyframe/HumanoidRootPart/Torso/Right Arm/Handle/LightConfig/EasyConfiguration.lua",
+        "bytes":  4353
+    },
+    {
+        "path":  "ServerStorage.RBX_ANIMSAVES.Weilded Sword.Swing4.Keyframe.HumanoidRootPart.Torso.Right Arm.Handle.LightConfig.Type",
+        "className":  "ModuleScript",
+        "file":  "src/ServerStorage/RBX_ANIMSAVES/Weilded Sword/Swing4/Keyframe/HumanoidRootPart/Torso/Right Arm/Handle/LightConfig/Type.lua",
+        "bytes":  6575
+    },
+    {
+        "path":  "ServerStorage.UltimateAdminAbusePack.AdminAbusePanel.AdminClient",
+        "className":  "LocalScript",
+        "file":  "src/ServerStorage/UltimateAdminAbusePack/AdminAbusePanel/AdminClient.client.lua",
+        "bytes":  13109
+    },
+    {
+        "path":  "StarterGui.Gui.InterfaceManager",
+        "className":  "LocalScript",
+        "file":  "src/StarterGui/Gui/InterfaceManager.client.lua",
+        "bytes":  5335
+    },
+    {
+        "path":  "StarterGui.GUI.StartRaidClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterGui/GUI/StartRaidClient.client.lua",
+        "bytes":  3917
+    },
+    {
+        "path":  "StarterGui.GUI.TopTeleportClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterGui/GUI/TopTeleportClient.client.lua",
+        "bytes":  973
+    },
+    {
+        "path":  "StarterGui.GUI.UIFrameController",
+        "className":  "LocalScript",
+        "file":  "src/StarterGui/GUI/UIFrameController.client.lua",
+        "bytes":  13921
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.BaseAndUnitUiClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/BaseAndUnitUiClient.client.lua",
+        "bytes":  34251
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.ButtonAnimationBootstrap",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/ButtonAnimationBootstrap.client.lua",
+        "bytes":  714
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.CashPopupClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/CashPopupClient.client.lua",
+        "bytes":  5105
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.ChestPresentationClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/ChestPresentationClient.client.lua",
+        "bytes":  15408
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.Client.AbilityFXClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/Client/AbilityFXClient.client.lua",
+        "bytes":  29373
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.Client.InventoryClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/Client/InventoryClient.client.lua",
+        "bytes":  13818
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.Client.PetShopClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/Client/PetShopClient.client.lua",
+        "bytes":  29865
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.CodesAndSettingsClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/CodesAndSettingsClient.client.lua",
+        "bytes":  7625
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.CustomPrompt Handler",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/CustomPrompt Handler.client.lua",
+        "bytes":  3875
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.CustomPrompt Handler.Modules.PromptEffect",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/CustomPrompt Handler/Modules/PromptEffect.lua",
+        "bytes":  2307
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.CustomPrompt Handler.Modules.PromptText",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/CustomPrompt Handler/Modules/PromptText.lua",
+        "bytes":  1167
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.CustomPrompt Handler.Prompts.Prompt1",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/CustomPrompt Handler/Prompts/Prompt1.lua",
+        "bytes":  4443
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.EnemyController",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/EnemyController.client.lua",
+        "bytes":  6206
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.Flight",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/Flight.client.lua",
+        "bytes":  12727
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.GameDetailsClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/GameDetailsClient.client.lua",
+        "bytes":  7974
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.GroupPromptClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/GroupPromptClient.client.lua",
+        "bytes":  695
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.LeaderboardClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/LeaderboardClient.client.lua",
+        "bytes":  8004
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.MapsClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/MapsClient.client.lua",
+        "bytes":  3099
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.Modules.AbilityController",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/Modules/AbilityController.lua",
+        "bytes":  9746
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.Modules.AnimalController",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/Modules/AnimalController.lua",
+        "bytes":  33820
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.Modules.AnimationEngine",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/Modules/AnimationEngine.lua",
+        "bytes":  26524
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.MusicPlayer",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/MusicPlayer.client.lua",
+        "bytes":  3075
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.NotifClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/NotifClient.client.lua",
+        "bytes":  2989
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule.lua",
+        "bytes":  793
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule.lua",
+        "bytes":  25153
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.BaseCamera",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/BaseCamera.lua",
+        "bytes":  24180
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.BaseOcclusion",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/BaseOcclusion.lua",
+        "bytes":  1408
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.CameraInput",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraInput.lua",
+        "bytes":  16201
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.CameraToggleStateController",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraToggleStateController.lua",
+        "bytes":  2487
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.CameraUI",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraUI.lua",
+        "bytes":  747
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.CameraUtils",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraUtils.lua",
+        "bytes":  9012
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.ClassicCamera",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/ClassicCamera.lua",
+        "bytes":  8368
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.Invisicam",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/Invisicam.lua",
+        "bytes":  22534
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.LegacyCamera",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/LegacyCamera.lua",
+        "bytes":  3858
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.MouseLockController",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/MouseLockController.lua",
+        "bytes":  7109
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.OrbitalCamera",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/OrbitalCamera.lua",
+        "bytes":  12814
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.Poppercam",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/Poppercam.lua",
+        "bytes":  3487
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.TransparencyController",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/TransparencyController.lua",
+        "bytes":  7147
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VehicleCamera",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera.lua",
+        "bytes":  7001
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VehicleCamera.VehicleCameraConfig",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera/VehicleCameraConfig.lua",
+        "bytes":  1860
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VehicleCamera.VehicleCameraCore",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera/VehicleCameraCore.lua",
+        "bytes":  4678
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VRBaseCamera",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRBaseCamera.lua",
+        "bytes":  11966
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VRCamera",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRCamera.lua",
+        "bytes":  14975
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VRVehicleCamera",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRVehicleCamera.lua",
+        "bytes":  17089
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.ZoomController",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/ZoomController.lua",
+        "bytes":  3598
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.ZoomController.Popper",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/ZoomController/Popper.lua",
+        "bytes":  13497
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.CameraWrapper",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/CameraWrapper.lua",
+        "bytes":  2917
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.CameraWrapper.spec",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/CameraWrapper/spec.lua",
+        "bytes":  1128
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.CharacterUtil",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/CharacterUtil.lua",
+        "bytes":  5367
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.ConnectionUtil",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/ConnectionUtil.lua",
+        "bytes":  1804
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.ConnectionUtil.spec",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/ConnectionUtil/spec.lua",
+        "bytes":  2431
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.FlagUtil",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/FlagUtil.lua",
+        "bytes":  545
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule.lua",
+        "bytes":  23691
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.AvatarAbilitiesInterface",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/AvatarAbilitiesInterface.lua",
+        "bytes":  2154
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.BaseCharacterController",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/BaseCharacterController.lua",
+        "bytes":  2040
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.ClickToMoveController",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveController.lua",
+        "bytes":  38016
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.ClickToMoveDisplay",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveDisplay.lua",
+        "bytes":  17784
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.DynamicThumbstick",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/DynamicThumbstick.lua",
+        "bytes":  22216
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.Gamepad",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/Gamepad.lua",
+        "bytes":  6599
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.Keyboard",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/Keyboard.lua",
+        "bytes":  5858
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.PathDisplay",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/PathDisplay.lua",
+        "bytes":  4010
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.TouchJump",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/TouchJump.lua",
+        "bytes":  9237
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.TouchThumbstick",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/TouchThumbstick.lua",
+        "bytes":  8962
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.VehicleController",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/VehicleController.lua",
+        "bytes":  6320
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.VRNavigation",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/VRNavigation.lua",
+        "bytes":  14122
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerScriptsLoader",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerScriptsLoader.client.lua",
+        "bytes":  193
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.PlayerUiClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/PlayerUiClient.client.lua",
+        "bytes":  5502
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.RbxCharacterSounds",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/RbxCharacterSounds.client.lua",
+        "bytes":  13029
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.RbxCharacterSounds.AtomicBinding",
+        "className":  "ModuleScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/RbxCharacterSounds/AtomicBinding.lua",
+        "bytes":  7469
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.ShopTriggerClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/ShopTriggerClient.client.lua",
+        "bytes":  897
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.SoundClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/SoundClient.client.lua",
+        "bytes":  4692
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.SwordsClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/SwordsClient.client.lua",
+        "bytes":  4984
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.Transition",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/Transition.client.lua",
+        "bytes":  2379
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.UnitShotVisualClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/UnitShotVisualClient.client.lua",
+        "bytes":  1055
+    },
+    {
+        "path":  "Workspace.Conveyors.1.Left",
+        "className":  "Script",
+        "file":  "src/Workspace/Conveyors/1/Left.server.lua",
+        "bytes":  231
+    },
+    {
+        "path":  "Workspace.Conveyors.2.Left",
+        "className":  "Script",
+        "file":  "src/Workspace/Conveyors/2/Left.server.lua",
+        "bytes":  231
+    },
+    {
+        "path":  "Workspace.Conveyors.3.Left",
+        "className":  "Script",
+        "file":  "src/Workspace/Conveyors/3/Left.server.lua",
+        "bytes":  231
+    },
+    {
+        "path":  "Workspace.Conveyors.4.Left",
+        "className":  "Script",
+        "file":  "src/Workspace/Conveyors/4/Left.server.lua",
+        "bytes":  231
+    },
+    {
+        "path":  "Workspace.Faces Archive.MEGA FACE PACK +.Model.hey look it\u0027s the face pack.changelog",
+        "className":  "Script",
+        "file":  "src/Workspace/Faces Archive/MEGA FACE PACK +/Model/hey look it\u0027s the face pack/changelog.server.lua",
+        "bytes":  380
+    },
+    {
+        "path":  "Workspace.Faces Archive.MEGA FACE PACK +.Model.hey look it\u0027s the face pack.small lil note",
+        "className":  "Script",
+        "file":  "src/Workspace/Faces Archive/MEGA FACE PACK +/Model/hey look it\u0027s the face pack/small lil note.server.lua",
+        "bytes":  857
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.Animate",
+        "className":  "Script",
+        "file":  "src/Workspace/Pirate lvl1/Animate.server.lua",
+        "bytes":  13372
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.ChangeFaceOnDeath",
+        "className":  "Script",
+        "file":  "src/Workspace/Pirate lvl1/ChangeFaceOnDeath.server.lua",
+        "bytes":  237
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.ChangeFaceOnFullHealth",
+        "className":  "Script",
+        "file":  "src/Workspace/Pirate lvl1/ChangeFaceOnFullHealth.server.lua",
+        "bytes":  225
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.ClassicSword.MouseIcon",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/Pirate lvl1/ClassicSword/MouseIcon.client.lua",
+        "bytes":  492
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.ClassicSword.SwordScript",
+        "className":  "Script",
+        "file":  "src/Workspace/Pirate lvl1/ClassicSword/SwordScript.server.lua",
+        "bytes":  5530
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.Health",
+        "className":  "Script",
+        "file":  "src/Workspace/Pirate lvl1/Health.server.lua",
+        "bytes":  703
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.Ragdoller",
+        "className":  "Script",
+        "file":  "src/Workspace/Pirate lvl1/Ragdoller.server.lua",
+        "bytes":  5930
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.Ragdoller.CamAttach",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/Pirate lvl1/Ragdoller/CamAttach.client.lua",
+        "bytes":  73
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.Respawn",
+        "className":  "Script",
+        "file":  "src/Workspace/Pirate lvl1/Respawn.server.lua",
+        "bytes":  234
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.RobloxTeam",
+        "className":  "Script",
+        "file":  "src/Workspace/Pirate lvl1/RobloxTeam.server.lua",
+        "bytes":  2037
+    },
+    {
+        "path":  "Workspace.Pirate lvl1.ZombieScript",
+        "className":  "Script",
+        "file":  "src/Workspace/Pirate lvl1/ZombieScript.server.lua",
+        "bytes":  14077
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.01_BloxFruits_Lv1_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/01_BloxFruits_Lv1_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.02_BloxFruits_Lv1_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/02_BloxFruits_Lv1_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.03_BloxFruits_Lv1_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/03_BloxFruits_Lv1_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.04_BloxFruits_Lv1_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/04_BloxFruits_Lv1_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.05_BloxFruits_Lv1_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/05_BloxFruits_Lv1_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.06_BloxFruits_Lv1_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/06_BloxFruits_Lv1_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.07_BloxFruits_Lv1_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/07_BloxFruits_Lv1_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.08_BloxFruits_Lv1_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/08_BloxFruits_Lv1_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.09_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/09_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.10_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/10_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.11_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/11_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.12_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/12_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.13_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/13_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.14_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/14_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.15_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/15_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.16_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/16_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.17_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/17_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.18_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/18_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.19_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/19_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.20_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/20_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.21_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/21_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.22_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/22_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.23_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/23_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.24_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/24_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.25_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/25_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.26_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/26_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.27_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/27_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.28_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/28_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.29_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/29_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.30_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/30_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.31_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/31_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.32_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/32_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.33_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/33_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.34_Rugged_Pirate.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/34_Rugged_Pirate/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.35_OnePiece_StrawHat_Brawler.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/35_OnePiece_StrawHat_Brawler/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.36_OnePiece_GreenBlade_Rogue.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/36_OnePiece_GreenBlade_Rogue/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.37_OnePiece_BlackLeg_Cook.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/37_OnePiece_BlackLeg_Cook/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.38_OnePiece_LongNose_Sniper.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/38_OnePiece_LongNose_Sniper/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.39_OnePiece_OrangeMap_Thief.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/39_OnePiece_OrangeMap_Thief/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.40_OnePiece_Cyborg_Shipwright.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/40_OnePiece_Cyborg_Shipwright/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.41_OnePiece_SoulKing_Corsair.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/41_OnePiece_SoulKing_Corsair/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.42_OnePiece_Surgeon_Captain.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/42_OnePiece_Surgeon_Captain/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.43_Marine_Recruit.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/43_Marine_Recruit/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.44_Marine_Rifleman.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/44_Marine_Rifleman/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.45_Marine_Captain.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/45_Marine_Captain/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.46_Navy_Officer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/46_Navy_Officer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.47_Marine_Commander.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/47_Marine_Commander/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.48_Navy_Enforcer.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/48_Navy_Enforcer/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.49_Marine_Gunner.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/49_Marine_Gunner/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.PirateMobs_50.50_Navy_Boss.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/PirateMobs_50/50_Navy_Boss/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.Rig.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/Rig/Animate.client.lua",
+        "bytes":  15630
+    },
+    {
+        "path":  "Workspace.Shops.Units.Seller.Animate",
+        "className":  "LocalScript",
+        "file":  "src/Workspace/Shops/Units/Seller/Animate.client.lua",
+        "bytes":  15329
+    }
+]

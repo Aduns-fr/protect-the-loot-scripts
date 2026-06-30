@@ -1,0 +1,29 @@
+local UnitsConfig = {}
+UnitsConfig.StockResetSeconds = 300
+UnitsConfig.RarityWeights = { Common = 100, Uncommon = 70, Rare = 42, Epic = 22, Legendary = 10, Mythic = 4 }
+-- ids kept stable (saved data / UnitModels / shop key on them); theme = DisplayName + Mechanic.
+-- Mechanic: single | splash(SplashRadius) | pierce(PierceWidth) | slow(SlowMult,SlowDuration) | chain(ChainCount,ChainRange,ChainFalloff) | crush(AoE every tick)
+UnitsConfig.Units = {
+    BlockTower = { DisplayName="Arrow Trap", Mechanic="single", Rarity="Common", CashPrice=100, RobuxProductId=0, StockMin=5, StockMax=12, Damage=7, Range=34, FireRate=1.1, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(95,170,255) },
+    RapidBlock = { DisplayName="Dart Spitter", Mechanic="single", Rarity="Common", CashPrice=150, RobuxProductId=0, StockMin=4, StockMax=10, Damage=4, Range=30, FireRate=2.1, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(105,255,130) },
+    HeavyBlock = { DisplayName="Cannon", Mechanic="splash", SplashRadius=10, Rarity="Common", CashPrice=225, RobuxProductId=0, StockMin=3, StockMax=8, Damage=16, Range=36, FireRate=.65, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(160,160,170) },
+    RangeBlock = { DisplayName="Ballista", Mechanic="pierce", PierceWidth=4, Rarity="Uncommon", CashPrice=360, RobuxProductId=0, StockMin=3, StockMax=7, Damage=12, Range=50, FireRate=.9, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(255,225,80) },
+    SplashBlock = { DisplayName="Bomb Lobber", Mechanic="splash", SplashRadius=12, Rarity="Uncommon", CashPrice=520, RobuxProductId=0, StockMin=2, StockMax=6, Damage=22, Range=38, FireRate=.55, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(255,125,70) },
+    PulseBlock = { DisplayName="Tar Pit", Mechanic="slow", SlowMult=0.55, SlowDuration=1.6, Rarity="Uncommon", CashPrice=700, RobuxProductId=0, StockMin=2, StockMax=5, Damage=10, Range=32, FireRate=1.7, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(110,255,230) },
+    SniperBlock = { DisplayName="Crossbow Tower", Mechanic="single", Rarity="Rare", CashPrice=1050, RobuxProductId=0, StockMin=1, StockMax=4, Damage=55, Range=70, FireRate=.35, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(255,80,90) },
+    BeamBlock = { DisplayName="Laser Emitter", Mechanic="pierce", PierceWidth=3, Rarity="Rare", CashPrice=1350, RobuxProductId=0, StockMin=1, StockMax=4, Damage=28, Range=46, FireRate=.8, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(160,95,255) },
+    FrostBlock = { DisplayName="Frost Trap", Mechanic="slow", SlowMult=0.45, SlowDuration=2, Rarity="Rare", CashPrice=1700, RobuxProductId=0, StockMin=1, StockMax=3, Damage=32, Range=44, FireRate=.75, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(150,235,255) },
+    GoldBlock = { DisplayName="Gilded Bolt", Mechanic="single", Rarity="Rare", CashPrice=2200, RobuxProductId=0, StockMin=1, StockMax=3, Damage=20, Range=42, FireRate=1.6, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(255,205,65) },
+    MegaBlock = { DisplayName="Mortar", Mechanic="splash", SplashRadius=14, Rarity="Epic", CashPrice=3500, RobuxProductId=0, StockMin=1, StockMax=2, Damage=95, Range=56, FireRate=.35, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(255,90,200) },
+    OrbitBlock = { DisplayName="Arc Capacitor", Mechanic="chain", ChainCount=3, ChainRange=16, ChainFalloff=0.75, Rarity="Epic", CashPrice=4300, RobuxProductId=0, StockMin=1, StockMax=2, Damage=72, Range=60, FireRate=.5, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(90,60,170) },
+    ChainBlock = { DisplayName="Tesla Coil", Mechanic="chain", ChainCount=4, ChainRange=18, ChainFalloff=0.8, Rarity="Epic", CashPrice=5200, RobuxProductId=0, StockMin=1, StockMax=2, Damage=48, Range=48, FireRate=1.0, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(120,255,120) },
+    SpikeBlock = { DisplayName="Crushing Wall", Mechanic="crush", Rarity="Epic", CashPrice=6400, RobuxProductId=0, StockMin=1, StockMax=2, Damage=120, Range=34, FireRate=.42, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(210,210,220) },
+    NovaBlock = { DisplayName="Volcano Vent", Mechanic="splash", SplashRadius=16, Rarity="Legendary", CashPrice=9200, RobuxProductId=0, StockMin=1, StockMax=1, Damage=150, Range=54, FireRate=.42, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(255,110,45) },
+    VoidBlock = { DisplayName="Void Spike", Mechanic="single", Rarity="Legendary", CashPrice=11200, RobuxProductId=0, StockMin=1, StockMax=1, Damage=145, Range=65, FireRate=.5, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(90,70,255) },
+    HyperBlock = { DisplayName="Spinning Blades", Mechanic="crush", Rarity="Legendary", CashPrice=13800, RobuxProductId=0, StockMin=1, StockMax=1, Damage=40, Range=50, FireRate=3.0, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(255,245,105) },
+    LunarBlock = { DisplayName="Beam Cannon", Mechanic="pierce", PierceWidth=5, Rarity="Legendary", CashPrice=18000, RobuxProductId=0, StockMin=1, StockMax=1, Damage=260, Range=78, FireRate=.25, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(215,235,255) },
+    PrismBlock = { DisplayName="Prism Lance", Mechanic="pierce", PierceWidth=4, Rarity="Mythic", CashPrice=28000, RobuxProductId=0, StockMin=1, StockMax=1, Damage=430, Range=84, FireRate=.22, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(255,80,230) },
+    CoreBlock = { DisplayName="Doom Core", Mechanic="splash", SplashRadius=18, Rarity="Mythic", CashPrice=42000, RobuxProductId=0, StockMin=1, StockMax=1, Damage=620, Range=72, FireRate=.18, Footprint=Vector2.new(4,4), Color=Color3.fromRGB(25,25,25) },
+}
+UnitsConfig.Order = {"BlockTower","RapidBlock","HeavyBlock","RangeBlock","SplashBlock","PulseBlock","SniperBlock","BeamBlock","FrostBlock","GoldBlock","MegaBlock","OrbitBlock","ChainBlock","SpikeBlock","NovaBlock","VoidBlock","HyperBlock","LunarBlock","PrismBlock","CoreBlock"}
+return UnitsConfig
