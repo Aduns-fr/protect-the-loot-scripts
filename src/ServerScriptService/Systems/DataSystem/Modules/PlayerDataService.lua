@@ -19,12 +19,6 @@ local function getBaseLevelConfig(level)
     return levels[level] or levels[1]
 end
 
--- lazy-loaded to avoid circular require with raid/leaderboard systems
-local function getLeaderboardManager()
-    local ok, lm = pcall(require, game:GetService('ServerScriptService').Systems.LeaderboardSystem.LeaderboardManager)
-    return ok and lm or nil
-end
-
 local PlayerDataService = {}
 
 local DATASTORE_NAME = "MyEvilLair_PlayerData_v1"
@@ -443,11 +437,6 @@ end
 
 function PlayerDataService.CleanupPlayer(player)
     saveData(player)
-    -- submit leaderboard scores before wiping session (scores read session data)
-    task.defer(function()
-        local lm = getLeaderboardManager()
-        if lm and lm.submitPlayer then pcall(lm.submitPlayer, player) end
-    end)
     sessionData[player] = nil
     activeMap[player] = nil
     joinTime[player] = nil

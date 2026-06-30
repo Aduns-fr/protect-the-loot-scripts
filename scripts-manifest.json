@@ -1887,19 +1887,7 @@
         "path":  "ServerScriptService.Systems.DataSystem.Modules.PlayerDataService",
         "className":  "ModuleScript",
         "file":  "src/ServerScriptService/Systems/DataSystem/Modules/PlayerDataService.lua",
-        "bytes":  19111
-    },
-    {
-        "path":  "ServerScriptService.Systems.LeaderboardSystem.LeaderboardManager",
-        "className":  "ModuleScript",
-        "file":  "src/ServerScriptService/Systems/LeaderboardSystem/LeaderboardManager.lua",
-        "bytes":  9448
-    },
-    {
-        "path":  "ServerScriptService.Systems.LeaderboardSystem.LeaderboardServer",
-        "className":  "Script",
-        "file":  "src/ServerScriptService/Systems/LeaderboardSystem/LeaderboardServer.server.lua",
-        "bytes":  371
+        "bytes":  18615
     },
     {
         "path":  "ServerScriptService.Systems.MusicServer",
@@ -1923,7 +1911,7 @@
         "path":  "ServerScriptService.Systems.RaidSystem.Modules.EnemyCore",
         "className":  "ModuleScript",
         "file":  "src/ServerScriptService/Systems/RaidSystem/Modules/EnemyCore.lua",
-        "bytes":  21666
+        "bytes":  21284
     },
     {
         "path":  "ServerScriptService.Systems.RaidSystem.RaidSystem.server",
@@ -1953,7 +1941,7 @@
         "path":  "ServerScriptService.Systems.TeleportSystem.TopTeleport.server",
         "className":  "Script",
         "file":  "src/ServerScriptService/Systems/TeleportSystem/TopTeleport/server.server.lua",
-        "bytes":  1773
+        "bytes":  1822
     },
     {
         "path":  "ServerScriptService.UltimateAdminAbusePack.AdminList",
@@ -2061,7 +2049,7 @@
         "path":  "StarterGui.GUI.TopTeleportClient",
         "className":  "LocalScript",
         "file":  "src/StarterGui/GUI/TopTeleportClient.client.lua",
-        "bytes":  973
+        "bytes":  1010
     },
     {
         "path":  "StarterGui.GUI.UIFrameController",
@@ -2139,19 +2127,13 @@
         "path":  "StarterPlayer.StarterPlayerScripts.GameDetailsClient",
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/GameDetailsClient.client.lua",
-        "bytes":  8253
+        "bytes":  8406
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.GroupPromptClient",
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/GroupPromptClient.client.lua",
         "bytes":  695
-    },
-    {
-        "path":  "StarterPlayer.StarterPlayerScripts.LeaderboardClient",
-        "className":  "LocalScript",
-        "file":  "src/StarterPlayer/StarterPlayerScripts/LeaderboardClient.client.lua",
-        "bytes":  8004
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.MusicPlayer",
@@ -2445,7 +2427,7 @@
         "path":  "StarterPlayer.StarterPlayerScripts.ShopTriggerClient",
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/ShopTriggerClient.client.lua",
-        "bytes":  897
+        "bytes":  2179
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.SoundClient",
@@ -2866,11 +2848,5 @@
         "className":  "LocalScript",
         "file":  "src/Workspace/Rig/Animate.client.lua",
         "bytes":  15630
-    },
-    {
-        "path":  "Workspace.Shops.Units.Seller.Animate",
-        "className":  "LocalScript",
-        "file":  "src/Workspace/Shops/Units/Seller/Animate.client.lua",
-        "bytes":  15329
     }
 ]

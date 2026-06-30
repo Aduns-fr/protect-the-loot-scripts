@@ -15,11 +15,6 @@ local PlayerDataService = require(ServerScriptService.Systems.DataSystem.Modules
 local BaseUpgradesConfig = require(ReplicatedStorage.Configs.BaseUpgradesConfig)
 local PlotRoute = require(ReplicatedStorage.RaidShared.PlotRoute)
 
-local function getLeaderboardManager()
-	local ok, lm = pcall(require, ServerScriptService.Systems.LeaderboardSystem.LeaderboardManager)
-	return ok and lm or nil
-end
-
 local EnemyCore = {}
 
 local Remotes = ReplicatedStorage:WaitForChild("Remotes")
@@ -405,8 +400,6 @@ function finish(p, reason)
 		})
 	end
 	send(p, "End", { reason = reason, skipResults = skip })
-	local lb = getLeaderboardManager()
-	if lb then task.defer(function() pcall(lb.submitPlayer, p) end) end
 end
 
 function EnemyCore.StartRaid(p)
@@ -454,8 +447,6 @@ function EnemyCore.StartRaid(p)
 					lootProtected = st.loot, lootStolen = st.stats.lootStolen, lootRecovered = st.stats.lootRecovered,
 				})
 				send(p, "End", { reason = "Victory", skipResults = false })
-				local lb = getLeaderboardManager()
-				if lb then task.defer(function() pcall(lb.submitPlayer, p) end) end
 				if st.auto then
 					task.wait(5)
 					if p.Parent and st.auto then

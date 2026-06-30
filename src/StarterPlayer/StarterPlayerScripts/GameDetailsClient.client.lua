@@ -31,12 +31,15 @@ local UI_OUT = TweenInfo.new(0.22, Enum.EasingStyle.Quint, Enum.EasingDirection.
 local originalBottom = bottom.Position
 local originalDetails = details.Position
 local originalBase = baseFrame.Position
-local topDefault = { Start = true, Base = true, Shops = true, Auto = false, Stop = false, Speed = false, x3 = false }
-local topRaid = { Start = false, Base = false, Shops = false, Auto = true, Stop = true, Speed = true, x3 = true }
-local topAliases = { Start = "StartButton", Base = "PlotButton", Shops = "ShopsButton" }
+local topDefault = { Start = true, Base = true, Leaderboards = true, Auto = false, Stop = false, Speed = false, x3 = false }
+local topRaid = { Start = false, Base = false, Leaderboards = false, Auto = true, Stop = true, Speed = true, x3 = true }
+local topAliases = { Start = "StartButton", Base = "PlotButton", Leaderboards = "LeaderboardButton" }
+local legacyTopAliases = { Leaderboards = "ShopsButton" }
 
 local function topControl(name)
-    local control = top:FindFirstChild(name) or top:FindFirstChild(topAliases[name] or "")
+    local control = top:FindFirstChild(name)
+        or top:FindFirstChild(topAliases[name] or "")
+        or top:FindFirstChild(legacyTopAliases[name] or "")
     return control and control:IsA("GuiObject") and control or nil
 end
 

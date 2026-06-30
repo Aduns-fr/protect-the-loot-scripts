@@ -25,9 +25,9 @@ local function teleportToBase(player)
     teleportToPart(player, spawn)
 end
 
-local function teleportToShops(player)
-    local shops = workspace:FindFirstChild("Shops")
-    local teleporter = shops and shops:FindFirstChild("Teleporter")
+local function teleportToLeaderboards(player)
+    local leaderboards = workspace:FindFirstChild("Leaderboards")
+    local teleporter = leaderboards and leaderboards:FindFirstChild("Teleporter")
     teleportToPart(player, teleporter)
 end
 
@@ -39,8 +39,8 @@ remote.OnServerEvent:Connect(function(player, destination)
 
     if destination == "Base" then
         teleportToBase(player)
-    elseif destination == "Shops" then
-        teleportToShops(player)
+    elseif destination == "Leaderboards" then
+        teleportToLeaderboards(player)
     end
 end)
 

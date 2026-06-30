@@ -19,7 +19,7 @@ local function getClick(frameName, legacyName)
 end
 
 local baseButton = getClick("PlotButton", "Base")
-local shopsButton = getClick("ShopsButton", "Shops")
+local leaderboardButton = getClick("LeaderboardButton", "ShopsButton")
 
 if baseButton then
     baseButton.Activated:Connect(function()
@@ -27,8 +27,8 @@ if baseButton then
     end)
 end
 
-if shopsButton then
-    shopsButton.Activated:Connect(function()
-        remote:FireServer("Shops")
+if leaderboardButton then
+    leaderboardButton.Activated:Connect(function()
+        remote:FireServer("Leaderboards")
     end)
 end
