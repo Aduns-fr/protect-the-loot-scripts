@@ -2848,5 +2848,17 @@
         "className":  "LocalScript",
         "file":  "src/Workspace/Rig/Animate.client.lua",
         "bytes":  15630
+    },
+    {
+        "path":  "ServerScriptService.Systems.BoatSystem.BoatController",
+        "className":  "Script",
+        "file":  "src/ServerScriptService/Systems/BoatSystem/BoatController.server.lua",
+        "bytes":  7824
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.WaterSwimClient",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/WaterSwimClient.client.lua",
+        "bytes":  2659
     }
 ]
