@@ -1803,7 +1803,7 @@
         "path":  "ReplicatedStorage.RaidShared.PlotRoute",
         "className":  "ModuleScript",
         "file":  "src/ReplicatedStorage/RaidShared/PlotRoute.lua",
-        "bytes":  5466
+        "bytes":  6611
     },
     {
         "path":  "ReplicatedStorage.RaidShared.RouteMover",
@@ -1911,7 +1911,7 @@
         "path":  "ServerScriptService.Systems.RaidSystem.Modules.EnemyCore",
         "className":  "ModuleScript",
         "file":  "src/ServerScriptService/Systems/RaidSystem/Modules/EnemyCore.lua",
-        "bytes":  21284
+        "bytes":  21319
     },
     {
         "path":  "ServerScriptService.Systems.RaidSystem.RaidSystem.server",
@@ -2115,7 +2115,7 @@
         "path":  "StarterPlayer.StarterPlayerScripts.EnemyController",
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/EnemyController.client.lua",
-        "bytes":  7277
+        "bytes":  7293
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.Flight",
@@ -2844,21 +2844,33 @@
         "bytes":  15630
     },
     {
-        "path":  "Workspace.Rig.Animate",
+        "path":  "ReplicatedStorage.Rig.Animate",
         "className":  "LocalScript",
-        "file":  "src/Workspace/Rig/Animate.client.lua",
+        "file":  "src/ReplicatedStorage/Rig/Animate.client.lua",
         "bytes":  15630
+    },
+    {
+        "path":  "ReplicatedStorage.WaterSystem.WaterConfig",
+        "className":  "ModuleScript",
+        "file":  "src/ReplicatedStorage/WaterSystem/WaterConfig.lua",
+        "bytes":  524
     },
     {
         "path":  "ServerScriptService.Systems.BoatSystem.BoatController",
         "className":  "Script",
         "file":  "src/ServerScriptService/Systems/BoatSystem/BoatController.server.lua",
-        "bytes":  7824
+        "bytes":  6826
+    },
+    {
+        "path":  "StarterPlayer.StarterPlayerScripts.InfiniteWater",
+        "className":  "LocalScript",
+        "file":  "src/StarterPlayer/StarterPlayerScripts/InfiniteWater.client.lua",
+        "bytes":  2152
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.WaterSwimClient",
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/WaterSwimClient.client.lua",
-        "bytes":  2659
+        "bytes":  279
     }
 ]

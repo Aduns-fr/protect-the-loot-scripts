@@ -1,250 +1,249 @@
+--!strict
+-- BoatController
+-- Spawns one rideable boat floating at every Plot's BoatSpawn marker.
+-- Players sit in the DriverSeat and steer with WASD. Buoyancy + heading are
+-- driven by BodyPosition/BodyGyro on the hidden hull (BoatHitbox).
+
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local ServerStorage = game:GetService("ServerStorage")
 local Workspace = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local WATER_Y_LEVEL = 0.525
-local FLOAT_CENTER_OFFSET = 1.35
+local WaterConfig = require(ReplicatedStorage:WaitForChild("WaterSystem"):WaitForChild("WaterConfig"))
+
 local MAX_FORWARD_SPEED = 42
 local REVERSE_SPEED = 18
 local ACCELERATION = 7.5
 local TURN_RATE = math.rad(76)
 local IDLE_DRAG = 0.965
+local RETURN_SPEED = 4
+local FLOAT_DRAFT = 0.8
+local BOB_AMP = 0.08
+local BOB_SPEED = 1.6
 
 local BOAT_MODEL_NAME = "Boat Model"
-local LEGACY_BOAT_NAME = "Boat"
+local TEMPLATE_NAME = "BoatTemplate"
+local HULL_NAME = "BoatHitbox"
+local SEAT_NAME = "DriverSeat"
 
-local controlledBoats = {}
+local boats = {}
 
-local function ensureBackupFolder()
-    local backups = ServerStorage:FindFirstChild("Backups")
-    if not backups then
-        backups = Instance.new("Folder")
-        backups.Name = "Backups"
-        backups.Parent = ServerStorage
-    end
-    return backups
-end
+local function getTemplate()
+	local existing = ServerStorage:FindFirstChild(TEMPLATE_NAME)
+	if existing then return existing end
 
-local function archiveLegacyBoat()
-    local legacy = Workspace:FindFirstChild(LEGACY_BOAT_NAME)
-    if not legacy then return end
-    local backups = ensureBackupFolder()
-    if backups:FindFirstChild("Boat_ScriptReference") then
-        legacy:Destroy()
-        return
-    end
-    legacy.Name = "Boat_ScriptReference"
-    legacy.Parent = backups
+	local live = Workspace:FindFirstChild(BOAT_MODEL_NAME)
+	if live then
+		live.Name = TEMPLATE_NAME
+		live.Parent = ServerStorage
+		return live
+	end
+	return nil
 end
 
 local function getOrCreate(parent, className, name)
-    local existing = parent:FindFirstChild(name)
-    if existing and existing.ClassName == className then
-        return existing
-    end
-    if existing then existing:Destroy() end
-    local instance = Instance.new(className)
-    instance.Name = name
-    instance.Parent = parent
-    return instance
-end
-
-local function setVisualPart(part)
-    part.Anchored = false
-    part.CanCollide = false
-    part.CanTouch = false
-    part.CanQuery = true
-    part.Massless = true
+	local existing = parent:FindFirstChild(name)
+	if existing and existing.ClassName == className then
+		return existing
+	end
+	if existing then existing:Destroy() end
+	local instance = Instance.new(className)
+	instance.Name = name
+	instance.Parent = parent
+	return instance
 end
 
 local function weldTo(root, part)
-    if part == root then return end
-    local weld = part:FindFirstChild("BoatVisualWeld")
-    if not weld then
-        weld = Instance.new("WeldConstraint")
-        weld.Name = "BoatVisualWeld"
-        weld.Parent = part
-    end
-    weld.Part0 = root
-    weld.Part1 = part
+	if part == root then return end
+	local weld = part:FindFirstChild("BoatVisualWeld")
+	if not weld or not weld:IsA("WeldConstraint") then
+		if weld then weld:Destroy() end
+		weld = Instance.new("WeldConstraint")
+		weld.Name = "BoatVisualWeld"
+		weld.Parent = part
+	end
+	weld.Part0 = root
+	weld.Part1 = part
 end
 
-local function prepareBoatModel(model)
-    local readyHull = model:FindFirstChild("BoatHitbox")
-    local readySeat = model:FindFirstChild("DriverSeat")
-    if model:GetAttribute("BoatReady") == true and readyHull and readyHull:IsA("BasePart") and readySeat and readySeat:IsA("VehicleSeat") then
-        local float = getOrCreate(readyHull, "BodyPosition", "BoatFloat")
-        float.MaxForce = Vector3.new(0, 120000, 0)
-        float.P = 9000
-        float.D = 1300
+local function spawnBoat(spawnPart, parentFolder)
+	local template = getTemplate()
+	if not template then return nil end
 
-        local gyro = getOrCreate(readyHull, "BodyGyro", "BoatGyro")
-        gyro.MaxTorque = Vector3.new(180000, 180000, 180000)
-        gyro.P = 8500
-        gyro.D = 850
+	local model = template:Clone()
+	local hull = model:FindFirstChild(HULL_NAME)
+	local seat = model:FindFirstChild(SEAT_NAME)
+	if not (hull and hull:IsA("BasePart")) then
+		model:Destroy()
+		return nil
+	end
 
-        return {
-            model = model,
-            hull = readyHull,
-            seat = readySeat,
-            float = float,
-            gyro = gyro,
-            yaw = select(2, readyHull.CFrame:ToOrientation()),
-            speed = 0,
-            bobSeed = os.clock(),
-        }
-    end
+	local _, yaw = spawnPart.CFrame:ToOrientation()
+	local floatY = WaterConfig.SurfaceY + FLOAT_DRAFT
+	local target = CFrame.new(spawnPart.Position.X, floatY, spawnPart.Position.Z) * CFrame.Angles(0, yaw, 0)
 
-    local boxCf, boxSize = model:GetBoundingBox()
-    local targetCenter = Vector3.new(boxCf.Position.X, WATER_Y_LEVEL + FLOAT_CENTER_OFFSET, boxCf.Position.Z)
+	local transform = target * hull.CFrame:Inverse()
+	for _, descendant in ipairs(model:GetDescendants()) do
+		if descendant:IsA("BasePart") then
+			descendant.CFrame = transform * descendant.CFrame
+		end
+	end
 
-    local hull = model:FindFirstChild("BoatHitbox")
-    if not hull then
-        hull = Instance.new("Part")
-        hull.Name = "BoatHitbox"
-        hull.Parent = model
-    end
+	model.PrimaryPart = hull
+	hull.Anchored = false
+	hull.CanCollide = true
+	hull.CanTouch = true
+	hull.CanQuery = true
+	hull.Massless = false
+	hull.Transparency = 1
+	hull.CustomPhysicalProperties = PhysicalProperties.new(0.18, 0.35, 0, 1, 1)
 
-    hull.Size = Vector3.new(math.max(4, boxSize.X * 0.92), 1.1, math.max(7, boxSize.Z * 0.84))
-    hull.CFrame = CFrame.new(targetCenter)
-    hull.Transparency = 1
-    hull.Anchored = false
-    hull.CanCollide = true
-    hull.CanTouch = true
-    hull.CanQuery = true
-    hull.CustomPhysicalProperties = PhysicalProperties.new(0.18, 0.35, 0, 1, 1)
-    model.PrimaryPart = hull
+	for _, descendant in ipairs(model:GetDescendants()) do
+		if descendant:IsA("BasePart") and descendant ~= hull and descendant ~= seat then
+			descendant.Anchored = false
+			descendant.CanCollide = true
+			descendant.Massless = true
+			weldTo(hull, descendant)
+		end
+	end
 
-    local transform = CFrame.new(targetCenter) * boxCf:Inverse()
-    for _, descendant in ipairs(model:GetDescendants()) do
-        if descendant:IsA("BasePart") and descendant ~= hull then
-            descendant.CFrame = transform * descendant.CFrame
-            setVisualPart(descendant)
-            weldTo(hull, descendant)
-        end
-    end
+	if seat and seat:IsA("VehicleSeat") then
+		seat.Anchored = false
+		seat.CanCollide = false
+		seat.CanTouch = true
+		seat.Massless = true
+		seat.MaxSpeed = 0
+		seat.Torque = 0
+		seat.TurnSpeed = 0
+		seat.HeadsUpDisplay = false
+		weldTo(hull, seat)
+	end
 
-    local seat = model:FindFirstChild("DriverSeat")
-    if not seat then
-        seat = Instance.new("VehicleSeat")
-        seat.Name = "DriverSeat"
-        seat.Parent = model
-    end
-    seat.Size = Vector3.new(2.25, 0.8, 2)
-    seat.CFrame = hull.CFrame * CFrame.new(0, 1.0, 1.25)
-    seat.Transparency = 0.18
-    seat.Color = Color3.fromRGB(76, 52, 32)
-    seat.Material = Enum.Material.Wood
-    seat.Anchored = false
-    seat.CanCollide = false
-    seat.CanTouch = true
-    seat.CanQuery = true
-    pcall(function() seat.MaxSpeed = 0 end)
-    pcall(function() seat.Torque = 0 end)
-    pcall(function() seat.TurnSpeed = 0 end)
-    pcall(function() seat.HeadsUpDisplay = false end)
-    weldTo(hull, seat)
+	local float = getOrCreate(hull, "BodyPosition", "BoatFloat")
+	float.MaxForce = Vector3.new(0, 120000, 0)
+	float.P = 9000
+	float.D = 1300
+	float.Position = Vector3.new(hull.Position.X, floatY, hull.Position.Z)
 
-    local float = getOrCreate(hull, "BodyPosition", "BoatFloat")
-    float.MaxForce = Vector3.new(0, 120000, 0)
-    float.P = 9000
-    float.D = 1300
+	local gyro = getOrCreate(hull, "BodyGyro", "BoatGyro")
+	gyro.MaxTorque = Vector3.new(180000, 180000, 180000)
+	gyro.P = 8500
+	gyro.D = 850
+	gyro.CFrame = target
 
-    local gyro = getOrCreate(hull, "BodyGyro", "BoatGyro")
-    gyro.MaxTorque = Vector3.new(180000, 180000, 180000)
-    gyro.P = 8500
-    gyro.D = 850
+	model.Parent = parentFolder
 
-    model:SetAttribute("BoatReady", true)
-    model:SetAttribute("WaterYLevel", WATER_Y_LEVEL)
-    model:SetAttribute("FloatCenterOffset", FLOAT_CENTER_OFFSET)
-
-    return {
-        model = model,
-        hull = hull,
-        seat = seat,
-        float = float,
-        gyro = gyro,
-        yaw = select(2, hull.CFrame:ToOrientation()),
-        speed = 0,
-        bobSeed = os.clock(),
-    }
-end
-
-local function setupBoats()
-    archiveLegacyBoat()
-    local model = Workspace:FindFirstChild(BOAT_MODEL_NAME)
-    if model and model:IsA("Model") and not controlledBoats[model] then
-        controlledBoats[model] = prepareBoatModel(model)
-    end
+	return {
+		model = model,
+		hull = hull,
+		seat = seat,
+		float = float,
+		gyro = gyro,
+		home = spawnPart.Position,
+		floatY = floatY,
+		yaw = yaw,
+		speed = 0,
+		bobSeed = spawnPart.Position.X + spawnPart.Position.Z,
+	}
 end
 
 local function stepBoat(state, dt)
-    local hull = state.hull
-    local seat = state.seat
-    if not hull.Parent or not seat.Parent then return false end
+	local hull = state.hull
+	local seat = state.seat
+	if not hull.Parent then return false end
 
-    local throttle = seat.ThrottleFloat
-    local steer = seat.SteerFloat
-    local occupied = seat.Occupant ~= nil
-    local targetSpeed = 0
-    if throttle > 0 then
-        targetSpeed = throttle * MAX_FORWARD_SPEED
-    elseif throttle < 0 then
-        targetSpeed = throttle * REVERSE_SPEED
-    end
+	local occupant = seat and seat.Occupant
+	local occupied = occupant ~= nil
 
-    if not occupied then
-        targetSpeed = 0
-    end
+	local throttle = seat and seat.ThrottleFloat or 0
+	local steer = seat and seat.SteerFloat or 0
+	local targetSpeed = 0
+	if occupied then
+		if throttle > 0 then
+			targetSpeed = throttle * MAX_FORWARD_SPEED
+		elseif throttle < 0 then
+			targetSpeed = throttle * REVERSE_SPEED
+		end
+	end
 
-    local alpha = math.clamp(dt * ACCELERATION, 0, 1)
-    state.speed += (targetSpeed - state.speed) * alpha
-    if math.abs(state.speed) < 0.05 then state.speed = 0 end
+	local alpha = math.clamp(dt * ACCELERATION, 0, 1)
+	state.speed += (targetSpeed - state.speed) * alpha
+	if math.abs(state.speed) < 0.05 then state.speed = 0 end
 
-    local turnScale = math.clamp(math.abs(state.speed) / MAX_FORWARD_SPEED + 0.28, 0, 1)
-    state.yaw -= steer * TURN_RATE * turnScale * dt
+	local turnScale = math.clamp(math.abs(state.speed) / MAX_FORWARD_SPEED + 0.28, 0, 1)
+	if occupied then
+		state.yaw -= steer * TURN_RATE * turnScale * dt
+	end
 
-    local waterTarget = WATER_Y_LEVEL + FLOAT_CENTER_OFFSET + math.sin(os.clock() * 1.6 + state.bobSeed) * 0.08
-    state.float.Position = Vector3.new(hull.Position.X, waterTarget, hull.Position.Z)
+	local bob = math.sin(os.clock() * BOB_SPEED + state.bobSeed) * BOB_AMP
+	state.float.Position = Vector3.new(hull.Position.X, state.floatY + bob, hull.Position.Z)
 
-    local desiredCf = CFrame.new(hull.Position) * CFrame.Angles(0, state.yaw, 0)
-    state.gyro.CFrame = desiredCf
+	local desiredCf = CFrame.new(hull.Position) * CFrame.Angles(0, state.yaw, 0)
+	state.gyro.CFrame = desiredCf
 
-    local forward = desiredCf.LookVector
-    local current = hull.AssemblyLinearVelocity
-    local desiredHorizontal = forward * state.speed
-    if not occupied then desiredHorizontal = desiredHorizontal * IDLE_DRAG end
-    hull.AssemblyLinearVelocity = Vector3.new(desiredHorizontal.X, current.Y, desiredHorizontal.Z)
-    hull.AssemblyAngularVelocity = hull.AssemblyAngularVelocity * 0.35
+	local current = hull.AssemblyLinearVelocity
+	local horizontal
+	if occupied then
+		horizontal = desiredCf.LookVector * state.speed
+	else
+		local toHome = state.home - hull.Position
+		toHome = Vector3.new(toHome.X, 0, toHome.Z)
+		local dist = toHome.Magnitude
+		if dist > 2 then
+			horizontal = toHome.Unit * math.min(dist, RETURN_SPEED)
+		else
+			horizontal = Vector3.new(current.X, 0, current.Z) * IDLE_DRAG
+		end
+	end
+	hull.AssemblyLinearVelocity = Vector3.new(horizontal.X, current.Y, horizontal.Z)
+	hull.AssemblyAngularVelocity = hull.AssemblyAngularVelocity * 0.35
 
-    local occupant = seat.Occupant
-    local player = occupant and Players:GetPlayerFromCharacter(occupant.Parent)
-    if player then
-        pcall(function()
-            hull:SetNetworkOwner(player)
-        end)
-    else
-        pcall(function()
-            hull:SetNetworkOwnershipAuto()
-        end)
-    end
+	local player = occupant and Players:GetPlayerFromCharacter(occupant.Parent)
+	pcall(function()
+		if player then
+			hull:SetNetworkOwner(player)
+		else
+			hull:SetNetworkOwnershipAuto()
+		end
+	end)
 
-    return true
+	return true
 end
 
-setupBoats()
-Workspace.ChildAdded:Connect(function(child)
-    if child.Name == BOAT_MODEL_NAME then
-        task.defer(setupBoats)
-    end
-end)
+local function setup()
+	if not getTemplate() then
+		warn("[BoatController] No 'Boat Model' template found in Workspace or ServerStorage.")
+		return
+	end
+
+	local folder = Workspace:FindFirstChild("Boats")
+	if folder then folder:Destroy() end
+	folder = Instance.new("Folder")
+	folder.Name = "Boats"
+	folder.Parent = Workspace
+
+	local plots = Workspace:FindFirstChild("Plots")
+	if not plots then return end
+
+	for _, plot in ipairs(plots:GetChildren()) do
+		local marker = plot:FindFirstChild("BoatSpawn")
+		if marker and marker:IsA("BasePart") then
+			local state = spawnBoat(marker, folder)
+			if state then
+				state.model.Name = plot.Name .. "_Boat"
+				table.insert(boats, state)
+			end
+		end
+	end
+end
+
+setup()
 
 RunService.Heartbeat:Connect(function(dt)
-    for model, state in pairs(controlledBoats) do
-        if not stepBoat(state, dt) then
-            controlledBoats[model] = nil
-        end
-    end
+	for i = #boats, 1, -1 do
+		if not stepBoat(boats[i], dt) then
+			table.remove(boats, i)
+		end
+	end
 end)

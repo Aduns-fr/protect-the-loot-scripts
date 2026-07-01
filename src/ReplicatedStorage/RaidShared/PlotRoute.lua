@@ -21,19 +21,56 @@ local function getBasePart(plot: Instance?): BasePart?
 	return if nested and nested:IsA("BasePart") then nested else nil
 end
 
+local function islandTopY(plot: Instance?, fallback: number): number
+	if plot then
+		local island = plot:FindFirstChild("Island")
+		if island and island:IsA("Model") then
+			local ok, cf, size = pcall(function()
+				return island:GetBoundingBox()
+			end)
+			if ok and cf and size then
+				return cf.Position.Y + size.Y * 0.5
+			end
+		end
+	end
+	return fallback
+end
+
+local function buildRayParams(plot: Instance?): RaycastParams
+	local params = RaycastParams.new()
+	params.FilterType = Enum.RaycastFilterType.Include
+	params.IgnoreWater = true
+	local includes = {}
+	if plot then
+		for _, name in ipairs({ "Island", "Docks", "Base" }) do
+			local child = plot:FindFirstChild(name)
+			if child then includes[#includes + 1] = child end
+		end
+	end
+	params.FilterDescendantsInstances = includes
+	return params
+end
+
 local function clampLocal(point: Vector3, half: Vector3): Vector3
 	return Vector3.new(
 		math.clamp(point.X, -half.X + EDGE_PADDING, half.X - EDGE_PADDING),
-		point.Y,
+		0,
 		math.clamp(point.Z, -half.Z + EDGE_PADDING, half.Z - EDGE_PADDING)
 	)
 end
 
-local function toWorldPoints(plotPart: BasePart, half: Vector3, y: number, localPoints: {Vector3})
+local function toWorldPoints(plot: Instance?, plotPart: BasePart, half: Vector3, localPoints: { Vector3 })
+	local params = buildRayParams(plot)
+	local fallbackY = islandTopY(plot, plotPart.Position.Y + half.Y)
+	local rayLen = half.Y * 2 + 120
 	local points = table.create(#localPoints)
 	for i, point in ipairs(localPoints) do
-		local p = clampLocal(Vector3.new(point.X, y, point.Z), half)
-		points[i] = plotPart.CFrame:PointToWorldSpace(p)
+		local flat = clampLocal(point, half)
+		local world = plotPart.CFrame:PointToWorldSpace(flat)
+		local origin = Vector3.new(world.X, plotPart.Position.Y + half.Y + 60, world.Z)
+		local hit = workspace:Raycast(origin, Vector3.new(0, -rayLen, 0), params)
+		local groundY = hit and hit.Position.Y or fallbackY
+		points[i] = Vector3.new(world.X, groundY + SURFACE_OFFSET, world.Z)
 	end
 	return points
 end
@@ -50,7 +87,6 @@ function PlotRoute.BuildRoutePoints(plot: Instance?)
 		0,
 		math.clamp(baseLocal.Z, -half.Z + BASE_PADDING, half.Z - BASE_PADDING)
 	)
-	local y = half.Y + SURFACE_OFFSET
 
 	local xMin, xMax = -half.X + EDGE_PADDING, half.X - EDGE_PADDING
 	local zMin, zMax = -half.Z + EDGE_PADDING, half.Z - EDGE_PADDING
@@ -71,7 +107,7 @@ function PlotRoute.BuildRoutePoints(plot: Instance?)
 
 	local worldRoutes = table.create(#routes)
 	for i, route in ipairs(routes) do
-		worldRoutes[i] = toWorldPoints(plotPart, half, y, route)
+		worldRoutes[i] = toWorldPoints(plot, plotPart, half, route)
 	end
 	return worldRoutes
 end
@@ -97,7 +133,6 @@ function PlotRoute.BuildRoute(plot: Instance?, seed: number?)
 		0,
 		math.clamp(baseLocal.Z, -half.Z + BASE_PADDING, half.Z - BASE_PADDING)
 	)
-	local y = half.Y + SURFACE_OFFSET
 	local rng = Random.new(math.floor(tonumber(seed) or os.clock() * 100000))
 	local side = rng:NextInteger(1, 4)
 	local t = rng:NextNumber(-0.92, 0.92)
@@ -119,7 +154,7 @@ function PlotRoute.BuildRoute(plot: Instance?, seed: number?)
 	end
 	mid += sideBias
 
-	local approach = toWorldPoints(plotPart, half, y, { start, mid, finish })
+	local approach = toWorldPoints(plot, plotPart, half, { start, mid, finish })
 	return RouteMover.new(approach)
 end
 

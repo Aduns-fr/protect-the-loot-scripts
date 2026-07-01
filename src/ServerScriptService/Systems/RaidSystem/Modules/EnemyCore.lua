@@ -417,7 +417,7 @@ function EnemyCore.StartRaid(p)
 	else startWave = checkpoint > 0 and checkpoint or 1 end
 	st.stopping = false
 	st.wave = startWave
-	st.stats = { enemiesDefeated = 0, wavesCleared = math.max(0, startWave - 1), cashEarned = 0, score = 0 }
+	st.stats = { enemiesDefeated = 0, wavesCleared = math.max(0, startWave - 1), cashEarned = 0, score = 0, lootStolen = 0, lootRecovered = 0 }
 	st.maxLoot = PlayerDataService.GetBaseMaxHealth(p)
 	st.loot = st.maxLoot
 	activeRaids[p] = true
