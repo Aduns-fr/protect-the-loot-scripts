@@ -1,13 +1,19 @@
-local TweenService = game:GetService("TweenService")
-local Debris = game:GetService("Debris")
+local RunService = game:GetService("RunService")
 
 local holder = script.Parent
 local template = holder:WaitForChild("Cash")
 local layer = holder:WaitForChild("CashRainLayer")
 
+local RAIN_Z_INDEX = 11
+local DROP_COUNT = 18
+local MIN_SPEED = 0.18
+local MAX_SPEED = 0.34
+local MIN_ALPHA = 0.18
+local MAX_ALPHA = 0.36
+
 holder.ClipsDescendants = true
 template.Visible = false
-template.ZIndex = 11
+template.ZIndex = RAIN_Z_INDEX
 
 layer.ClipsDescendants = true
 layer.BackgroundTransparency = 1
@@ -16,17 +22,11 @@ layer.Position = UDim2.fromScale(0, 0)
 layer.Size = UDim2.fromScale(1, 1)
 layer.Active = false
 layer.Selectable = false
-layer.ZIndex = 11
-
-local MAX_ICONS = 16
-local SPAWN_MIN = 0.13
-local SPAWN_MAX = 0.22
-local MIN_DURATION = 2.4
-local MAX_DURATION = 3.6
+layer.ZIndex = RAIN_Z_INDEX
 
 local rng = Random.new()
-local alive = 0
-local lanes = { 0.08, 0.2, 0.32, 0.44, 0.56, 0.68, 0.8, 0.92 }
+local drops = {}
+local lanes = { 0.07, 0.17, 0.27, 0.37, 0.47, 0.57, 0.67, 0.77, 0.87, 0.95 }
 
 local function isActuallyVisible(guiObject)
 	local current = guiObject
@@ -37,64 +37,92 @@ local function isActuallyVisible(guiObject)
 	return true
 end
 
-local function getIconSize()
+local function iconSize(scale)
 	local abs = template.AbsoluteSize
 	if abs.X > 2 and abs.Y > 2 then
-		local scale = rng:NextNumber(0.52, 0.82)
-		local maxHeight = math.max(22, layer.AbsoluteSize.Y * 0.26)
+		local maxHeight = math.max(24, layer.AbsoluteSize.Y * 0.24)
 		local height = math.min(abs.Y * scale, maxHeight)
 		return UDim2.fromOffset(height, height)
 	end
-	return UDim2.fromScale(0.1, 0.26)
+	return UDim2.fromScale(0.09 * scale, 0.22 * scale)
 end
 
-local function spawnCash()
-	if alive >= MAX_ICONS or not isActuallyVisible(holder) then return end
-	if layer.AbsoluteSize.X <= 0 or layer.AbsoluteSize.Y <= 0 then return end
-	alive += 1
+local function chooseDrop(drop, stagger)
+	local lane = lanes[rng:NextInteger(1, #lanes)]
+	drop.baseX = math.clamp(lane + rng:NextNumber(-0.028, 0.028), 0.06, 0.94)
+	drop.y = stagger and rng:NextNumber(0.03, 0.96) or -rng:NextNumber(0.04, 0.18)
+	drop.speed = rng:NextNumber(MIN_SPEED, MAX_SPEED)
+	drop.drift = rng:NextNumber(0.012, 0.038)
+	drop.driftSpeed = rng:NextNumber(1.0, 2.1)
+	drop.phase = rng:NextNumber(0, math.pi * 2)
+	drop.alpha = rng:NextNumber(MIN_ALPHA, MAX_ALPHA)
+	drop.scale = rng:NextNumber(0.62, 0.95)
 
+	drop.icon.Size = iconSize(drop.scale)
+	drop.icon.ImageTransparency = drop.alpha
+	drop.icon.Rotation = 0
+	drop.icon.ZIndex = RAIN_Z_INDEX
+	drop.icon.Visible = true
+end
+
+local function makeDrop(index)
 	local icon = template:Clone()
 	icon.Name = "CashDrop"
-	icon.Visible = true
 	icon.BackgroundTransparency = 1
 	icon.AnchorPoint = Vector2.new(0.5, 0.5)
-	icon.Size = getIconSize()
-	icon.ImageTransparency = 0.22
-	icon.ZIndex = 11
-	icon.Rotation = 0
 	icon.Active = false
 	icon.Selectable = false
-
-	local startX = math.clamp(lanes[rng:NextInteger(1, #lanes)] + rng:NextNumber(-0.035, 0.035), 0.06, 0.94)
-	local endX = math.clamp(startX + rng:NextNumber(-0.08, 0.08), 0.06, 0.94)
-	local duration = rng:NextNumber(MIN_DURATION, MAX_DURATION)
-
-	icon.Position = UDim2.fromScale(startX, 0.05)
 	icon.Parent = layer
 
-	TweenService:Create(icon, TweenInfo.new(duration, Enum.EasingStyle.Linear), {
-		Position = UDim2.fromScale(endX, 0.95),
-		ImageTransparency = 0.42,
-	}):Play()
-
-	task.delay(duration * 0.72, function()
-		if icon.Parent then
-			TweenService:Create(icon, TweenInfo.new(duration * 0.25, Enum.EasingStyle.Quad), {
-				ImageTransparency = 1,
-			}):Play()
-		end
-	end)
-
-	Debris:AddItem(icon, duration + 0.1)
-	task.delay(duration + 0.1, function()
-		alive = math.max(0, alive - 1)
-	end)
+	local drop = {
+		icon = icon,
+		baseX = 0.5,
+		y = 0,
+		speed = 0.2,
+		drift = 0.02,
+		driftSpeed = 1,
+		phase = 0,
+		alpha = 0.25,
+		scale = 0.8,
+	}
+	chooseDrop(drop, index > 1)
+	return drop
 end
 
-task.spawn(function()
-	task.wait(rng:NextNumber(0.15, 0.35))
-	while holder:IsDescendantOf(game) do
-		spawnCash()
-		task.wait(rng:NextNumber(SPAWN_MIN, SPAWN_MAX))
+for i = 1, DROP_COUNT do
+	drops[i] = makeDrop(i)
+end
+
+local connection
+connection = RunService.RenderStepped:Connect(function(dt)
+	if not holder:IsDescendantOf(game) then
+		if connection then connection:Disconnect() end
+		return
+	end
+
+	local visible = isActuallyVisible(holder) and layer.AbsoluteSize.X > 0 and layer.AbsoluteSize.Y > 0
+	for _, drop in ipairs(drops) do
+		local icon = drop.icon
+		if not icon.Parent then continue end
+
+		if not visible then
+			icon.Visible = false
+			continue
+		end
+
+		if not icon.Visible then
+			chooseDrop(drop, true)
+		end
+
+		drop.y += drop.speed * dt
+		if drop.y > 1.05 then
+			chooseDrop(drop, false)
+		end
+
+		local x = math.clamp(drop.baseX + math.sin(os.clock() * drop.driftSpeed + drop.phase) * drop.drift, 0.05, 0.95)
+		local y = math.clamp(drop.y, 0.03, 0.97)
+		local edgeFade = math.clamp(math.min(y / 0.12, (1 - y) / 0.12), 0, 1)
+		icon.ImageTransparency = 1 - ((1 - drop.alpha) * edgeFade)
+		icon.Position = UDim2.fromScale(x, y)
 	end
 end)
