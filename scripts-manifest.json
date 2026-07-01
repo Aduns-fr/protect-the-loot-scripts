@@ -2874,9 +2874,9 @@
         "bytes":  279
     },
     {
-        "path":  "StarterGui.GUI.Frames.Shop.ScrollingFrame.6.CashRainClient",
+        "path":  "StarterGui.GUI.Frames.Shop.ScrollingFrame.6.4.CashRainClient",
         "className":  "LocalScript",
-        "file":  "src/StarterGui/GUI/Frames/Shop/ScrollingFrame/6/CashRainClient.client.lua",
-        "bytes":  2637
+        "file":  "src/StarterGui/GUI/Frames/Shop/ScrollingFrame/6/4/CashRainClient.client.lua",
+        "bytes":  2912
     }
 ]

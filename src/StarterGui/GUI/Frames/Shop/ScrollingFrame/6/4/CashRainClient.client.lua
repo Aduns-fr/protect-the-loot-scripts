@@ -1,9 +1,20 @@
 local TweenService = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
 
-local card = script.Parent
-local template = card:WaitForChild("4"):WaitForChild("Cash")
-local layer = card:WaitForChild("CashRainLayer")
+local holder = script.Parent
+local template = holder:WaitForChild("Cash")
+local layer = holder:WaitForChild("CashRainLayer")
+
+holder.ClipsDescendants = true
+layer.ClipsDescendants = true
+layer.BackgroundTransparency = 1
+layer.BorderSizePixel = 0
+layer.Size = UDim2.fromScale(1, 1)
+layer.Position = UDim2.fromScale(0, 0)
+layer.Active = false
+layer.Selectable = false
+layer.ZIndex = math.max(1, template.ZIndex - 1)
+template.Visible = false
 
 local MAX_ICONS = 12
 local SPAWN_MIN = 0.18
@@ -18,9 +29,7 @@ local lanes = { 0.08, 0.22, 0.36, 0.50, 0.64, 0.78, 0.92 }
 local function isActuallyVisible(guiObject)
 	local current = guiObject
 	while current and current:IsA("GuiObject") do
-		if not current.Visible then
-			return false
-		end
+		if not current.Visible then return false end
 		current = current.Parent
 	end
 	return true
@@ -36,7 +45,7 @@ local function getIconSize()
 end
 
 local function spawnCash()
-	if alive >= MAX_ICONS or not isActuallyVisible(card) then return end
+	if alive >= MAX_ICONS or not isActuallyVisible(holder) then return end
 	if layer.AbsoluteSize.X <= 0 or layer.AbsoluteSize.Y <= 0 then return end
 	alive += 1
 
@@ -79,11 +88,9 @@ local function spawnCash()
 	end)
 end
 
-template.Visible = false
-
 task.spawn(function()
 	task.wait(rng:NextNumber(0.2, 0.6))
-	while card:IsDescendantOf(game) do
+	while holder:IsDescendantOf(game) do
 		spawnCash()
 		task.wait(rng:NextNumber(SPAWN_MIN, SPAWN_MAX))
 	end
