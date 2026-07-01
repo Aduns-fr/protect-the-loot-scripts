@@ -5,27 +5,28 @@ local holder = script.Parent
 local template = holder:WaitForChild("Cash")
 local layer = holder:WaitForChild("CashRainLayer")
 
-template.ZIndex = 5
 holder.ClipsDescendants = true
+template.Visible = false
+template.ZIndex = 5
+
 layer.ClipsDescendants = true
 layer.BackgroundTransparency = 1
 layer.BorderSizePixel = 0
-layer.Size = UDim2.fromScale(1, 1)
 layer.Position = UDim2.fromScale(0, 0)
+layer.Size = UDim2.fromScale(1, 1)
 layer.Active = false
 layer.Selectable = false
-layer.ZIndex = template.ZIndex
-template.Visible = false
+layer.ZIndex = 5
 
-local MAX_ICONS = 12
-local SPAWN_MIN = 0.18
-local SPAWN_MAX = 0.34
-local MIN_DURATION = 2.9
-local MAX_DURATION = 4.4
+local MAX_ICONS = 14
+local SPAWN_MIN = 0.16
+local SPAWN_MAX = 0.28
+local MIN_DURATION = 2.4
+local MAX_DURATION = 3.6
 
 local rng = Random.new()
 local alive = 0
-local lanes = { 0.08, 0.22, 0.36, 0.50, 0.64, 0.78, 0.92 }
+local lanes = { 0.08, 0.2, 0.32, 0.44, 0.56, 0.68, 0.8, 0.92 }
 
 local function isActuallyVisible(guiObject)
 	local current = guiObject
@@ -37,12 +38,14 @@ local function isActuallyVisible(guiObject)
 end
 
 local function getIconSize()
-	if template.AbsoluteSize.X > 2 and template.AbsoluteSize.Y > 2 then
-		local scale = rng:NextNumber(0.62, 1.08)
-		return UDim2.fromOffset(template.AbsoluteSize.X * scale, template.AbsoluteSize.Y * scale)
+	local abs = template.AbsoluteSize
+	if abs.X > 2 and abs.Y > 2 then
+		local scale = rng:NextNumber(0.46, 0.72)
+		local maxHeight = math.max(18, layer.AbsoluteSize.Y * 0.22)
+		local height = math.min(abs.Y * scale, maxHeight)
+		return UDim2.fromOffset(height, height)
 	end
-	local scale = rng:NextNumber(0.72, 1.08)
-	return UDim2.fromScale(template.Size.X.Scale * scale, template.Size.Y.Scale * scale)
+	return UDim2.fromScale(0.08, 0.22)
 end
 
 local function spawnCash()
@@ -56,23 +59,22 @@ local function spawnCash()
 	icon.BackgroundTransparency = 1
 	icon.AnchorPoint = Vector2.new(0.5, 0.5)
 	icon.Size = getIconSize()
-	icon.ImageTransparency = math.clamp(template.ImageTransparency, 0, 0.72)
-	icon.ZIndex = template.ZIndex
+	icon.ImageTransparency = math.clamp(template.ImageTransparency, 0, 0.6)
+	icon.ZIndex = 5
+	icon.Rotation = 0
 	icon.Active = false
 	icon.Selectable = false
 
-	local lane = lanes[rng:NextInteger(1, #lanes)]
-	local startX = math.clamp(lane + rng:NextNumber(-0.055, 0.055), 0.04, 0.96)
-	local endX = math.clamp(startX + rng:NextNumber(-0.12, 0.12), -0.08, 1.08)
+	local startX = math.clamp(lanes[rng:NextInteger(1, #lanes)] + rng:NextNumber(-0.035, 0.035), 0.06, 0.94)
+	local endX = math.clamp(startX + rng:NextNumber(-0.08, 0.08), 0.06, 0.94)
 	local duration = rng:NextNumber(MIN_DURATION, MAX_DURATION)
 
-	icon.Position = UDim2.fromScale(startX, -0.18)
-	icon.Rotation = rng:NextInteger(-24, 24)
+	icon.Position = UDim2.fromScale(startX, 0.05)
 	icon.Parent = layer
 
 	TweenService:Create(icon, TweenInfo.new(duration, Enum.EasingStyle.Linear), {
-		Position = UDim2.fromScale(endX, 1.18),
-		Rotation = icon.Rotation + rng:NextInteger(-80, 80),
+		Position = UDim2.fromScale(endX, 0.95),
+		ImageTransparency = math.clamp(template.ImageTransparency + 0.18, 0, 0.72),
 	}):Play()
 
 	task.delay(duration * 0.72, function()
@@ -83,14 +85,14 @@ local function spawnCash()
 		end
 	end)
 
-	Debris:AddItem(icon, duration + 0.15)
-	task.delay(duration + 0.15, function()
+	Debris:AddItem(icon, duration + 0.1)
+	task.delay(duration + 0.1, function()
 		alive = math.max(0, alive - 1)
 	end)
 end
 
 task.spawn(function()
-	task.wait(rng:NextNumber(0.2, 0.6))
+	task.wait(rng:NextNumber(0.15, 0.35))
 	while holder:IsDescendantOf(game) do
 		spawnCash()
 		task.wait(rng:NextNumber(SPAWN_MIN, SPAWN_MAX))
