@@ -7,7 +7,7 @@ local layer = holder:WaitForChild("CashRainLayer")
 
 holder.ClipsDescendants = true
 template.Visible = false
-template.ZIndex = 5
+template.ZIndex = 11
 
 layer.ClipsDescendants = true
 layer.BackgroundTransparency = 1
@@ -16,11 +16,11 @@ layer.Position = UDim2.fromScale(0, 0)
 layer.Size = UDim2.fromScale(1, 1)
 layer.Active = false
 layer.Selectable = false
-layer.ZIndex = 5
+layer.ZIndex = 11
 
-local MAX_ICONS = 14
-local SPAWN_MIN = 0.16
-local SPAWN_MAX = 0.28
+local MAX_ICONS = 16
+local SPAWN_MIN = 0.13
+local SPAWN_MAX = 0.22
 local MIN_DURATION = 2.4
 local MAX_DURATION = 3.6
 
@@ -40,12 +40,12 @@ end
 local function getIconSize()
 	local abs = template.AbsoluteSize
 	if abs.X > 2 and abs.Y > 2 then
-		local scale = rng:NextNumber(0.46, 0.72)
-		local maxHeight = math.max(18, layer.AbsoluteSize.Y * 0.22)
+		local scale = rng:NextNumber(0.52, 0.82)
+		local maxHeight = math.max(22, layer.AbsoluteSize.Y * 0.26)
 		local height = math.min(abs.Y * scale, maxHeight)
 		return UDim2.fromOffset(height, height)
 	end
-	return UDim2.fromScale(0.08, 0.22)
+	return UDim2.fromScale(0.1, 0.26)
 end
 
 local function spawnCash()
@@ -59,8 +59,8 @@ local function spawnCash()
 	icon.BackgroundTransparency = 1
 	icon.AnchorPoint = Vector2.new(0.5, 0.5)
 	icon.Size = getIconSize()
-	icon.ImageTransparency = math.clamp(template.ImageTransparency, 0, 0.6)
-	icon.ZIndex = 5
+	icon.ImageTransparency = 0.22
+	icon.ZIndex = 11
 	icon.Rotation = 0
 	icon.Active = false
 	icon.Selectable = false
@@ -74,7 +74,7 @@ local function spawnCash()
 
 	TweenService:Create(icon, TweenInfo.new(duration, Enum.EasingStyle.Linear), {
 		Position = UDim2.fromScale(endX, 0.95),
-		ImageTransparency = math.clamp(template.ImageTransparency + 0.18, 0, 0.72),
+		ImageTransparency = 0.42,
 	}):Play()
 
 	task.delay(duration * 0.72, function()
