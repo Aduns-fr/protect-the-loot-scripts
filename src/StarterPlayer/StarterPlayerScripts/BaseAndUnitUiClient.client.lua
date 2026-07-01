@@ -402,43 +402,62 @@ local function hideBox(kind)
     if selection then selection.Visible = false end
 end
 
-local function currentPlotPart()
+local function currentPlot()
     local plots = Workspace:FindFirstChild("Plots")
-    if not plots then return nil end
+    if not plots then return nil, nil end
     local assignedName = player:GetAttribute("PlotName")
     local assignedPlot = assignedName and plots:FindFirstChild(assignedName)
     local assignedPart = assignedPlot and assignedPlot:FindFirstChild("Part")
-    if assignedPart and assignedPart:IsA("BasePart") then return assignedPart end
+    if assignedPart and assignedPart:IsA("BasePart") then return assignedPlot, assignedPart end
     for _, plot in ipairs(plots:GetChildren()) do
         if plot:GetAttribute("OwnerUserId") == player.UserId then
             local part = plot:FindFirstChild("Part")
-            if part and part:IsA("BasePart") then return part end
+            if part and part:IsA("BasePart") then return plot, part end
         end
     end
-    return nil
+    return nil, nil
+end
+
+local function currentPlotPart()
+    local _, part = currentPlot()
+    return part
+end
+
+local function islandSurfaceParts(plot)
+    local island = plot and plot:FindFirstChild("Island")
+    if not island then return {} end
+    local parts = {}
+    for _, descendant in ipairs(island:GetDescendants()) do
+        if descendant:IsA("BasePart") then
+            table.insert(parts, descendant)
+        end
+    end
+    return parts
 end
 
 local function plotHitPosition()
     lastHitPart = nil
     lastHitNormal = nil
-    local part = currentPlotPart()
-    if not part then return nil end
+    local plot, part = currentPlot()
+    if not plot or not part then return nil end
+    local surfaceParts = islandSurfaceParts(plot)
+    if #surfaceParts == 0 then return nil end
     local camera = Workspace.CurrentCamera
     if not camera then return nil end
     local unitRay = camera:ScreenPointToRay(mouse.X, mouse.Y)
     local params = RaycastParams.new()
     params.FilterType = Enum.RaycastFilterType.Include
-    params.FilterDescendantsInstances = { part }
+    params.FilterDescendantsInstances = surfaceParts
     local result = Workspace:Raycast(unitRay.Origin, unitRay.Direction * 1000, params)
     if DEBUG_PLACEMENT and os.clock() - lastPlacementDebug > 0.5 then
         lastPlacementDebug = os.clock()
         if result then
-            print(string.format("[PlacementDebug][ClientRay] hit=%s target=%s normal=(%.2f, %.2f, %.2f) topDot=%.3f pos=(%.1f, %.1f, %.1f)", result.Instance:GetFullName(), part:GetFullName(), result.Normal.X, result.Normal.Y, result.Normal.Z, result.Normal:Dot(part.CFrame.UpVector), result.Position.X, result.Position.Y, result.Position.Z))
+            print(string.format("[PlacementDebug][ClientRay] hit=%s target=%s normal=(%.2f, %.2f, %.2f) topDot=%.3f pos=(%.1f, %.1f, %.1f)", result.Instance:GetFullName(), plot:GetFullName() .. ".Island", result.Normal.X, result.Normal.Y, result.Normal.Z, result.Normal:Dot(part.CFrame.UpVector), result.Position.X, result.Position.Y, result.Position.Z))
         else
-            print(string.format("[PlacementDebug][ClientRay] no hit target=%s mouse=(%d,%d)", part:GetFullName(), mouse.X, mouse.Y))
+            print(string.format("[PlacementDebug][ClientRay] no hit target=%s mouse=(%d,%d)", plot:GetFullName() .. ".Island", mouse.X, mouse.Y))
         end
     end
-    if result and result.Instance == part and result.Normal:Dot(part.CFrame.UpVector) > 0.97 then
+    if result and result.Instance and result.Instance:IsDescendantOf(plot:FindFirstChild("Island")) and result.Normal:Dot(part.CFrame.UpVector) > 0.75 then
         lastHitPart = result.Instance
         lastHitNormal = result.Normal
         return result.Position
@@ -455,15 +474,19 @@ local function placementCFrame(world)
     local radius = math.max(2, math.min(boxSize.X, boxSize.Z) * 0.5)
     local x = math.clamp(lp.X, -half.X + radius, half.X - radius)
     local z = math.clamp(lp.Z, -half.Z + radius, half.Z - radius)
-    local targetBoxCf = part.CFrame * CFrame.new(x, half.Y + boxSize.Y * 0.5, z) * CFrame.Angles(0, math.rad(rotation), 0)
+    local normal = (lastHitNormal and lastHitNormal.Magnitude > 0.1) and lastHitNormal.Unit or part.CFrame.UpVector
+    local surfaceWorld = part.CFrame:PointToWorldSpace(Vector3.new(x, lp.Y, z))
+    local plotRotation = part.CFrame - part.CFrame.Position
+    local targetBoxCf = CFrame.new(surfaceWorld + normal * (boxSize.Y * 0.5)) * plotRotation * CFrame.Angles(0, math.rad(rotation), 0)
     local pivotToBox = ghost:GetPivot():ToObjectSpace(boxCf)
     local cf = targetBoxCf * pivotToBox:Inverse()
     return cf, targetBoxCf, boxSize
 end
 
 local function localPlacementClear(boxCf, boxSize)
-    local plotPart = currentPlotPart()
+    local plot, plotPart = currentPlot()
     if not plotPart then return false end
+    local island = plot and plot:FindFirstChild("Island")
     local params = OverlapParams.new()
     params.FilterType = Enum.RaycastFilterType.Exclude
     local excluded = {}
@@ -474,7 +497,7 @@ local function localPlacementClear(boxCf, boxSize)
     params.FilterDescendantsInstances = excluded
     local extents = boxSize - Vector3.new(0.2, 0.2, 0.2)
     for _, part in ipairs(Workspace:GetPartBoundsInBox(boxCf, extents, params)) do
-        if part ~= plotPart then
+        if part ~= plotPart and not (island and part:IsDescendantOf(island)) then
             return false, part:GetFullName()
         end
     end
@@ -626,8 +649,8 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
         if placingUnit then
             local unitId = placingUnit
             local hit = plotHitPosition()
-            -- only place if the cursor is actually over the plot Part right now
-            -- lastSnapPosition is cleared when cursor leaves Part, so this
+            -- only place if the cursor is actually over the island surface right now.
+            -- lastSnapPosition is cleared when cursor leaves the island, so this
             -- prevents placing on stale/invisible ghost positions
             local pos = hit or lastSnapPosition
             if not pos or not canPlaceHere then return end

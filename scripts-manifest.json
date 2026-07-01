@@ -1863,7 +1863,7 @@
         "path":  "ServerScriptService.Systems.BuildSystem.PlacementServer",
         "className":  "Script",
         "file":  "src/ServerScriptService/Systems/BuildSystem/PlacementServer.server.lua",
-        "bytes":  19202
+        "bytes":  20219
     },
     {
         "path":  "ServerScriptService.Systems.CodeSystem.CodeSystem.server",
@@ -2061,7 +2061,7 @@
         "path":  "StarterPlayer.StarterPlayerScripts.BaseAndUnitUiClient",
         "className":  "LocalScript",
         "file":  "src/StarterPlayer/StarterPlayerScripts/BaseAndUnitUiClient.client.lua",
-        "bytes":  31947
+        "bytes":  32993
     },
     {
         "path":  "StarterPlayer.StarterPlayerScripts.ButtonAnimationBootstrap",

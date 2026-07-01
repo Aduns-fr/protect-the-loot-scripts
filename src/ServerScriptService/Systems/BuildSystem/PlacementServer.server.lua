@@ -125,41 +125,48 @@ local function pointInsidePart(part, worldPos, radius)
     return math.abs(localPos.X) <= half.X - radius and math.abs(localPos.Z) <= half.Z - radius
 end
 
-local function placementCFrame(plotPart, model, worldPos, rotation)
+local function placementCFrame(plotPart, model, worldPos, rotation, surfaceNormal)
     local boxSize, pivotToBox = modelBounds(model)
     local localPos = plotPart.CFrame:PointToObjectSpace(worldPos)
     local half = plotPart.Size * 0.5
     local radius = math.max(2, math.min(boxSize.X, boxSize.Z) * 0.5)
     local x = math.clamp(localPos.X, -half.X + radius, half.X - radius)
     local z = math.clamp(localPos.Z, -half.Z + radius, half.Z - radius)
-    local targetBoxCf = plotPart.CFrame * CFrame.new(x, half.Y + boxSize.Y * 0.5, z) * CFrame.Angles(0, math.rad(tonumber(rotation) or 0), 0)
+    local normal = (typeof(surfaceNormal) == "Vector3" and surfaceNormal.Magnitude > 0.1) and surfaceNormal.Unit or plotPart.CFrame.UpVector
+    local surfaceWorld = plotPart.CFrame:PointToWorldSpace(Vector3.new(x, localPos.Y, z))
+    local plotRotation = plotPart.CFrame - plotPart.CFrame.Position
+    local targetBoxCf = CFrame.new(surfaceWorld + normal * (boxSize.Y * 0.5)) * plotRotation * CFrame.Angles(0, math.rad(tonumber(rotation) or 0), 0)
     local cf = targetBoxCf * pivotToBox:Inverse()
     return cf, boxSize, targetBoxCf
 end
 
-local function isValidTopHit(plotPart, hitPart, hitNormal)
-    if hitPart ~= plotPart then return false end
+local function isValidIslandTopHit(plot, plotPart, hitPart, hitNormal)
+    local island = plot and plot:FindFirstChild("Island")
+    if not island or typeof(hitPart) ~= "Instance" or not hitPart:IsDescendantOf(island) then return false end
     if typeof(hitNormal) ~= "Vector3" then return false end
-    return hitNormal:Dot(plotPart.CFrame.UpVector) >= 0.97
+    return hitNormal:Dot(plotPart.CFrame.UpVector) >= 0.75
 end
 
-local function topSurfaceIsPlotPart(player, plotPart, worldPos)
+local function islandTopSurfaceAt(player, plot, plotPart, worldPos)
+    local island = plot and plot:FindFirstChild("Island")
+    if not island then return false, nil end
     local params = RaycastParams.new()
-    params.FilterType = Enum.RaycastFilterType.Exclude
-    params.FilterDescendantsInstances = player.Character and { player.Character } or {}
+    params.FilterType = Enum.RaycastFilterType.Include
+    params.FilterDescendantsInstances = { island }
     local up = plotPart.CFrame.UpVector
     local result = Workspace:Raycast(worldPos + up * 200, -up * 400, params)
-    return result and result.Instance == plotPart and result.Normal:Dot(up) >= 0.97, result
+    return result and result.Instance and result.Instance:IsDescendantOf(island) and result.Normal:Dot(up) >= 0.75, result
 end
 
-local function hasBlockingOverlap(player, plotPart, boxSize, boxCf)
+local function hasBlockingOverlap(player, plot, plotPart, boxSize, boxCf)
     local extents = boxSize - Vector3.new(0.15, 0.15, 0.15)
     local params = OverlapParams.new()
     params.FilterType = Enum.RaycastFilterType.Exclude
     params.FilterDescendantsInstances = player.Character and { player.Character } or {}
+    local island = plot and plot:FindFirstChild("Island")
 
     for _, part in ipairs(Workspace:GetPartBoundsInBox(boxCf, extents, params)) do
-        if part ~= plotPart then
+        if part ~= plotPart and not (island and part:IsDescendantOf(island)) then
             return true, part:GetFullName()
         end
     end
@@ -209,21 +216,29 @@ local function place(player, unitId, worldPos, rotation, hitPart, hitNormal, res
     if not resolvedUnitId or not UnitsConfig.Units[resolvedUnitId] then return false, "Unknown unit" end
     if typeof(worldPos) ~= "Vector3" then return false, "Bad position" end
 
-    local _, plotPart = getPlotPart(player)
+    local plot, plotPart = getPlotPart(player)
     if not plotPart then return false, "Plot not ready" end
-    if not restoring and not isValidTopHit(plotPart, hitPart, hitNormal) then
-        return false, "Place on your plot floor"
-    end
     if not pointInsidePart(plotPart, worldPos, 2) then
         return false, "Out of bounds"
     end
+    if not restoring then
+        if not isValidIslandTopHit(plot, plotPart, hitPart, hitNormal) then
+            return false, "Place on island ground"
+        end
+        local surfaceOk, surfaceResult = islandTopSurfaceAt(player, plot, plotPart, worldPos)
+        if not surfaceOk or not surfaceResult then
+            return false, "Place on island ground"
+        end
+        worldPos = surfaceResult.Position
+        hitNormal = surfaceResult.Normal
+    end
 
     local model = makeUnitModel(resolvedUnitId)
-    local cf, boxSize, boxCf = placementCFrame(plotPart, model, worldPos, rotation)
+    local cf, boxSize, boxCf = placementCFrame(plotPart, model, worldPos, rotation, hitNormal)
     if DEBUG_PLACEMENT then
         print(string.format("[PlacementDebug][ServerPlace] player=%s unit=%s hit=%s topDot=%s world=(%.1f, %.1f, %.1f) pivot=(%.1f, %.1f, %.1f) box=(%.1f, %.1f, %.1f)", player.Name, unitId, hitPart and hitPart:GetFullName() or "nil", typeof(hitNormal) == "Vector3" and string.format("%.3f", hitNormal:Dot(plotPart.CFrame.UpVector)) or "nil", worldPos.X, worldPos.Y, worldPos.Z, cf.Position.X, cf.Position.Y, cf.Position.Z, boxSize.X, boxSize.Y, boxSize.Z))
     end
-    local blocked, blocker = hasBlockingOverlap(player, plotPart, boxSize, boxCf)
+    local blocked, blocker = hasBlockingOverlap(player, plot, plotPart, boxSize, boxCf)
     if blocked then
         if DEBUG_PLACEMENT then print("[PlacementDebug][ServerResult] success=false reason=Blocked by " .. tostring(blocker)) end
         model:Destroy()
