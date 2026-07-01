@@ -5,6 +5,7 @@ local holder = script.Parent
 local template = holder:WaitForChild("Cash")
 local layer = holder:WaitForChild("CashRainLayer")
 
+template.ZIndex = 5
 holder.ClipsDescendants = true
 layer.ClipsDescendants = true
 layer.BackgroundTransparency = 1
@@ -13,7 +14,7 @@ layer.Size = UDim2.fromScale(1, 1)
 layer.Position = UDim2.fromScale(0, 0)
 layer.Active = false
 layer.Selectable = false
-layer.ZIndex = math.max(1, template.ZIndex - 1)
+layer.ZIndex = template.ZIndex
 template.Visible = false
 
 local MAX_ICONS = 12
@@ -56,7 +57,7 @@ local function spawnCash()
 	icon.AnchorPoint = Vector2.new(0.5, 0.5)
 	icon.Size = getIconSize()
 	icon.ImageTransparency = math.clamp(template.ImageTransparency, 0, 0.72)
-	icon.ZIndex = layer.ZIndex
+	icon.ZIndex = template.ZIndex
 	icon.Active = false
 	icon.Selectable = false
 
