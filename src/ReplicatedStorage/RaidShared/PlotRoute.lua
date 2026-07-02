@@ -63,19 +63,62 @@ local function clampLocal(point: Vector3, half: Vector3): Vector3
 	)
 end
 
--- Converts local X/Z route points to world space, snapping Y to the plot surface.
+local SHORE_INSET = 3
+
+local function groundHit(x: number, z: number, plotPart: BasePart, half: Vector3, params: RaycastParams): RaycastResult?
+	local origin = Vector3.new(x, plotPart.Position.Y + half.Y + 60, z)
+	return workspace:Raycast(origin, Vector3.new(0, -(half.Y * 2 + 120), 0), params)
+end
+
+-- The plot "Part" is a big rectangle; the island inside it is not. A point picked
+-- on the Part edge can hang over open water. Pull such points along the line
+-- toward the anchor (the stash, always on land) until the raycast finds ground,
+-- binary-refine to the shoreline, then step slightly inland.
+local function snapToLand(world: Vector3, anchor: Vector3, plotPart: BasePart, half: Vector3, params: RaycastParams): RaycastResult?
+	local hit = groundHit(world.X, world.Z, plotPart, half, params)
+	if hit then return hit end
+	local delta = anchor - world
+	local dist = Vector3.new(delta.X, 0, delta.Z).Magnitude
+	if dist < 1 then return nil end
+	local steps = math.clamp(math.floor(dist / 6), 8, 60)
+	local lastMissT, firstHitT, firstHit = 0, nil, nil
+	for i = 1, steps do
+		local t = i / steps
+		local p = world:Lerp(anchor, t)
+		local h = groundHit(p.X, p.Z, plotPart, half, params)
+		if h then firstHitT, firstHit = t, h break end
+		lastMissT = t
+	end
+	if not firstHitT then return nil end
+	for _ = 1, 8 do
+		local midT = (lastMissT + firstHitT) / 2
+		local p = world:Lerp(anchor, midT)
+		local h = groundHit(p.X, p.Z, plotPart, half, params)
+		if h then firstHitT, firstHit = midT, h else lastMissT = midT end
+	end
+	local insetT = math.min(1, firstHitT + SHORE_INSET / dist)
+	local p = world:Lerp(anchor, insetT)
+	return groundHit(p.X, p.Z, plotPart, half, params) or firstHit
+end
+
+-- Converts local X/Z route points to world space, snapping each onto actual
+-- walkable ground (island/docks/base) so no route point floats over water.
 local function toWorldPoints(plot: Instance?, plotPart: BasePart, half: Vector3, localPoints: { Vector3 })
 	local params = buildRayParams(plot)
 	local fallbackY = islandTopY(plot, plotPart.Position.Y + half.Y)
-	local rayLen = half.Y * 2 + 120
 	local points = table.create(#localPoints)
+	-- the route's final point is the stash/Base, which is always over land
+	local lastFlat = clampLocal(localPoints[#localPoints], half)
+	local anchorWorld = plotPart.CFrame:PointToWorldSpace(lastFlat)
 	for i, point in ipairs(localPoints) do
 		local flat = clampLocal(point, half)
 		local world = plotPart.CFrame:PointToWorldSpace(flat)
-		local origin = Vector3.new(world.X, plotPart.Position.Y + half.Y + 60, world.Z)
-		local hit = workspace:Raycast(origin, Vector3.new(0, -rayLen, 0), params)
-		local groundY = hit and hit.Position.Y or fallbackY
-		points[i] = Vector3.new(world.X, groundY + SURFACE_OFFSET, world.Z)
+		local hit = snapToLand(world, anchorWorld, plotPart, half, params)
+		if hit then
+			points[i] = hit.Position + Vector3.new(0, SURFACE_OFFSET, 0)
+		else
+			points[i] = Vector3.new(world.X, fallbackY + SURFACE_OFFSET, world.Z)
+		end
 	end
 	return points
 end
