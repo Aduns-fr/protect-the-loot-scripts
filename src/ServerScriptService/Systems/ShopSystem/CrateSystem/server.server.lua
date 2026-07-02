@@ -5,7 +5,7 @@ local ProximityPromptService = game:GetService("ProximityPromptService")
 
 local CratesConfig = require(ReplicatedStorage.Configs.CratesConfig)
 local DeveloperProductsConfig = require(ReplicatedStorage.Configs.DeveloperProductsConfig)
-local WeaponsConfig = require(ReplicatedStorage.Configs.WeaponsConfig)
+local SwordsConfig = require(ReplicatedStorage.Configs.SwordsConfig)
 local PlotService = require(ServerScriptService.Systems.PlotSystem.Modules.PlotService)
 local PlayerDataService = require(ServerScriptService.Systems.DataSystem.Modules.PlayerDataService)
 local MonetizationAnalytics = require(ServerScriptService.Systems.DataSystem.Modules.MonetizationAnalytics)
@@ -267,38 +267,55 @@ local function restorePlayerChests(player)
     PlayerDataService.SetCrates(player, valid, false)
 end
 
+local function getCratePool(crateId)
+    local pool = SwordsConfig.CratePools and SwordsConfig.CratePools[crateId]
+    return type(pool) == "table" and pool or {}
+end
+
 local function pickWeapon(crateId)
-    local cfg = CratesConfig.Crates[crateId]
-    if not cfg then return nil end
-    local rng = Random.new()
-    local roll = rng:NextNumber(0, 100)
+    local pool = getCratePool(crateId)
+    if #pool <= 0 then return nil end
+    local total = 0
+    for _, entry in ipairs(pool) do
+        total += math.max(0, tonumber(entry.Chance) or 0)
+    end
+    if total <= 0 then return nil end
+    local roll = Random.new():NextNumber(0, total)
     local sum = 0
-    local rarity = "Common"
-    for _, reward in ipairs(cfg.Rewards or {}) do
-        sum += tonumber(reward.Chance) or 0
-        if roll <= sum then rarity = reward.Rarity or rarity; break end
+    for _, entry in ipairs(pool) do
+        sum += math.max(0, tonumber(entry.Chance) or 0)
+        if roll <= sum then
+            return entry.Id
+        end
     end
-    local pool = {}
-    for weaponId, weapon in pairs(WeaponsConfig.Swords or {}) do
-        if weapon.Rarity == rarity then table.insert(pool, weaponId) end
-    end
-    if #pool == 0 then for weaponId in pairs(WeaponsConfig.Swords or {}) do table.insert(pool, weaponId) end end
-    table.sort(pool)
-    return #pool > 0 and pool[rng:NextInteger(1, #pool)] or nil
+    return pool[#pool].Id
+end
+
+local function duplicateCashFor(weaponId)
+    local weapon = SwordsConfig.Swords[weaponId]
+    local rarity = weapon and weapon.Rarity or "Common"
+    return (SwordsConfig.DuplicateCash and SwordsConfig.DuplicateCash[rarity]) or 0
 end
 
 local function buildRollPool(crateId)
-    local cfg = CratesConfig.Crates[crateId]
     local pool = {}
-    for weaponId, weapon in pairs(WeaponsConfig.Swords or {}) do
-        local chance = 0
-        for _, reward in ipairs(cfg.Rewards or {}) do if reward.Rarity == weapon.Rarity then chance = reward.Chance end end
-        table.insert(pool, { id = weaponId, name = weapon.DisplayName or weaponId, rarity = weapon.Rarity or "Common", damage = weapon.Damage or 0, chance = chance, imageId = weapon.ImageId or "" })
+    for _, entry in ipairs(getCratePool(crateId)) do
+        local weaponId = entry.Id
+        local weapon = SwordsConfig.Swords[weaponId]
+        if weapon then
+            table.insert(pool, {
+                id = weaponId,
+                name = weapon.DisplayName or weaponId,
+                rarity = weapon.Rarity or "Common",
+                damage = weapon.Damage or 0,
+                chance = tonumber(entry.Chance) or 0,
+                imageId = weapon.ImageId or "",
+                source = weapon.SourceLabel or weapon.Source or "Crate",
+            })
+        end
     end
-    table.sort(pool, function(a, b) return a.name < b.name end)
     return pool
 end
-
 purchaseRemote.OnServerInvoke = function(player, crateId, purchaseType)
     crateId = tostring(crateId or "")
     local cfg = CratesConfig.Crates[crateId]
@@ -367,14 +384,14 @@ ProximityPromptService.PromptTriggered:Connect(function(prompt, player)
     model:SetAttribute("Opening", true)
     local crateId = model:GetAttribute("CrateId")
     local weaponId = pickWeapon(crateId)
-    local weapon = weaponId and WeaponsConfig.Swords[weaponId]
+    local weapon = weaponId and SwordsConfig.Swords[weaponId]
     if not weapon then
         model:SetAttribute("Opening", false)
         openingPlayers[player] = nil
         return
     end
 
-    local _, isNew = PlayerDataService.AddWeapon(player, weaponId)
+    local _, isNew, duplicateCash = PlayerDataService.AddWeapon(player, weaponId, { DuplicateCash = duplicateCashFor(weaponId) })
     local slot = placed[model]
     if not slot then
         local plot = PlotService.GetPlayerPlot(player)
@@ -391,8 +408,10 @@ ProximityPromptService.PromptTriggered:Connect(function(prompt, player)
         weapon = weaponId,
         sword = weaponId,
         isNew = isNew,
-        config = { DisplayName = weapon.DisplayName or weaponId, Damage = weapon.Damage or 0, Rarity = weapon.Rarity or "Common", ImageId = weapon.ImageId or "" },
+        config = { DisplayName = weapon.DisplayName or weaponId, Damage = weapon.Damage or 0, Rarity = weapon.Rarity or "Common", ImageId = weapon.ImageId or "", Source = weapon.SourceLabel or weapon.Source or "Crate" },
         pool = buildRollPool(crateId),
+        duplicateCash = duplicateCash,
+        duplicateCash = duplicateCash,
     })
     BadgeProgressService.Award(player, "ChestCracker")
     task.delay(7.5, function() openingPlayers[player] = nil end)
@@ -420,3 +439,4 @@ Players.PlayerRemoving:Connect(function(player)
 end)
 for _, player in ipairs(Players:GetPlayers()) do onPlayerAdded(player) end
 broadcastStock()
+

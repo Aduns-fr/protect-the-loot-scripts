@@ -25,7 +25,7 @@ DeveloperProductsConfig.Bundles = {
 		RobuxPrice = 99,
 		Cash = 100000,
 		UnitId = "RapidBlock",
-		WeaponId = "CrookedCutlass",
+		WeaponId = "HarpeBlade",
 	},
 	StarterPack2 = {
 		ProductId = 3607645980,
@@ -33,7 +33,7 @@ DeveloperProductsConfig.Bundles = {
 		RobuxPrice = 199,
 		Cash = 250000,
 		UnitId = "HeavyBlock",
-		WeaponId = "LaserRapier",
+		WeaponId = "OceansBlessing",
 	},
 	Bundle1 = {
 		ProductId = 3607645998,
@@ -41,7 +41,7 @@ DeveloperProductsConfig.Bundles = {
 		RobuxPrice = 499,
 		Cash = 750000,
 		UnitId = "FrostBlock",
-		WeaponId = "Frostbrand",
+		WeaponId = "BlizzardIce",
 	},
 	Bundle2 = {
 		ProductId = 3607646109,
@@ -49,7 +49,7 @@ DeveloperProductsConfig.Bundles = {
 		RobuxPrice = 999,
 		Cash = 1500000,
 		UnitId = "VoidBlock",
-		WeaponId = "DoomKatana",
+		WeaponId = "ChaosBlade",
 	},
 }
 
@@ -201,3 +201,4 @@ end
 DeveloperProductsConfig.RebuildIndex()
 
 return DeveloperProductsConfig
+

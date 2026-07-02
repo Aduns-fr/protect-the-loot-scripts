@@ -250,6 +250,8 @@ local function ownerGroupId()
     return nil
 end
 
+local grantEntitlementSwords
+
 local function updateMembershipBoost(player)
     local data = sessionData[player]
     local groupId = ownerGroupId()
@@ -274,6 +276,45 @@ local function updateMembershipBoost(player)
             task.spawn(saveData, player)
         end
     end
+end
+
+local function playerOwnsPassKey(player, passKey)
+    local passId = tonumber(GamePassConfig[passKey]) or 0
+    if passId <= 0 then return false end
+    local ok, owns = pcall(function()
+        return MarketplaceService:UserOwnsGamePassAsync(player.UserId, passId)
+    end)
+    return ok and owns == true
+end
+
+local function grantSwordIfMissing(player, swordId)
+    if not swordId or not SwordsConfig.Swords[swordId] then return false end
+    local data = sessionData[player]
+    if not data then return false end
+    data.Weapons = data.Weapons or {}
+    if (tonumber(data.Weapons[swordId]) or 0) > 0 then return false end
+    local ok = PlayerDataService.AddWeapon(player, swordId)
+    if ok then task.spawn(saveData, player) end
+    return ok
+end
+
+function grantEntitlementSwords(player)
+    local data = sessionData[player]
+    if not data then return end
+    local entitlements = data.GamePassEntitlements or {}
+    if entitlements.VIP == true or player:GetAttribute("VIP") == true or playerOwnsPassKey(player, "VIP") then
+        grantSwordIfMissing(player, "TheGoldenTouch")
+    end
+    local groupId = ownerGroupId()
+    local inGroup = false
+    if groupId then
+        local ok, result = pcall(function() return player:IsInGroup(groupId) end)
+        inGroup = ok and result == true
+    end
+    if inGroup then grantSwordIfMissing(player, "TheEmeraldOrder") end
+    if player.MembershipType == Enum.MembershipType.Premium then grantSwordIfMissing(player, "SkywardSword") end
+    if calculateFriendBoost(player) > 0 then grantSwordIfMissing(player, "BladeofSpirits") end
+    if PlayerDataService.GetTimePlayed(player) >= 14400 then grantSwordIfMissing(player, "TheTitan") end
 end
 
 local function applyGiftEntitlementAttributes(player)
@@ -479,16 +520,28 @@ function PlayerDataService.SetCrates(player, crates, saveImmediately)
     return true
 end
 
-function PlayerDataService.AddWeapon(player, weaponId)
+function PlayerDataService.AddWeapon(player, weaponId, options)
     local data = sessionData[player]
-    if not data or type(weaponId) ~= "string" then return false, false end
+    if not data or type(weaponId) ~= "string" or not SwordsConfig.Swords[weaponId] then return false, false, 0 end
+    options = type(options) == "table" and options or {}
     data.Weapons = data.Weapons or {}
     data.Swords = data.Swords or {}
     local wasNew = (tonumber(data.Weapons[weaponId]) or 0) <= 0
-    data.Weapons[weaponId] = (tonumber(data.Weapons[weaponId]) or 0) + 1
-    data.Swords[weaponId] = (tonumber(data.Swords[weaponId]) or 0) + 1
-    BadgeProgressService.Award(player, "ChestCracker")
-    return true, wasNew
+    local duplicateCash = 0
+    if wasNew then
+        data.Weapons[weaponId] = 1
+        data.Swords[weaponId] = 1
+        BadgeProgressService.Award(player, "ChestCracker")
+    else
+        data.Weapons[weaponId] = 1
+        data.Swords[weaponId] = 1
+        duplicateCash = math.max(0, math.floor(tonumber(options.DuplicateCash) or 0))
+        if duplicateCash > 0 then
+            PlayerDataService.AddCash(player, duplicateCash)
+            cashPopupRemote:FireClient(player, duplicateCash)
+        end
+    end
+    return true, wasNew, duplicateCash
 end
 
 local function hasAnySpecialWeapon(data)
@@ -584,6 +637,8 @@ function PlayerDataService.SetupPlayer(player)
 
     task.defer(updateFriendBoosts)
     task.defer(startMembershipWatcher, player)
+    task.defer(grantEntitlementSwords, player)
+    task.defer(grantEntitlementSwords, player)
     task.defer(MonetizationAnalytics.LogOnboardingStep, player, 1, "Joined Game")
     task.defer(awardEarnedBadges, player)
     task.defer(sendInventory, player)
@@ -1267,3 +1322,4 @@ function PlayerDataService.Start()
 end
 
 return PlayerDataService
+
