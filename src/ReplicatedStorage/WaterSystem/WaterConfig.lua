@@ -8,12 +8,15 @@ local TILE_HEIGHT = 10.25
 
 local WaterConfig = {}
 
+-- Where the InfiniteWater renderer parks each tile (tile center).
 WaterConfig.TileCenterY = TILE_CENTER_Y
 WaterConfig.TileHeight = TILE_HEIGHT
 WaterConfig.TileSize = 512
 
-WaterConfig.SurfaceY = TILE_CENTER_Y + TILE_HEIGHT / 2
+-- The actual water surface height everything should align to.
+WaterConfig.SurfaceY = TILE_CENTER_Y + TILE_HEIGHT / 2 -- ~1.755
 
+-- Texture scroll speed for the animated surface.
 WaterConfig.ScrollU = 0.5
 WaterConfig.ScrollV = 0.2
 

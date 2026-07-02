@@ -8,7 +8,7 @@ local waterTemplate = waterFolder:WaitForChild("WaterTile")
 local WaterConfig = require(waterFolder:WaitForChild("WaterConfig"))
 
 local TILE_SIZE = WaterConfig.TileSize
-local GRID_RADIUS = 2
+local GRID_RADIUS = 2 -- 5x5 covers 1,280 studs around the player with far less client work.
 local WATER_Y_LEVEL = WaterConfig.TileCenterY
 local UPDATE_INTERVAL = 1 / 20
 local SPEED_U = WaterConfig.ScrollU

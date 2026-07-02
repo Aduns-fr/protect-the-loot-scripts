@@ -12,7 +12,11 @@ local RunService = game:GetService("RunService")
 local PlotService = require(ServerScriptService.Systems.PlotSystem.Modules.PlotService)
 local RaidConfig = require(ReplicatedStorage.Configs.RaidConfig)
 local PlayerDataService = require(ServerScriptService.Systems.DataSystem.Modules.PlayerDataService)
-local BaseUpgradesConfig = require(ReplicatedStorage.Configs.BaseUpgradesConfig)
+local MonetizationAnalytics = require(ServerScriptService.Systems.DataSystem.Modules.MonetizationAnalytics)
+local GamePassService = require(ServerScriptService.Systems.DataSystem.Modules.GamePassService)
+local BadgeProgressService = require(ServerScriptService.Systems.DataSystem.Modules.BadgeProgressService)
+local GamePassConfig = require(ReplicatedStorage.Configs.GamePassConfig)
+local DeveloperProductsConfig = require(ReplicatedStorage.Configs.DeveloperProductsConfig)
 local PlotRoute = require(ReplicatedStorage.RaidShared.PlotRoute)
 
 local EnemyCore = {}
@@ -29,6 +33,9 @@ local STREAM_INTERVAL = 0.1
 
 local activeRaids, playerState, lastStarted, beyondHundred = {}, {}, {}, {}
 local sessions = {} -- player -> { enemies = {id->e}, nextId, alive, carriedLoot, drops }
+local raidAnalyticsSessions = {}
+local reviveState, pendingReviveStarts = {}, {}
+local REVIVE_WINDOW_SECONDS = 120
 
 local finish, runWave -- forward declarations
 
@@ -104,6 +111,23 @@ local function buildRoute(plot, seed)
 end
 
 local function send(p, a, d) if p and p.Parent then RaidStatusRemote:FireClient(p, a, d or {}) end end
+local function clampReviveTier(tier)
+	local tiers = DeveloperProductsConfig.ReviveTiers or {}
+	if #tiers <= 0 then return 1 end
+	return math.clamp(math.floor(tonumber(tier) or 1), 1, #tiers)
+end
+local function openReviveOffer(p, diedWave)
+	local info = reviveState[p] or { tier = 1 }
+	info.tier = clampReviveTier(info.tier)
+	info.available = true
+	info.nextWave = math.max(1, math.floor(tonumber(diedWave) or 1) + 1)
+	info.expiresAt = os.clock() + REVIVE_WINDOW_SECONDS
+	reviveState[p] = info
+end
+local function clearReviveOffer(p)
+	reviveState[p] = nil
+	pendingReviveStarts[p] = nil
+end
 local function scaledWait(p, sec)
 	local e = 0
 	while e < sec do
@@ -138,7 +162,9 @@ local function loseLoot(p, amount)
 	amount = math.max(0, math.floor(tonumber(amount) or 0))
 	st.stats.lootStolen += amount
 	sendLoot(p)
-	if st.loot <= 0 and (getSession(p).carriedLoot or 0) <= 0 then st.stopping = true end
+	local sess = getSession(p)
+	-- Defeat only when the stash is empty AND nothing recoverable remains (no carriers, no ground drops)
+	if st.loot <= 0 and (sess.carriedLoot or 0) <= 0 and next(sess.drops) == nil then st.stopping = true end
 end
 local function recoverLoot(p, amount)
 	local st = state(p)
@@ -196,8 +222,11 @@ local function dropLoot(p, position, amount)
 	end)
 	task.delay(25, function()
 		if part.Parent and not collected then
+			collected = true
 			sess.drops[part] = nil
 			part:Destroy()
+			-- Unrecovered loot counts as stolen; may end the raid in defeat
+			if p.Parent then loseLoot(p, amount) end
 		end
 	end)
 end
@@ -358,20 +387,39 @@ function runWave(p, plot, wave)
 		waveProgress(p)
 		scaledWait(p, waveSpawnInterval(wave))
 	end
-	local started = os.clock()
-	local timeout = math.max(20, (st.waveStats.spawned or count) * 7)
-	while activeRaids[p] and p.Parent and not st.stopping and st.waveStats.finished < st.waveStats.spawned do
-		if sess.alive <= 0 and st.waveStats.spawned > 0 then
-			st.waveStats.finished = st.waveStats.spawned; waveProgress(p); break
+	-- Wave ends when every enemy is gone (killed, escaped, or emptied) — carriers walking
+	-- loot back out keep the wave open. The timeout is a stuck-enemy safety net sized to the
+	-- slowest possible round trip, and it cleans up survivors instead of abandoning them.
+	local function stuckTimeout()
+		local longest, slowest = 0, math.huge
+		for _, e in pairs(sess.enemies) do
+			if e.mover then longest = math.max(longest, e.mover.length) end
+			if (e.speed or 0) > 0 then slowest = math.min(slowest, e.speed) end
 		end
-		if os.clock() - started > timeout then
-			st.waveStats.finished = st.waveStats.spawned; waveProgress(p); break
+		if longest <= 0 or slowest == math.huge then return 60 end
+		return math.max(60, (2 * longest) / slowest + 45)
+	end
+	local started = os.clock()
+	while activeRaids[p] and p.Parent and not st.stopping and sess.alive > 0 do
+		if os.clock() - started > stuckTimeout() then
+			for _, e in pairs(sess.enemies) do
+				if (e.carrying or 0) > 0 then
+					sess.carriedLoot = math.max(0, (sess.carriedLoot or 0) - e.carrying)
+					recoverLoot(p, e.carrying)
+					e.carrying = 0
+				end
+				removeEnemy(p, e, "end")
+			end
+			break
 		end
 		scaledWait(p, 0.25)
 	end
+	st.waveStats.finished = st.waveStats.spawned
+	waveProgress(p)
 	if not st.stopping then
 		st.stats.wavesCleared = math.max(st.stats.wavesCleared, wave)
 		updateHighestWave(p, st.stats.wavesCleared)
+		if wave >= 5 then BadgeProgressService.Award(p, "TreasureGuard") end
 		if wave % 5 == 0 then PlayerDataService.SetRaidCheckpoint(p, wave) end
 		st.stats.score += wave * 100
 	end
@@ -389,8 +437,22 @@ function finish(p, reason)
 	clearEnemies(p)
 	updateHighestWave(p, st.stats.wavesCleared or 0)
 	st.stats.score = math.floor(st.stats.score + (st.stats.wavesCleared or 0) * 25 + st.loot)
-	if st.stats.cashEarned > 0 then PlayerDataService.AddCash(p, st.stats.cashEarned) end
+	if st.stats.cashEarned > 0 then
+		local reward = math.floor(st.stats.cashEarned * GamePassService.GetCashMultiplier(p))
+		local ok, endingBalance = PlayerDataService.AddCash(p, reward)
+		if ok then
+			MonetizationAnalytics.LogCashSource(p, Enum.AnalyticsEconomyTransactionType.Gameplay.Name, reward, endingBalance, "RaidReward", "Raid")
+		end
+	end
+	MonetizationAnalytics.LogRaidStep(p, 3, "Raid Ended", raidAnalyticsSessions[p])
+	MonetizationAnalytics.LogRaidResult(p, st.stats.wavesCleared or 0, reason, st.loot or 0)
+	raidAnalyticsSessions[p] = nil
 	local skip = st.auto and reason == "Defeated"
+	if reason == "Defeated" then
+		openReviveOffer(p, st.wave or st.stats.wavesCleared or 1)
+	else
+		clearReviveOffer(p)
+	end
 	if not skip then
 		RaidResultsRemote:FireClient(p, {
 			status = statusText(reason), enemiesDefeated = st.stats.enemiesDefeated,
@@ -412,15 +474,25 @@ function EnemyCore.StartRaid(p)
 	local sess = getSession(p)
 	sess.carriedLoot = 0
 	local checkpoint = PlayerDataService.GetRaidCheckpoint(p)
+	local reviveStart = pendingReviveStarts[p]
+	pendingReviveStarts[p] = nil
 	local startWave
-	if beyondHundred[p] then startWave = beyondHundred[p]; beyondHundred[p] = nil
+	if reviveStart then
+		startWave = math.max(1, math.floor(tonumber(reviveStart.wave) or 1))
+		reviveState[p] = { tier = clampReviveTier(reviveStart.nextTier), available = false }
+	elseif beyondHundred[p] then startWave = beyondHundred[p]; beyondHundred[p] = nil
 	else startWave = checkpoint > 0 and checkpoint or 1 end
+	if not reviveStart then
+		reviveState[p] = nil
+	end
 	st.stopping = false
 	st.wave = startWave
 	st.stats = { enemiesDefeated = 0, wavesCleared = math.max(0, startWave - 1), cashEarned = 0, score = 0, lootStolen = 0, lootRecovered = 0 }
 	st.maxLoot = PlayerDataService.GetBaseMaxHealth(p)
 	st.loot = st.maxLoot
 	activeRaids[p] = true
+	raidAnalyticsSessions[p] = MonetizationAnalytics.LogRaidStep(p, 1, "Raid Started")
+	BadgeProgressService.Award(p, "RaidCaller")
 	p:SetAttribute("RaidActive", true)
 	clearEnemies(p)
 	send(p, "Start", { loot = st.loot, maxLoot = st.maxLoot, startWave = startWave, checkpoint = checkpoint })
@@ -437,7 +509,17 @@ function EnemyCore.StartRaid(p)
 			if w == 100 then
 				updateHighestWave(p, 100)
 				PlayerDataService.SetRaidCheckpoint(p, 100)
-				if st.stats.cashEarned > 0 then PlayerDataService.AddCash(p, st.stats.cashEarned); st.stats.cashEarned = 0 end
+				if st.stats.cashEarned > 0 then
+					local reward = math.floor(st.stats.cashEarned * GamePassService.GetCashMultiplier(p))
+					local ok, endingBalance = PlayerDataService.AddCash(p, reward)
+					if ok then
+						MonetizationAnalytics.LogCashSource(p, Enum.AnalyticsEconomyTransactionType.Gameplay.Name, reward, endingBalance, "RaidReward", "Raid")
+					end
+					st.stats.cashEarned = 0
+				end
+				MonetizationAnalytics.LogRaidStep(p, 3, "Raid Ended", raidAnalyticsSessions[p])
+				MonetizationAnalytics.LogRaidResult(p, 100, "Victory", st.loot or 0)
+				raidAnalyticsSessions[p] = nil
 				activeRaids[p] = nil
 				p:SetAttribute("RaidActive", false)
 				clearEnemies(p)
@@ -471,6 +553,7 @@ function EnemyCore.StopRaid(p)
 	activeRaids[p] = nil
 	p:SetAttribute("RaidActive", false)
 	clearEnemies(p)
+	MonetizationAnalytics.LogRaidStep(p, 2, "Raid Stop Requested", raidAnalyticsSessions[p])
 	return true
 end
 function EnemyCore.SetAuto(p, en)
@@ -480,11 +563,54 @@ end
 function EnemyCore.SetSpeed(p, s)
 	local st = state(p); s = tonumber(s) or 1
 	if s == 3 then
-		local productId = (BaseUpgradesConfig.RaidSpeed or {}).Speed3ProductId or 0
-		if productId <= 0 then s = st.speed or 1 end
+		if not GamePassService.HasPass(p, GamePassConfig.TripleSpeed) then s = st.speed or 1 end
 	elseif s ~= 2 then s = 1 end
 	st.speed = s
 	send(p, "Speed", { speed = s })
+end
+
+function EnemyCore.GetRevivePromptProduct(p)
+	local info = reviveState[p]
+	if not info or info.available ~= true then
+		return false, "No revive available"
+	end
+	if (tonumber(info.expiresAt) or 0) < os.clock() then
+		clearReviveOffer(p)
+		return false, "Revive expired"
+	end
+	local tier = clampReviveTier(info.tier)
+	local config = DeveloperProductsConfig.ReviveTiers and DeveloperProductsConfig.ReviveTiers[tier]
+	local productId = config and tonumber(config.ProductId) or 0
+	if productId <= 0 then
+		return false, "Revive product is not configured"
+	end
+	return true, "Prompt", productId, tier
+end
+
+function EnemyCore.GrantRevive(p, tier)
+	local info = reviveState[p]
+	if activeRaids[p] or not info or info.available ~= true then
+		return false
+	end
+	if (tonumber(info.expiresAt) or 0) < os.clock() then
+		clearReviveOffer(p)
+		return false
+	end
+	local currentTier = clampReviveTier(info.tier)
+	if tonumber(tier) and clampReviveTier(tier) ~= currentTier then
+		return false
+	end
+	pendingReviveStarts[p] = {
+		wave = info.nextWave,
+		nextTier = clampReviveTier(currentTier + 1),
+	}
+	info.available = false
+	task.defer(function()
+		if p.Parent then
+			EnemyCore.StartRaid(p)
+		end
+	end)
+	return true
 end
 
 -- ===== targeting API (used by PlacementServer towers + SwordServer melee) =====
@@ -550,6 +676,14 @@ function EnemyCore.Debug(p)
 end
 
 function EnemyCore.Start()
+	_G.MyEvilLairRaidRevive = {
+		GetPromptProduct = function(player)
+			return EnemyCore.GetRevivePromptProduct(player)
+		end,
+		Grant = function(player, tier)
+			return EnemyCore.GrantRevive(player, tier)
+		end,
+	}
 	StartRaidRemote.OnServerEvent:Connect(function(p) EnemyCore.StartRaid(p) end)
 	RaidControlRemote.OnServerEvent:Connect(function(p, a, v)
 		if a == "Stop" then EnemyCore.StopRaid(p)
@@ -557,7 +691,7 @@ function EnemyCore.Start()
 		elseif a == "Speed" then EnemyCore.SetSpeed(p, v) end
 	end)
 	Players.PlayerRemoving:Connect(function(p)
-		lastStarted[p] = nil; activeRaids[p] = nil; playerState[p] = nil; beyondHundred[p] = nil; sessions[p] = nil
+		lastStarted[p] = nil; activeRaids[p] = nil; playerState[p] = nil; beyondHundred[p] = nil; sessions[p] = nil; raidAnalyticsSessions[p] = nil; clearReviveOffer(p)
 	end)
 	RunService.Heartbeat:Connect(step)
 end

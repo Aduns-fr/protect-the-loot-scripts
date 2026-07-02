@@ -3,12 +3,14 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local Workspace = game:GetService("Workspace")
+local MarketplaceService = game:GetService("MarketplaceService")
 
 local player = Players.LocalPlayer
 local gui = player:WaitForChild("PlayerGui"):WaitForChild("GUI")
 local rollScreen = gui:WaitForChild("RollScreen")
 local rewardFrame = gui:WaitForChild("RewardFrame")
 local openedRemote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CrateOpened")
+local skipPromptRemote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChestSkipPrompt")
 
 local rarityColors = {
 	Common = Color3.fromRGB(150, 165, 180),
@@ -176,7 +178,8 @@ task.spawn(function()
 				local prompt = model:FindFirstChildWhichIsA("ProximityPrompt", true)
 
 				if prompt then
-					prompt.Enabled = ready and model:GetAttribute("OwnerUserId") == player.UserId
+					prompt.Enabled = model:GetAttribute("OwnerUserId") == player.UserId
+					prompt.ActionText = ready and "Open" or "Skip Wait"
 				end
 			end
 		end
@@ -627,6 +630,13 @@ openedRemote.OnClientEvent:Connect(function(data)
 		restoreModal()
 		rolling = false
 	end)
+end)
+
+skipPromptRemote.OnClientEvent:Connect(function(productId)
+	productId = tonumber(productId) or 0
+	if productId > 0 then
+		MarketplaceService:PromptProductPurchase(player, productId)
+	end
 end)
 
 rollScreen.Visible = false

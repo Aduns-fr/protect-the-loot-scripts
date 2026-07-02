@@ -155,7 +155,7 @@ local function bind(button,frameName) if not button or not button:IsA("GuiButton
 local weaponButton = bottom:FindFirstChild("1")
 local buildButton = bottom:FindFirstChild("2")
 local deleteButton = bottom:FindFirstChild("3")
-bind(hud:FindFirstChild("Weapons") or hud:FindFirstChild("Swords"),frames:FindFirstChild("Weapons") and "Weapons" or "Swords"); bind(hud:FindFirstChild("Settings"),"Settings"); bind(hud:FindFirstChild("Shop"),"Shop"); bind(hud:FindFirstChild("Codes"),"Codes")
+bind(hud:FindFirstChild("Weapons") or hud:FindFirstChild("Swords"),frames:FindFirstChild("Weapons") and "Weapons" or "Swords"); bind(hud:FindFirstChild("Settings"),"Settings"); bind(hud:FindFirstChild("Shop"),"Shop"); bind(hud:FindFirstChild("Codes"),"Codes"); bind(hud:FindFirstChild("Badges"),"Badges")
 for _,frame in ipairs(frames:GetChildren()) do if frame:IsA("GuiObject") then local close=frame:FindFirstChild("Close"); if close and close:IsA("GuiButton") then close.Activated:Connect(function() if currentFrame==frame then closeCurrentFrame() else frame.Visible=false; restoreChrome(); fov(false) end end) end end end
 openFrameRequest.Event:Connect(function(frameName) if typeof(frameName)=="string" then openFrame(frameName) end end)
 closeFrameRequest.Event:Connect(function() closeCurrentFrame(false) end)

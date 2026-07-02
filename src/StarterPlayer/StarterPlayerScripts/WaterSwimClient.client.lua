@@ -1,5 +1,7 @@
 --!strict
 -- WaterSwimClient (retired)
 -- Swimming is now handled natively by Roblox Terrain water filled beneath the
--- visual water plane. The Humanoid enters the Swimming state on its own, which
--- drives the swim animation and water sounds with correct physics and controls.
+-- visual water plane (see the WaterSystem + Terrain). The Humanoid enters the
+-- Swimming state on its own, which drives the swim animation (Animate) and the
+-- water/splash sounds (RbxCharacterSounds) with correct physics and controls.
+-- No custom buoyancy force is applied here anymore.

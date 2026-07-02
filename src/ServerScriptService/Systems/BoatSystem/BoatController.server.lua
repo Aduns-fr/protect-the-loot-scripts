@@ -12,13 +12,14 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local WaterConfig = require(ReplicatedStorage:WaitForChild("WaterSystem"):WaitForChild("WaterConfig"))
 
+-- Handling ------------------------------------------------------------------
 local MAX_FORWARD_SPEED = 42
 local REVERSE_SPEED = 18
 local ACCELERATION = 7.5
 local TURN_RATE = math.rad(76)
 local IDLE_DRAG = 0.965
-local RETURN_SPEED = 4
-local FLOAT_DRAFT = 0.8
+local RETURN_SPEED = 4 -- how firmly an empty boat drifts back to its dock
+local FLOAT_DRAFT = 0.8 -- boat hull center height above the water surface (tune ride height)
 local BOB_AMP = 0.08
 local BOB_SPEED = 1.6
 
@@ -29,6 +30,7 @@ local SEAT_NAME = "DriverSeat"
 
 local boats = {}
 
+-- Template ------------------------------------------------------------------
 local function getTemplate()
 	local existing = ServerStorage:FindFirstChild(TEMPLATE_NAME)
 	if existing then return existing end
@@ -42,6 +44,7 @@ local function getTemplate()
 	return nil
 end
 
+-- Assembly ------------------------------------------------------------------
 local function getOrCreate(parent, className, name)
 	local existing = parent:FindFirstChild(name)
 	if existing and existing.ClassName == className then
@@ -67,6 +70,7 @@ local function weldTo(root, part)
 	weld.Part1 = part
 end
 
+-- Places a fresh boat clone at the given marker and wires up physics.
 local function spawnBoat(spawnPart, parentFolder)
 	local template = getTemplate()
 	if not template then return nil end
@@ -74,19 +78,18 @@ local function spawnBoat(spawnPart, parentFolder)
 	local model = template:Clone()
 	local hull = model:FindFirstChild(HULL_NAME)
 	local seat = model:FindFirstChild(SEAT_NAME)
-	if not (hull and hull:IsA("BasePart")) then
-		model:Destroy()
-		return nil
-	end
+	if not (hull and hull:IsA("BasePart")) then model:Destroy() return nil end
 
+	-- Target: sit on the water at the marker, keeping only its yaw.
 	local _, yaw = spawnPart.CFrame:ToOrientation()
 	local floatY = WaterConfig.SurfaceY + FLOAT_DRAFT
 	local target = CFrame.new(spawnPart.Position.X, floatY, spawnPart.Position.Z) * CFrame.Angles(0, yaw, 0)
 
+	-- Move the whole rigid assembly so the hull lands on target.
 	local transform = target * hull.CFrame:Inverse()
-	for _, descendant in ipairs(model:GetDescendants()) do
-		if descendant:IsA("BasePart") then
-			descendant.CFrame = transform * descendant.CFrame
+	for _, d in ipairs(model:GetDescendants()) do
+		if d:IsA("BasePart") then
+			d.CFrame = transform * d.CFrame
 		end
 	end
 
@@ -99,15 +102,17 @@ local function spawnBoat(spawnPart, parentFolder)
 	hull.Transparency = 1
 	hull.CustomPhysicalProperties = PhysicalProperties.new(0.18, 0.35, 0, 1, 1)
 
-	for _, descendant in ipairs(model:GetDescendants()) do
-		if descendant:IsA("BasePart") and descendant ~= hull and descendant ~= seat then
-			descendant.Anchored = false
-			descendant.CanCollide = true
-			descendant.Massless = true
-			weldTo(hull, descendant)
+	-- Deck + visuals: walkable but weightless, welded to the hull.
+	for _, d in ipairs(model:GetDescendants()) do
+		if d:IsA("BasePart") and d ~= hull and d ~= seat then
+			d.Anchored = false
+			d.CanCollide = true
+			d.Massless = true
+			weldTo(hull, d)
 		end
 	end
 
+	-- Driver seat: sittable, weightless, no built-in vehicle physics (we drive it).
 	if seat and seat:IsA("VehicleSeat") then
 		seat.Anchored = false
 		seat.CanCollide = false
@@ -140,7 +145,7 @@ local function spawnBoat(spawnPart, parentFolder)
 		seat = seat,
 		float = float,
 		gyro = gyro,
-		home = spawnPart.Position,
+		home = spawnPart.Position, -- dock anchor (X/Z used)
 		floatY = floatY,
 		yaw = yaw,
 		speed = 0,
@@ -148,6 +153,7 @@ local function spawnBoat(spawnPart, parentFolder)
 	}
 end
 
+-- Per-frame drive ------------------------------------------------------------
 local function stepBoat(state, dt)
 	local hull = state.hull
 	local seat = state.seat
@@ -156,6 +162,7 @@ local function stepBoat(state, dt)
 	local occupant = seat and seat.Occupant
 	local occupied = occupant ~= nil
 
+	-- Throttle -> target speed
 	local throttle = seat and seat.ThrottleFloat or 0
 	local steer = seat and seat.SteerFloat or 0
 	local targetSpeed = 0
@@ -171,22 +178,27 @@ local function stepBoat(state, dt)
 	state.speed += (targetSpeed - state.speed) * alpha
 	if math.abs(state.speed) < 0.05 then state.speed = 0 end
 
+	-- Steering scales with speed so a parked boat still turns a little.
 	local turnScale = math.clamp(math.abs(state.speed) / MAX_FORWARD_SPEED + 0.28, 0, 1)
 	if occupied then
 		state.yaw -= steer * TURN_RATE * turnScale * dt
 	end
 
+	-- Buoyancy target (with gentle bob).
 	local bob = math.sin(os.clock() * BOB_SPEED + state.bobSeed) * BOB_AMP
 	state.float.Position = Vector3.new(hull.Position.X, state.floatY + bob, hull.Position.Z)
 
+	-- Heading.
 	local desiredCf = CFrame.new(hull.Position) * CFrame.Angles(0, state.yaw, 0)
 	state.gyro.CFrame = desiredCf
 
+	-- Horizontal velocity.
 	local current = hull.AssemblyLinearVelocity
 	local horizontal
 	if occupied then
 		horizontal = desiredCf.LookVector * state.speed
 	else
+		-- Empty: bleed off momentum and ease back toward the dock.
 		local toHome = state.home - hull.Position
 		toHome = Vector3.new(toHome.X, 0, toHome.Z)
 		local dist = toHome.Magnitude
@@ -199,6 +211,7 @@ local function stepBoat(state, dt)
 	hull.AssemblyLinearVelocity = Vector3.new(horizontal.X, current.Y, horizontal.Z)
 	hull.AssemblyAngularVelocity = hull.AssemblyAngularVelocity * 0.35
 
+	-- Network ownership: give control to the driver for smooth steering.
 	local player = occupant and Players:GetPlayerFromCharacter(occupant.Parent)
 	pcall(function()
 		if player then
@@ -211,6 +224,7 @@ local function stepBoat(state, dt)
 	return true
 end
 
+-- Boot -----------------------------------------------------------------------
 local function setup()
 	if not getTemplate() then
 		warn("[BoatController] No 'Boat Model' template found in Workspace or ServerStorage.")

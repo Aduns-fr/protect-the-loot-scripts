@@ -9,8 +9,8 @@ local startRemote = remotes:WaitForChild("StartRaid")
 local controlRemote = remotes:WaitForChild("RaidControl")
 local top = script.Parent:WaitForChild("Top")
 
-local BaseUpgradesConfig = require(ReplicatedStorage:WaitForChild("Configs"):WaitForChild("BaseUpgradesConfig"))
-local speed3ProductId = BaseUpgradesConfig.RaidSpeed.Speed3ProductId or 0
+local GamePassConfig = require(ReplicatedStorage:WaitForChild("Configs"):WaitForChild("GamePassConfig"))
+local speed3PassId = GamePassConfig.TripleSpeed or 0
 
 local function getClick(frameName, legacyName)
     local instance = top:FindFirstChild(frameName) or top:FindFirstChild(legacyName)
@@ -29,7 +29,7 @@ end
 
 local startButton = getClick("StartButton", "Start")
 local autoButton = top:WaitForChild("Auto")
-local stopButton = top:WaitForChild("Stop")
+local stopButton = getClick("StopButton", "Stop")
 local speedButton = top:WaitForChild("Speed")
 local speed3Button = top:WaitForChild("x3")
 
@@ -99,9 +99,11 @@ if startButton then
     end)
 end
 
-stopButton.Activated:Connect(function()
-    controlRemote:FireServer("Stop")
-end)
+if stopButton then
+    stopButton.Activated:Connect(function()
+        controlRemote:FireServer("Stop")
+    end)
+end
 
 speedButton.Activated:Connect(function()
     local current = tonumber(speedButton:GetAttribute("Speed")) or 1
@@ -112,9 +114,32 @@ speedButton.Activated:Connect(function()
 end)
 
 speed3Button.Activated:Connect(function()
-    if speed3ProductId > 0 then
-        MarketplaceService:PromptProductPurchase(player, speed3ProductId)
-    else
-        warn("[RaidUI] x3 speed needs BaseUpgradesConfig.RaidSpeed.Speed3ProductId configured.")
+    if speed3PassId <= 0 then
+        warn("[RaidUI] x3 speed needs GamePassConfig.TripleSpeed configured.")
+        return
     end
+
+    local ownsPass = player:GetAttribute("GiftPass_TripleSpeed") == true
+    local ok, result = pcall(function()
+        return MarketplaceService:UserOwnsGamePassAsync(player.UserId, speed3PassId)
+    end)
+    ownsPass = ownsPass or (ok and result == true)
+
+    if ownsPass then
+        speed3Button:SetAttribute("Speed", 3)
+        speed3Button.Text = "x3"
+        controlRemote:FireServer("Speed", 3)
+    else
+        MarketplaceService:PromptGamePassPurchase(player, speed3PassId)
+    end
+end)
+
+MarketplaceService.PromptGamePassPurchaseFinished:Connect(function(purchasedPlayer, passId, purchased)
+    if purchasedPlayer ~= player or passId ~= speed3PassId or not purchased then
+        return
+    end
+    task.wait(0.25)
+    speed3Button:SetAttribute("Speed", 3)
+    speed3Button.Text = "x3"
+    controlRemote:FireServer("Speed", 3)
 end)

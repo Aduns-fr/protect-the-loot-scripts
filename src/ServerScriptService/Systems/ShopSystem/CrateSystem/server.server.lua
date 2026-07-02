@@ -4,31 +4,47 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local ProximityPromptService = game:GetService("ProximityPromptService")
 
 local CratesConfig = require(ReplicatedStorage.Configs.CratesConfig)
+local DeveloperProductsConfig = require(ReplicatedStorage.Configs.DeveloperProductsConfig)
 local WeaponsConfig = require(ReplicatedStorage.Configs.WeaponsConfig)
 local PlotService = require(ServerScriptService.Systems.PlotSystem.Modules.PlotService)
 local PlayerDataService = require(ServerScriptService.Systems.DataSystem.Modules.PlayerDataService)
+local MonetizationAnalytics = require(ServerScriptService.Systems.DataSystem.Modules.MonetizationAnalytics)
+local BadgeProgressService = require(ServerScriptService.Systems.DataSystem.Modules.BadgeProgressService)
+local CrateGrantAPI = require(script.Parent.CrateGrantAPI)
 
 local remotes = ReplicatedStorage:WaitForChild("Remotes")
+local function getOrCreateRemoteEvent(name)
+    local remote = remotes:FindFirstChild(name)
+    if not remote then
+        remote = Instance.new("RemoteEvent")
+        remote.Name = name
+        remote.Parent = remotes
+    end
+    return remote
+end
 local stockRemote = remotes:WaitForChild("CrateStockUpdate")
 local purchaseRemote = remotes:WaitForChild("CratePurchase")
 local openedRemote = remotes:WaitForChild("CrateOpened")
+local skipPromptRemote = getOrCreateRemoteEvent("ChestSkipPrompt")
 local crateTemplates = ReplicatedStorage:WaitForChild("Crates")
 local timerTemplate = ReplicatedStorage:WaitForChild("Timer")
 local attachmentTemplate = ReplicatedStorage:WaitForChild("ChestAttachment")
 
 local stock = {}
 local nextReset = 0
+local forceSerial = 0
 local placed = {}
 local openingPlayers = {}
+local pendingSkip = {}
 
 local function appears(cfg, rng)
     return rng:NextNumber(0, 100) <= (CratesConfig.RarityWeights[cfg.Rarity or "Common"] or 50)
 end
 
-local function refreshStock()
+local function refreshStock(seedOverride, resetFromNow)
     local bucket = math.floor(os.time() / CratesConfig.StockResetSeconds)
-    local rng = Random.new(bucket + 555)
-    nextReset = (bucket + 1) * CratesConfig.StockResetSeconds
+    local rng = Random.new(seedOverride or (bucket + 555))
+    nextReset = resetFromNow and (os.time() + CratesConfig.StockResetSeconds) or ((bucket + 1) * CratesConfig.StockResetSeconds)
     table.clear(stock)
     for _, crateId in ipairs(CratesConfig.Order) do
         local cfg = CratesConfig.Crates[crateId]
@@ -44,12 +60,32 @@ local function broadcastStock()
     stockRemote:FireAllClients(stockPayload())
 end
 
+local function forceRefreshStock()
+    forceSerial += 1
+    refreshStock(os.time() + 555 + forceSerial * 13007, true)
+    broadcastStock()
+end
+
 local function takeStock(crateId)
     if (stock[crateId] or 0) <= 0 then return false end
     stock[crateId] -= 1
     broadcastStock()
     return true
 end
+
+local function returnStock(crateId)
+    if not CratesConfig.Crates[crateId] then return false end
+    stock[crateId] = (stock[crateId] or 0) + 1
+    broadcastStock()
+    return true
+end
+
+_G.MyEvilLairCrateStock = {
+    Get = function() return stock, nextReset end,
+    TryTake = takeStock,
+    Return = returnStock,
+    ForceRefresh = forceRefreshStock,
+}
 
 local function getSlots(plot)
     return plot and plot:FindFirstChild("CrateSlots")
@@ -84,8 +120,8 @@ local function updateChestStatus(model)
     local ready = remaining <= 0
     local prompt = getPrompt(model)
     if prompt then
-        prompt.Enabled = ready
-        prompt.ActionText = ready and "Open" or "Unlocking"
+        prompt.Enabled = true
+        prompt.ActionText = ready and "Open" or "Skip Wait"
         prompt.ObjectText = CratesConfig.Crates[model:GetAttribute("CrateId")] and CratesConfig.Crates[model:GetAttribute("CrateId")].DisplayName or "Chest"
     end
     local timer = model:FindFirstChild("Timer", true)
@@ -109,7 +145,7 @@ local function configureVisuals(model, root, boxSize)
 
     local attachment = attachmentTemplate:Clone()
     attachment.Name = "ChestAttachment"
-    attachment.CFrame = CFrame.new(0, math.min(boxSize.Y * 0.15, 0.75), 0)
+    attachment.CFrame = CFrame.new(0, math.min(boxSize.Y * 0.15, 0.75) - 0.65, 0)
     attachment.Parent = root
     local prompt = attachment:FindFirstChildWhichIsA("ProximityPrompt")
     if prompt then
@@ -137,6 +173,23 @@ local function saveRecords(player)
     table.sort(records, function(a, b) return tostring(a.SlotName) < tostring(b.SlotName) end)
     PlayerDataService.SetCrates(player, records, true)
 end
+
+local function forceReadyForSkip(player)
+    local pending = pendingSkip[player.UserId]
+    pendingSkip[player.UserId] = nil
+    local model = pending and pending.Model
+    if not model or not model.Parent or not model:GetAttribute("PlacedChest") or model:GetAttribute("OwnerUserId") ~= player.UserId then
+        return true
+    end
+    model:SetAttribute("ReadyAt", os.time())
+    updateChestStatus(model)
+    saveRecords(player)
+    return true
+end
+
+_G.MyEvilLairChestSkip = {
+    Grant = forceReadyForSkip,
+}
 
 local function placeChest(player, crateId, readyAt, preferredSlot, restoring)
     local cfg = CratesConfig.Crates[crateId]
@@ -250,9 +303,20 @@ purchaseRemote.OnServerInvoke = function(player, crateId, purchaseType)
     crateId = tostring(crateId or "")
     local cfg = CratesConfig.Crates[crateId]
     if not cfg then return false, "Bad chest" end
-    if purchaseType == "Robux" then return false, "Use Robux prompt" end
     local plot = PlotService.GetPlayerPlot(player)
     if not getFreeSlot(plot) then return false, "Max 3 chests" end
+    if purchaseType == "Robux" then
+        local productId = tonumber(cfg.RobuxProductId) or 0
+        if productId <= 0 then return false, "Robux purchase unavailable" end
+        if not takeStock(crateId) then return false, "Out of stock" end
+        local reserved = PlayerDataService.ReserveRobuxCrate(player, crateId, productId)
+        if not reserved then
+            returnStock(crateId)
+            return false, "Purchase already pending"
+        end
+        MonetizationAnalytics.LogProductPrompt(player, "Crates", crateId, cfg.RobuxPrice or 0)
+        return true, "Prompt", productId
+    end
     local leaderstats = player:FindFirstChild("leaderstats")
     local cash = leaderstats and leaderstats:FindFirstChild("Cash")
     local price = math.max(0, math.floor(tonumber(cfg.CashPrice) or 0))
@@ -266,11 +330,20 @@ purchaseRemote.OnServerInvoke = function(player, crateId, purchaseType)
     if not ok then
         cash.Value += price
         if data then data.Cash = cash.Value end
-        stock[crateId] = (stock[crateId] or 0) + 1
-        broadcastStock()
+        returnStock(crateId)
         return false, result
     end
+    MonetizationAnalytics.LogCashSink(player, Enum.AnalyticsEconomyTransactionType.Shop.Name, price, cash.Value, "Crate_" .. crateId, "Crates")
     return true, "Chest purchased"
+end
+
+CrateGrantAPI.Handler = function(player, crateId)
+    crateId = tostring(crateId or "")
+    local cfg = CratesConfig.Crates[crateId]
+    if not cfg then return false, "Bad chest" end
+    local plot = PlotService.GetPlayerPlot(player)
+    if not getFreeSlot(plot) then return false, "Max 3 chests" end
+    return placeChest(player, crateId, os.time() + (cfg.OpenSeconds or 60), nil, false)
 end
 
 ProximityPromptService.PromptTriggered:Connect(function(prompt, player)
@@ -278,6 +351,14 @@ ProximityPromptService.PromptTriggered:Connect(function(prompt, player)
     if not model or not model:GetAttribute("PlacedChest") or model:GetAttribute("OwnerUserId") ~= player.UserId then return end
     if openingPlayers[player] or model:GetAttribute("Opening") then return end
     if os.time() < (tonumber(model:GetAttribute("ReadyAt")) or math.huge) then
+        local productId = tonumber(DeveloperProductsConfig.ChestSkip and DeveloperProductsConfig.ChestSkip.ProductId) or 0
+        if productId > 0 then
+            pendingSkip[player.UserId] = {
+                Model = model,
+                ExpiresAt = os.clock() + 120,
+            }
+            skipPromptRemote:FireClient(player, productId)
+        end
         updateChestStatus(model)
         return
     end
@@ -313,7 +394,8 @@ ProximityPromptService.PromptTriggered:Connect(function(prompt, player)
         config = { DisplayName = weapon.DisplayName or weaponId, Damage = weapon.Damage or 0, Rarity = weapon.Rarity or "Common", ImageId = weapon.ImageId or "" },
         pool = buildRollPool(crateId),
     })
-    task.delay(0.5, function() openingPlayers[player] = nil end)
+    BadgeProgressService.Award(player, "ChestCracker")
+    task.delay(7.5, function() openingPlayers[player] = nil end)
 end)
 
 refreshStock()
@@ -332,6 +414,9 @@ local function onPlayerAdded(player)
     task.defer(function() stockRemote:FireClient(player, stockPayload()) end)
 end
 Players.PlayerAdded:Connect(onPlayerAdded)
-Players.PlayerRemoving:Connect(function(player) openingPlayers[player] = nil end)
+Players.PlayerRemoving:Connect(function(player)
+    openingPlayers[player] = nil
+    pendingSkip[player.UserId] = nil
+end)
 for _, player in ipairs(Players:GetPlayers()) do onPlayerAdded(player) end
 broadcastStock()

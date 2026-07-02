@@ -33,21 +33,39 @@ local function getSignUi(plot)
     return textLabel, imageLabel
 end
 
+local function getOwnerThumbnail(player)
+    local ok, image = pcall(function()
+        return Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size180x180)
+    end)
+    return ok and image or ""
+end
+
+-- owner billboard on the plot's "Part" (BillboardGui with Image + Text children)
+local function updateBillboard(plot, player, thumbnail)
+    local part = plot and plot:FindFirstChild("Part")
+    local billboard = part and part:FindFirstChildWhichIsA("BillboardGui")
+    if not billboard then return end
+    local imageLabel = billboard:FindFirstChild("Image")
+    local textLabel = billboard:FindFirstChild("Text")
+    if textLabel and textLabel:IsA("TextLabel") then
+        textLabel.Text = player and player.Name or "Available"
+    end
+    if imageLabel and imageLabel:IsA("ImageLabel") then
+        imageLabel.Image = thumbnail or ""
+        imageLabel.Visible = player ~= nil
+    end
+end
+
 local function updateSign(plot, player)
+    local thumbnail = player and getOwnerThumbnail(player) or ""
     local textLabel, imageLabel = getSignUi(plot)
     if textLabel then
         textLabel.Text = player and (player.Name .. "\nBase") or "Available\nBase"
     end
     if imageLabel then
-        if player then
-            local ok, image = pcall(function()
-                return Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size180x180)
-            end)
-            imageLabel.Image = ok and image or ""
-        else
-            imageLabel.Image = ""
-        end
+        imageLabel.Image = thumbnail
     end
+    updateBillboard(plot, player, thumbnail)
 end
 
 local function getSortedPlots()

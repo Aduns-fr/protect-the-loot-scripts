@@ -21,6 +21,8 @@ local function getBasePart(plot: Instance?): BasePart?
 	return if nested and nested:IsA("BasePart") then nested else nil
 end
 
+-- Fallback surface height (world Y) from the island geometry, used when a
+-- downward raycast finds nothing under a route point.
 local function islandTopY(plot: Instance?, fallback: number): number
 	if plot then
 		local island = plot:FindFirstChild("Island")
@@ -36,6 +38,8 @@ local function islandTopY(plot: Instance?, fallback: number): number
 	return fallback
 end
 
+-- Raycast params limited to the walkable surfaces of this plot (Island/Docks/Base),
+-- so enemies follow the ground rather than the tall invisible "Part" hitbox.
 local function buildRayParams(plot: Instance?): RaycastParams
 	local params = RaycastParams.new()
 	params.FilterType = Enum.RaycastFilterType.Include
@@ -43,8 +47,8 @@ local function buildRayParams(plot: Instance?): RaycastParams
 	local includes = {}
 	if plot then
 		for _, name in ipairs({ "Island", "Docks", "Base" }) do
-			local child = plot:FindFirstChild(name)
-			if child then includes[#includes + 1] = child end
+			local c = plot:FindFirstChild(name)
+			if c then includes[#includes + 1] = c end
 		end
 	end
 	params.FilterDescendantsInstances = includes
@@ -59,6 +63,7 @@ local function clampLocal(point: Vector3, half: Vector3): Vector3
 	)
 end
 
+-- Converts local X/Z route points to world space, snapping Y to the plot surface.
 local function toWorldPoints(plot: Instance?, plotPart: BasePart, half: Vector3, localPoints: { Vector3 })
 	local params = buildRayParams(plot)
 	local fallbackY = islandTopY(plot, plotPart.Position.Y + half.Y)

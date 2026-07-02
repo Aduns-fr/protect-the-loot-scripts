@@ -27,6 +27,11 @@ local WeatherEffects_Remote = Remotes:WaitForChild("WeatherEffects")
 
 local LastWeather = nil
 
+local function gameMusic()
+	local sfx = SoundService:FindFirstChild("SFX")
+	return sfx and sfx:FindFirstChild("GameMusic") or nil
+end
+
 Voting.Buttons.GreenButton.Click.MouseButton1Click:Connect(function()
 	Vote_Remote:FireServer(1)
 end)
@@ -122,7 +127,8 @@ WeatherEffects_Remote.OnClientEvent:Connect(function(WeatherSettings, Status)
 	if not WeatherSettings then return end
 	
 	if Status == "Start" then
-		SoundService.SFX.GameMusic:Stop()
+		local music = gameMusic()
+		if music then music:Stop() end
 		if WeatherSettings:FindFirstChildOfClass("Sound") then
 			WeatherSettings:FindFirstChildOfClass("Sound"):Play()
 		end
@@ -137,7 +143,8 @@ WeatherEffects_Remote.OnClientEvent:Connect(function(WeatherSettings, Status)
 		if WeatherSettings:FindFirstChildOfClass("Sound") then
 			WeatherSettings:FindFirstChildOfClass("Sound"):Stop()
 		end
-		SoundService.SFX.GameMusic:Play()
+		local music = gameMusic()
+		if music then music:Play() end
 		LastWeather = WeatherSettings
 	end
 end)
@@ -152,4 +159,5 @@ task.delay(3, function()
 	end)
 end)
 
-SoundService.SFX.GameMusic:Play()
+local music = gameMusic()
+if music then music:Play() end

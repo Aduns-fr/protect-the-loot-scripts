@@ -2,6 +2,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local SocialService = game:GetService("SocialService")
 local TweenService = game:GetService("TweenService")
+local MarketplaceService = game:GetService("MarketplaceService")
 
 local player = Players.LocalPlayer
 local gui = player:WaitForChild("PlayerGui"):WaitForChild("GUI")
@@ -17,9 +18,11 @@ local remotes = ReplicatedStorage:WaitForChild("Remotes")
 local boostRemote = remotes:WaitForChild("FriendBoostUpdate")
 local raidResultsRemote = remotes:WaitForChild("RaidResults")
 local startRaidRemote = remotes:WaitForChild("StartRaid")
+local raidRevivePurchaseRemote = remotes:WaitForChild("RaidRevivePurchase")
 
 local displayedCash = 0
 local cashTweenToken = 0
+local lastRaidResult = nil
 
 local function formatCash(value)
     value = math.max(0, math.floor(tonumber(value) or 0))
@@ -94,10 +97,23 @@ local function setResultValue(results, name, value)
     if label and label:IsA("TextLabel") then label.Text = value end
 end
 
+local function setReviveVisible(results, visible)
+    local revive = results and results:FindFirstChild("Revive")
+    if revive and revive:IsA("GuiObject") then
+        revive.Visible = visible == true
+        if revive:IsA("GuiButton") then
+            revive.Active = visible == true
+            revive.AutoButtonColor = visible == true
+        end
+    end
+end
+
 raidResultsRemote.OnClientEvent:Connect(function(data)
     data = type(data) == "table" and data or {}
+    lastRaidResult = data
     local results = frames:FindFirstChild("Results")
     if not results then return end
+    setReviveVisible(results, data.reason == "Defeated")
 
     local status = results:FindFirstChild("Status")
     if status and status:IsA("TextLabel") then
@@ -132,6 +148,7 @@ end)
 
 local results = frames:FindFirstChild("Results")
 if results then
+    setReviveVisible(results, false)
     local done = results:FindFirstChild("Done")
     if done and done:IsA("GuiButton") then
         done.Activated:Connect(function()
@@ -144,6 +161,20 @@ if results then
             closeFrameRequest:Fire()
             task.wait(0.2)
             startRaidRemote:FireServer()
+        end)
+    end
+    local revive = results:FindFirstChild("Revive")
+    if revive and revive:IsA("GuiButton") then
+        revive.Activated:Connect(function()
+            if not lastRaidResult or lastRaidResult.reason ~= "Defeated" then return end
+            local ok, success, msg, productId = pcall(function()
+                return raidRevivePurchaseRemote:InvokeServer()
+            end)
+            if ok and success and tonumber(productId) and tonumber(productId) > 0 then
+                MarketplaceService:PromptProductPurchase(player, tonumber(productId))
+            elseif _G.ShowNotif then
+                _G.ShowNotif(tostring(ok and msg or success or "Revive unavailable"), Color3.fromRGB(255, 35, 35))
+            end
         end)
     end
 end

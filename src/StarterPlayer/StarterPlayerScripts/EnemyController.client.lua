@@ -1,6 +1,6 @@
 --!nonstrict
 -- EnemyController: renders this player's enemies (data streamed from EnemyCore).
--- Clones the ReplicatedStorage Rig per enemy, interpolates along its assigned generated route
+-- Clones the workspace Rig per enemy, interpolates along its assigned generated route
 -- (dead-reckon + gentle correction to the server's authoritative distance), shows
 -- an HP bar, plays a walk anim, and runs a death pop. Pure client visual.
 local Players = game:GetService("Players")

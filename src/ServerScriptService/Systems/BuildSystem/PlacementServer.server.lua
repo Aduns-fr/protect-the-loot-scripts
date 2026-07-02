@@ -18,6 +18,7 @@ local function resolveUnitId(unitId)
     return UnitsConfig.Units[unitId] and unitId or LEGACY_UNIT_ALIASES[unitId]
 end
 local PlayerDataService = require(game.ServerScriptService:WaitForChild("Systems"):WaitForChild("DataSystem"):WaitForChild("Modules"):WaitForChild("PlayerDataService"))
+local BadgeProgressService = require(game.ServerScriptService:WaitForChild("Systems"):WaitForChild("DataSystem"):WaitForChild("Modules"):WaitForChild("BadgeProgressService"))
 local PlotService = require(game.ServerScriptService:WaitForChild("Systems"):WaitForChild("PlotSystem"):WaitForChild("Modules"):WaitForChild("PlotService"))
 local EnemyCore = require(game.ServerScriptService:WaitForChild("Systems"):WaitForChild("RaidSystem"):WaitForChild("Modules"):WaitForChild("EnemyCore"))
 local DEBUG_PLACEMENT = false
@@ -260,6 +261,9 @@ local function place(player, unitId, worldPos, rotation, hitPart, hitNormal, res
     model:PivotTo(cf)
     model.Parent = ownedUnitsFolder(player)
     startAttackLoop(player, model, resolvedUnitId)
+    if not restoring then
+        BadgeProgressService.Award(player, "MasterBuilder")
+    end
 
     serializePlaced(player)
     if DEBUG_PLACEMENT then print("[PlacementDebug][ServerResult] success=true") end

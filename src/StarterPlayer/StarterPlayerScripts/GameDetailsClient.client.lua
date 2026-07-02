@@ -33,7 +33,7 @@ local originalDetails = details.Position
 local originalBase = baseFrame.Position
 local topDefault = { Start = true, Base = true, Leaderboards = true, Auto = false, Stop = false, Speed = false, x3 = false }
 local topRaid = { Start = false, Base = false, Leaderboards = false, Auto = true, Stop = true, Speed = true, x3 = true }
-local topAliases = { Start = "StartButton", Base = "PlotButton", Leaderboards = "LeaderboardButton" }
+local topAliases = { Start = "StartButton", Base = "PlotButton", Leaderboards = "LeaderboardButton", Stop = "StopButton" }
 local legacyTopAliases = { Leaderboards = "ShopsButton" }
 
 local function topControl(name)

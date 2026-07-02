@@ -18,6 +18,7 @@ local inventoryRemote = remotes:WaitForChild("UnitInventoryUpdate")
 local baseUpgradeRemote = remotes:WaitForChild("BaseUpgrade")
 local baseDataRemote = remotes:WaitForChild("BaseDataUpdate")
 local stockRemote = remotes:WaitForChild("UnitStockUpdate")
+local stockRefreshPurchaseRemote = remotes:WaitForChild("StockRefreshPurchase")
 local buildRemote = remotes:WaitForChild("BuildAction")
 local crateStockRemote = remotes:WaitForChild("CrateStockUpdate")
 local cratePurchaseRemote = remotes:WaitForChild("CratePurchase")
@@ -63,12 +64,15 @@ local currentPanel = baseFrame:WaitForChild("Current")
 local nextPanel = baseFrame:WaitForChild("Next")
 local upgradeButton = baseFrame:WaitForChild("Upgrade")
 local unitModels = ReplicatedStorage:WaitForChild("UnitModels")
+local unitRefreshButton = unitsFrame:FindFirstChild("Refresh", true)
+local crateRefreshButton = cratesFrame:FindFirstChild("Refresh", true)
 
 local stock, crateStock = {}, {}
 local unitCardsById, crateCardsById = {}, {}
 local nextReset, crateNextReset = 0, 0
 local inventory = {}
 local baseLevel = tonumber(player:GetAttribute("BaseLevel")) or 1
+local baseMaxLoot = tonumber(player:GetAttribute("BaseMaxLoot")) or 500
 local placingUnit, rotation, ghost, lastSnapPosition = nil, 0, nil, nil
 gui:SetAttribute("PlacementActive", false)
 local placementBoxPart, placementSelection, deleteBoxPart, deleteSelection = nil, nil, nil, nil
@@ -88,6 +92,90 @@ local function formatCash(value)
     local text = tostring(value)
     while true do local nextText, count = text:gsub("^(-?%d+)(%d%d%d)", "%1,%2"); text = nextText; if count == 0 then break end end
     return "$" .. text
+end
+
+local ROBUX_ICON = utf8.char(0xE002)
+local ROBUX_PRICE_BY_RARITY = {
+    Common = 15,
+    Uncommon = 25,
+    Rare = 45,
+    Epic = 75,
+    Legendary = 120,
+    Mythic = 200,
+}
+
+local function formatRobux(value)
+    return ROBUX_ICON .. tostring(math.max(0, math.floor(tonumber(value) or 0)))
+end
+
+local function robuxPriceFor(config)
+    return tonumber(config.RobuxPrice) or ROBUX_PRICE_BY_RARITY[config.Rarity or ""] or 0
+end
+
+local function setTextWithChildren(label, text)
+    if label and (label:IsA("TextLabel") or label:IsA("TextButton")) then
+        label.Text = text
+    end
+    if label then
+        for _, descendant in ipairs(label:GetDescendants()) do
+            if descendant:IsA("TextLabel") or descendant:IsA("TextButton") then
+                descendant.Text = text
+            end
+        end
+    end
+end
+
+local function setRobuxButtonPrice(button, config)
+    if not button then return end
+    local price = robuxPriceFor(config)
+    if price <= 0 then return end
+    local text = formatRobux(price)
+    local changed = false
+    for _, descendant in ipairs(button:GetDescendants()) do
+        if descendant:IsA("TextLabel") then
+            descendant.Text = text
+            changed = true
+        end
+    end
+    if button:IsA("TextButton") and not changed then
+        button.Text = text
+    end
+end
+
+local function setButtonStockState(button, available)
+    if not button or not button:IsA("GuiButton") then return end
+    button.Active = available
+    button.AutoButtonColor = available
+end
+
+local function showPurchaseError(message)
+    if _G.PlaySound then _G.PlaySound("Error") end
+    if _G.ShowNotif then
+        local reason = tostring(message or "")
+        local lower = reason:lower()
+        local text
+        if lower:find("stock") then
+            text = "Out of stock!"
+        elseif lower:find("slot") or lower:find("chest") then
+            text = reason
+        elseif lower:find("cash") or lower:find("money") then
+            text = "Not enough money!"
+        else
+            text = "Can't purchase right now"
+        end
+        _G.ShowNotif(text, Color3.fromRGB(255, 35, 35))
+    end
+end
+
+local function promptStockRefresh()
+    local ok, success, msg, productId = pcall(function()
+        return stockRefreshPurchaseRemote:InvokeServer()
+    end)
+    if ok and success and tonumber(productId) and tonumber(productId) > 0 then
+        MarketplaceService:PromptProductPurchase(player, tonumber(productId))
+    else
+        showPurchaseError(ok and msg or success)
+    end
 end
 
 local function scaleButton(button)
@@ -120,6 +208,33 @@ local function canvasList(scroll)
     if layout then task.defer(function() scroll.CanvasSize = UDim2.fromOffset(0, layout.AbsoluteContentSize.Y + 24) end) end
 end
 
+local rewardMarquees = {}
+
+RunService.Heartbeat:Connect(function(dt)
+    for strip, state in pairs(rewardMarquees) do
+        if not strip.Parent then
+            rewardMarquees[strip] = nil
+        else
+            local layout = state.layout
+            local loopWidth = state.loopWidth
+            if layout then
+                local contentWidth = layout.AbsoluteContentSize.X
+                if contentWidth > 0 then
+                    strip.CanvasSize = UDim2.fromOffset(math.ceil(contentWidth + 12), 0)
+                    loopWidth = contentWidth / math.max(1, state.repeats or 1)
+                    state.loopWidth = loopWidth
+                end
+            end
+            if loopWidth and loopWidth > 1 then
+                local x = (strip.CanvasPosition.X + dt * (state.speed or 34)) % loopWidth
+                strip.CanvasPosition = Vector2.new(x, 0)
+            else
+                strip.CanvasPosition = Vector2.new(0, 0)
+            end
+        end
+    end
+end)
+
 local function canvasGrid(scroll)
     local grid = scroll:FindFirstChildOfClass("UIGridLayout")
     scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -149,22 +264,30 @@ local function updateUnitCards()
                 card.Cash.Activated:Connect(function()
                     local ok, success, msg = pcall(function() return unitPurchaseRemote:InvokeServer(unitId, "Cash") end)
                     if ok and not success then
-                        if _G.PlaySound then _G.PlaySound("Error") end
-                        if _G.ShowNotif then
-                            local reason = tostring(msg or "")
-                            local text = (reason == "Not enough cash" or reason:lower():find("cash")) and "Not enough money!" or "Can't purchase right now"
-                            _G.ShowNotif(text, Color3.fromRGB(255, 35, 35))
-                        end
+                        showPurchaseError(msg)
                     end
                 end)
-                card.Robux.Activated:Connect(function() local id = tonumber(cfg.RobuxProductId) or 0; if id > 0 then MarketplaceService:PromptProductPurchase(player, id) end end)
+                setRobuxButtonPrice(card.Robux, cfg)
+                card.Robux.Activated:Connect(function()
+                    local available = (stock[unitId] or 0) > 0
+                    if not available then showPurchaseError("Out of stock"); return end
+                    local ok, success, msg, productId = pcall(function() return unitPurchaseRemote:InvokeServer(unitId, "Robux") end)
+                    if ok and success and tonumber(productId) and tonumber(productId) > 0 then
+                        MarketplaceService:PromptProductPurchase(player, tonumber(productId))
+                    else
+                        showPurchaseError(ok and msg or success)
+                    end
+                end)
             end
         end
     end
     for unitId, card in pairs(unitCardsById) do
         if card and card.Parent then
+            local available = (stock[unitId] or 0) > 0
             local stockLabel = card:FindFirstChild("Stock")
             if stockLabel then stockLabel.Text = "Stock: " .. tostring(stock[unitId] or 0) end
+            setButtonStockState(card:FindFirstChild("Cash"), available)
+            setButtonStockState(card:FindFirstChild("Robux"), available)
         end
     end
     canvasList(unitsScroll)
@@ -180,21 +303,17 @@ end
 local function startRewardMarquee(strip)
     local layout = strip:FindFirstChildOfClass("UIListLayout")
     if not layout then return end
-    task.spawn(function()
-        task.wait(0.2)
-        while strip.Parent do
-            local width = math.max(0, layout.AbsoluteContentSize.X - strip.AbsoluteWindowSize.X)
-            if width > 0 then
-                strip.CanvasPosition = Vector2.new(0, 0)
-                local tween = TweenService:Create(strip, TweenInfo.new(math.clamp(width / 45, 2.2, 5.5), Enum.EasingStyle.Linear), { CanvasPosition = Vector2.new(width, 0) })
-                tween:Play()
-                tween.Completed:Wait()
-                task.wait(0.25)
-            else
-                task.wait(0.5)
-            end
-        end
-    end)
+    strip.ScrollingEnabled = false
+    strip.Active = false
+    strip.AutomaticCanvasSize = Enum.AutomaticSize.None
+    strip.ScrollingDirection = Enum.ScrollingDirection.X
+    strip.ScrollBarThickness = 0
+    rewardMarquees[strip] = {
+        layout = layout,
+        repeats = tonumber(strip:GetAttribute("RewardRepeatCount")) or 1,
+        speed = 36,
+        loopWidth = math.max(1, layout.AbsoluteContentSize.X),
+    }
 end
 
 
@@ -204,12 +323,24 @@ local function populateRewardStrip(card, cfg)
     for _, child in ipairs(strip:GetChildren()) do if child:IsA("GuiObject") and child ~= template then child:Destroy() end end
     template.Visible = false
     local layout = strip:FindFirstChildOfClass("UIListLayout")
-    if layout then layout.FillDirection = Enum.FillDirection.Horizontal end
-    for _, reward in ipairs(cfg.Rewards or {}) do
-        local item = template:Clone(); item.Visible = true; item.Parent = strip
-        local label = item:FindFirstChild("TextLabel"); if label then label.Text = tostring(reward.Chance) .. "%" end
+    if layout then
+        layout.FillDirection = Enum.FillDirection.Horizontal
+        layout.SortOrder = Enum.SortOrder.LayoutOrder
     end
-    strip.AutomaticCanvasSize = Enum.AutomaticSize.X
+    local rewards = cfg.Rewards or {}
+    local repeats = 3
+    strip:SetAttribute("RewardRepeatCount", repeats)
+    for pass = 1, repeats do
+        for rewardIndex, reward in ipairs(rewards) do
+            local item = template:Clone()
+            item.Name = "Reward_" .. tostring(pass) .. "_" .. tostring(rewardIndex)
+            item.LayoutOrder = pass * 100 + rewardIndex
+            item.Visible = true
+            item.Parent = strip
+            local label = item:FindFirstChild("TextLabel")
+            if label then label.Text = tostring(reward.Chance) .. "%" end
+        end
+    end
     startRewardMarquee(strip)
 end
 
@@ -269,22 +400,30 @@ local function updateCrateCards()
                 card.Cash.Activated:Connect(function()
                     local ok, success, msg = pcall(function() return cratePurchaseRemote:InvokeServer(crateId, "Cash") end)
                     if ok and not success then
-                        if _G.PlaySound then _G.PlaySound("Error") end
-                        if _G.ShowNotif then
-                            local reason = tostring(msg or "")
-                            local text = (reason:lower():find("cash") or reason:lower():find("money")) and "Not enough money!" or "Can't purchase right now"
-                            _G.ShowNotif(text, Color3.fromRGB(255, 35, 35))
-                        end
+                        showPurchaseError(msg)
                     end
                 end)
-                card.Robux.Activated:Connect(function() local id = tonumber(cfg.RobuxProductId) or 0; if id > 0 then MarketplaceService:PromptProductPurchase(player, id) end end)
+                setRobuxButtonPrice(card.Robux, cfg)
+                card.Robux.Activated:Connect(function()
+                    local available = (crateStock[crateId] or 0) > 0
+                    if not available then showPurchaseError("Out of stock"); return end
+                    local ok, success, msg, productId = pcall(function() return cratePurchaseRemote:InvokeServer(crateId, "Robux") end)
+                    if ok and success and tonumber(productId) and tonumber(productId) > 0 then
+                        MarketplaceService:PromptProductPurchase(player, tonumber(productId))
+                    else
+                        showPurchaseError(ok and msg or success)
+                    end
+                end)
             end
         end
     end
     for crateId, card in pairs(crateCardsById) do
         if card and card.Parent then
+            local available = (crateStock[crateId] or 0) > 0
             local stockLabel = card:FindFirstChild("Stock")
             if stockLabel then stockLabel.Text = "Stock: " .. tostring(crateStock[crateId] or 0) end
+            setButtonStockState(card:FindFirstChild("Cash"), available)
+            setButtonStockState(card:FindFirstChild("Robux"), available)
         end
     end
     canvasList(cratesScroll)
@@ -423,15 +562,29 @@ local function currentPlotPart()
     return part
 end
 
+local islandSurfaceCache = setmetatable({}, { __mode = "k" })
 local function islandSurfaceParts(plot)
     local island = plot and plot:FindFirstChild("Island")
     if not island then return {} end
+    local cached = islandSurfaceCache[island]
+    if cached then return cached end
     local parts = {}
     for _, descendant in ipairs(island:GetDescendants()) do
         if descendant:IsA("BasePart") then
             table.insert(parts, descendant)
         end
     end
+    islandSurfaceCache[island] = parts
+    island.DescendantAdded:Connect(function(descendant)
+        if descendant:IsA("BasePart") then
+            islandSurfaceCache[island] = nil
+        end
+    end)
+    island.DescendantRemoving:Connect(function(descendant)
+        if descendant:IsA("BasePart") then
+            islandSurfaceCache[island] = nil
+        end
+    end)
     return parts
 end
 
@@ -552,7 +705,22 @@ upgradeButton.Activated:Connect(function()
 end)
 scaleButton(upgradeButton)
 
-baseDataRemote.OnClientEvent:Connect(function(data) if type(data) == "table" and data.level then baseLevel = data.level; updateBaseFrame() end end)
+if unitRefreshButton and unitRefreshButton:IsA("GuiButton") then
+    scaleButton(unitRefreshButton)
+    unitRefreshButton.Activated:Connect(promptStockRefresh)
+end
+if crateRefreshButton and crateRefreshButton:IsA("GuiButton") then
+    scaleButton(crateRefreshButton)
+    crateRefreshButton.Activated:Connect(promptStockRefresh)
+end
+
+baseDataRemote.OnClientEvent:Connect(function(data)
+    if type(data) == "table" then
+        if data.level then baseLevel = data.level end
+        if data.maxLoot or data.health then baseMaxLoot = tonumber(data.maxLoot or data.health) or baseMaxLoot end
+        updateBaseFrame()
+    end
+end)
 inventoryRemote.OnClientEvent:Connect(function(data)
     inventory = type(data) == "table" and data or {}
     local activeUnit = placingUnit
@@ -680,7 +848,17 @@ end)
 buildFrame:GetPropertyChangedSignal("Visible"):Connect(function()
     if not buildFrame.Visible then clearGhost() end
 end)
-task.spawn(function() while true do local remaining = math.max(0, nextReset - os.time()); unitsTimer.Text = string.format("%02d:%02d", math.floor(remaining / 60), remaining % 60); local crateRemaining = math.max(0, crateNextReset - os.time()); if cratesTimer then cratesTimer.Text = string.format("%02d:%02d", math.floor(crateRemaining / 60), crateRemaining % 60) end; task.wait(1) end end)
+task.spawn(function()
+    while true do
+        local remaining = math.max(0, nextReset - os.time())
+        setTextWithChildren(unitsTimer, string.format("Stock refreshes in %02d:%02d", math.floor(remaining / 60), remaining % 60))
+        local crateRemaining = math.max(0, crateNextReset - os.time())
+        if cratesTimer then
+            setTextWithChildren(cratesTimer, string.format("Stock refreshes in %02d:%02d", math.floor(crateRemaining / 60), crateRemaining % 60))
+        end
+        task.wait(1)
+    end
+end)
 
 unitsTemplate.Visible = false; cratesTemplate.Visible = false; buildTemplate.Visible = false
 updateBuildInventory(); updateBaseFrame()

@@ -1,2 +1,7 @@
-local PlayerDataService = require(script.Parent.Modules.PlayerDataService)
+local modules = script.Parent.Parent:WaitForChild("Modules")
+local PlayerDataService = require(modules:WaitForChild("PlayerDataService"))
+local GamePassService = require(modules:WaitForChild("GamePassService"))
+local BadgeProgressService = require(modules:WaitForChild("BadgeProgressService"))
+BadgeProgressService.Start()
 PlayerDataService.Start()
+GamePassService.Start()
